@@ -34,7 +34,7 @@ void main()
 {
 
 	short option;
-	short userCode[LENGTH];
+	unsigned short userCode[LENGTH];
 	char str[1];
 	struct code_counter attempts;
 
@@ -43,7 +43,13 @@ void main()
 	{
 
 		//this prints the main menu for the program
-		printf("Please choose from one of the following options\n");
+		printf("\nPlease choose from one of the following options\n");
+		printf("1. Enter a code\n");
+		printf("2. Incrypt a code\n");
+		printf("3. Check code\n");
+		printf("4. Decrypt a code\n");
+		printf("5. Check entry attempts\n");
+		printf("6. Exit the program\n\n");
 
 		//this gets a value from the user and error checks it so that the user can choose an option
 		do
@@ -70,6 +76,9 @@ void main()
 		if(option == 1)
 		{
 
+			//goes to the enterNumbers function
+			enterNumbers(userCode);
+
 	}	 //end if for option 1
 		else if(option == 6)
 	{	
@@ -82,6 +91,20 @@ void main()
 	while(1);
 
 } //end main
+
+
+//this function allows the user to enter a code in to the userCode array from the main function
+void enterNumbers(short userCode[])
+{
+
+	short i = 0;
+	char temp[1];
+
+	printf("Please enter a 4 didget code\n");
+
+
+
+} //end enterNumbers
 
 
 //this function allows the user to end the program
