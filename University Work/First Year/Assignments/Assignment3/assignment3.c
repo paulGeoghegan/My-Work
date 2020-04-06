@@ -111,6 +111,8 @@ void main()
 			case 5:
 			{
 
+				//goes to the entryAttempts function
+				entryAttempts();
 				break;
 
 			} //end case 5
@@ -429,65 +431,49 @@ void decryptNumbers(short userCode[])
 
 } //end decryptNumbers
 
+
+
+//this function will display the correct and incorrect attempts made by the user
+void entryAttempts()
+{
+
+	//displays the correct attempts
+	printf("The amount of correct attempts made was %d\n", attempts.correct_code);
+
+	//displays the incorrect attempts
+	printf("The amount of wrong attempts made was %d\n", attempts.wrong_code);
+
+} //end entryAttempts
+
 //this function allows the user to end the program
 void end()
 {
 
-	char choose;
+	short min = 1;
+	short max = 2;
+	char str[2];
 
 	//asks the user if they want to end the program
-	printf("Are you sure you want to end the program?\nY: yes\nN: no\n");
+	printf("Are you sure you want to end the program?\n1: yes\n2: no\n");
 
-	//gets an input from the user and error checks it
-	do
+	//gets an input from the user and checks what they want to do
+	if(errorCheck(str, &min, &max) == 1)
 	{
 
-		//gets an input from the user
-		scanf("%1s", &choose);
+		//tells the user that the program is stopping
+		printf("Exiting program...");
 
-		//checks to see if the user entered a valid input
-		if(choose != 'n' && choose != 'N' && choose != 'y' && choose != 'Y')
-		{
-
-			printf("Invalid input, Please either enter y to exit the program or n to resume the program\n");
+		//exits the program
+		exit(0);
 
 		} //end if
-
-	} //end do while
-	while(choose != 'n' && choose != 'N' && choose != 'y' && choose != 'Y');
-
-	//checks if the user wants to exit the program
-	switch(choose)
-	{
-
-		//this case exicutes if the user wishes to exit the program
-		case 'y':
-		case 'Y':
+		else
 		{
 
-			printf("Exiting program...\n");
-			exit(0);
-			break;
+			//lets the user know that the program is not exiting
+			printf("Resuming program\n");
 
-		} //end yes case
-		//this case exicutes if the user wishes to continue the program
-		case 'n':
-		case 'N':
-		{
-
-			printf("Resumeing program\n");
-			break;
-
-		} //end no case
-		//this case exicutes if something goes wrong
-		default:
-		{
-
-			printf("Something has gone wrong please try again\n");
-
-		} //end default case
-
-	} //end switch case
+		} //end else
 
 } //end end function
 
