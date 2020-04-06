@@ -224,6 +224,9 @@ void enterNumbers(short userCode[])
 
 	} //end for
 
+	//prints a blank line to fix formatting
+	printf("\n");
+
 	//this changes op2 to true so that the user may incrypt their code
 	op2 = true;
 
