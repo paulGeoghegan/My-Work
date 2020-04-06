@@ -101,6 +101,8 @@ void main()
 			case 4:
 			{
 
+				//goes to the decryptNumbers function
+				decryptNumbers(userCode);
 				break;
 
 			} //end case 4
@@ -246,7 +248,7 @@ void incryptNumbers(short userCode[])
 	{
 
 		//tells the user that they need to enter a code befor they can incrypt it
-		printf("It appears as if you have not entered a new code please enter one and tyy again\n");
+		printf("It appears as if you have not entered a new code please enter one and try again\n");
 
 	} //end else if
 	else
@@ -317,22 +319,13 @@ void compairNumbers(short userCode[])
 		{
 
 			//compairs two numbers 1 from userCode and the other from correctCode
-			if(*(userCode+i) != *(correctCode+i))
+			if(*(userCode+i) == *(correctCode+i))
 			{
 
-				//Tells the user that their code was incorrect
-				printf("That code is incorrect please try again\n");
-
-				//increases incorrect attempts by 1
-				attempts.wrong_code++;
-
-			} //end if
-			else
-			{
-
+				//increases i by 1
 				i++;
 
-			} //end else
+			} //end if
 
 		} //end do while
 		while(i < LENGTH && *(userCode+i) == *(correctCode+i));
@@ -348,9 +341,19 @@ void compairNumbers(short userCode[])
 			attempts.correct_code++;
 
 		} //end if
+		else
+		{
+
+			//lets the user know their code was wrong
+			printf("That code was incorrect please try again\n");
+
+			//increases the incorrect attempts by 1
+			attempts.wrong_code++;
+
+		} //end else
 
 		//sets op2 and 3 to false
-		op2 = op3 = false;
+		op3 = false;
 
 	} //end if
 	else
@@ -362,6 +365,65 @@ void compairNumbers(short userCode[])
 	} //end else
 
 } //end compair numbers
+
+
+//this function will allow the user to decrypt an already incrypted code
+void decryptNumbers(short userCode[])
+{
+
+	short temp;
+
+	//checks if the user has entered a code and incrypted it
+	if(op4 == false)
+	{
+
+		//tells the user to enter a code and incrypt it befor selecting this option
+		printf("You must have an incrypted code to be able to incrypt it\n");
+
+	} //end if
+	else
+	{
+
+		//lets the user know that their code is being decrypted
+		printf("Decrypting code...\n");
+
+		//subtracts 1 from each of the numbers in the array and checks the bounds of the numbers
+		for(register short i = 0;i < LENGTH;i++)
+		{
+
+			//subtracts one from each number in the code
+			*(userCode+i) = *(userCode+i) - 1;
+
+			//checks if the number is now equil to -1
+			if(*(userCode+i) == -1)
+			{
+
+				//changes this number to 9
+				*(userCode+i) = 9;
+
+			} //end if
+
+		} //end for
+
+		//swaps the numbers
+		for(register short i = 0;i < LENGTH/2;i++)
+		{
+
+			//stores value in temp to stop it being over written
+			temp = *(userCode+i);
+
+			//swaps numbers
+			*(userCode+i) = *(userCode+(i+(LENGTH/2)));
+			*(userCode+(i+(LENGTH/2))) = temp;
+
+		} //end for
+
+		//tells the user that the code has been decrypted
+		printf("Code decrypted\n");
+
+	} //end else
+
+} //end decryptNumbers
 
 //this function allows the user to end the program
 void end()
@@ -506,6 +568,6 @@ void clear()
 	system("CLS");
 
 	//delays the program to fix an accessibility issue with clearing the screen in a terminal
-	Sleep(2);
+	Sleep(5);
 
 } //end clear function
