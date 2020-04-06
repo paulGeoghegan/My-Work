@@ -151,7 +151,6 @@ void enterNumbers(short userCode[])
 	short i = 0;
 	short min = 1;
 	short max = 2;
-	short option;
 	char str[MINSTR];
 
 	printf("What do you want to do?\n1. Manually enter a code\n2. Randomly generate a code\n");
