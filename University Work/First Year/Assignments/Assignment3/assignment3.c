@@ -38,13 +38,15 @@ void entryAttempts(struct code_counter attempts);
 void end();
 
 //utility functions
-void errorCheck(char[], short*, short*);
+short errorCheck(char[], short*, short*);
 void clear();
 
 void main()
 {
 
 	short option;
+	short min = 1;
+	short max = 6;
 	unsigned short userCode[LENGTH];
 	char str[MINSTR];
 	struct code_counter attempts;
@@ -63,29 +65,8 @@ void main()
 		printf("5. Check entry attempts\n");
 		printf("6. Exit the program\n\n");
 
-		//this gets a value from the user and error checks it so that the user can choose an option
-		do
-		{
-
-			//this gets an input from the user and empties the input buffer
-			scanf("%1s", str);
-			fflush(stdin);
-
-
-			//this converts the character that the user entered in to a number corosponding with its ascii value
-			option = atoi(str);
-
-			//this checks if the value entered by the user is valid
-			if(option < 1 || option > 6)
-			{
-
-				printf("Invalid input, Please enter a value between 1 and 6\n");
-
-			} //end if
-
-		} //end do while
-		while(option < 1 || option > 6);
-		while(option < 1 || option > 6);
+		//this sets option equil to the value returned by the errorCheck function
+		option = errorCheck(str, &min, &max);
 
 		switch(option)
 		{
@@ -161,32 +142,15 @@ void enterNumbers(short userCode[])
 {
 
 	short i = 0;
+	short min = 1;
+	short max = 2;
 	short option;
 	char str[MINSTR];
 
 	printf("What do you want to do?\n1. Manually enter a code\n2. Randomly generate a code\n");
 
-	//this checks what option the user wants to choose
-	do
-	{
-
-		//gets an input from the user
-		scanf("%1s", str);
-		fflush(stdin);
-
-		//checks the users input
-		if(atoi(str) < 1 || atoi(str) > 2)
-		{
-
-			printf("Invalid input please either enter 1 for a manual input or 2 for a randomly generated one\n");
-
-		} //end if
-
-	} //end do while
-	while(atoi(str) < 1 || atoi(str) > 2);
-
-	//this stores the users selected option in the option variable by useing atoi
-	option = atoi(str);
+	//goes to the errorCheck function and return a value to option
+	option = errorCheck(str, &min, &max);
 
 	//this switch case allows the user to pick between a manual and random code
 	switch(option)
@@ -197,40 +161,21 @@ void enterNumbers(short userCode[])
 
 			printf("Please enter a 4 didget code\n");
 
-			//this gets an input from the user to fill out the userCode array
-			do
+			//this sets the values of min to 0 and max to nine to be used in the error check function
+			min = 0;
+			max = 9;
+
+			//loops through the userCode array ajnd gets the user to fill it out
+			for(register short i = 0;i < LENGTH;i++)
 			{
 
+				//lets the user know what didget they are entering
 				printf("Didget %d/%d\n", i+1, LENGTH);
 
-				//gets the users input and error checks it
-				do
-				{
+				//goes to the error check function and returns a value to the userCode array
+				*(userCode+i) = errorCheck(str, &min, &max);
 
-					//gets an input from the user and then empties the input buffer
-					scanf("%1s", str);
-					fflush(stdin);
-
-					//lets the user know if there input is invalid
-					//note: the last statement to check if the first char in str is not equil to the char 0 is used as atoi returns 0 if the value could not be converted to an int hence all non numerical characters would not be caught by this statement
-					if((atoi(str) < 1 || atoi(str) > 9) && *(str) != '0')
-					{
-
-						printf("Invalid input please enter a didget from 0 to 9\n");
-
-					} //end if
-
-				} //end do while also see note above
-				while((atoi(str) < 1 || atoi(str) > 9) && *(str) != '0');
-
-				//adds the didget to the userCode array
-				*(userCode+i) = atoi(str);
-
-				//adds 1 to i for indexing
-				i++;
-
-			} //end do while
-			while(i < LENGTH);
+			} //end for
 
 			//breaks out of the switch case
 			break;
@@ -414,14 +359,66 @@ Note: these are extra utility functions which arent in the general requirements 
 */
 
 
-
 //this function error checks any input from the user
-void errorCheck(char str[], short *min, short *max)
+short errorCheck(char str[], short *min, short *max)
 {
 
-	printf("Temp");
+	short num;
+
+	//checks to see if the min value required is 0 as this requires slightly different logic
+	if(*min <= 0)
+	{
+
+		//this gets an input from the user and error checks it
+		do
+		{
+
+			//gets the input from the user and then clears the input buffer
+			scanf("%s", str);
+			fflush(stdin);
+
+			//checks to see if the input is valid
+			//the last statement is used as if a non numeric char is converted to an int it will return 0 so this last statement checks for the user entering a 0 as otherwise this would not work as intended
+			if((atoi(str) < *min || atoi(str) > *max) && *(str) != '0')
+			{
+
+				printf("Invalid input please enter a value from %d to %d\n", min, max);
+
+			} //end if
+
+		} //end do while also see note above
+		while((atoi(str) < *min || atoi(str) > *max) && *(str) != '0');
+
+	} //end if
+	else
+	{
+
+		//this gets an input from the user and error checks it
+		do
+		{
+
+			//gets the input from the user and then clears the input buffer
+			scanf("%s", str);
+			fflush(stdin);
+
+			//checks to see if the input is valid
+			if(atoi(str) < *min || atoi(str) > *max)
+			{
+
+				printf("Invalid input please enter a value from %d to %d\n", min, max);
+
+			} //end if
+
+		} //end do while
+		while(atoi(str) < *min || atoi(str) > *max);
+
+	} //end else
+
+	// returns num
+	return num = atoi(str);
 
 } //end errorCheck
+
 
 //this function will clear the screen at the end of each of the functions
 void clear()
