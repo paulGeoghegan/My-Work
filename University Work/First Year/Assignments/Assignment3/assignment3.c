@@ -15,9 +15,6 @@ Finished x/04/20
 #include <stdbool.h>
 #include <windows.h>
 
-//global variables
-bool op2, op3, op4;
-
 //symbolic names
 #define LENGTH 4
 #define MINSTR 2
@@ -29,12 +26,16 @@ struct code_counter
 	int wrong_code;
 };
 
+//global variables
+bool op2, op3, op4;
+struct code_counter attempts;
+
 //function signature
 void enterNumbers(short[]);
 void incryptNumbers(short[]);
 void compairNumbers(short[]);
 void decryptNumbers(short[]);
-void entryAttempts(struct code_counter attempts);
+void entryAttempts();
 void end();
 
 //utility functions
@@ -49,7 +50,6 @@ void main()
 	short max = 6;
 	unsigned short userCode[LENGTH];
 	char str[MINSTR];
-	struct code_counter attempts;
 	srand(time(0));
 
 	//this is the main loop for looping continiously through the program untill the user chooses to end the program
@@ -92,6 +92,8 @@ void main()
 			case 3:
 			{
 
+				//goes to the compairNumbers function
+				compairNumbers(userCode);
 				break;
 
 			} //end case 3
@@ -286,10 +288,80 @@ void incryptNumbers(short userCode[])
 		//lets the user know that there code has been incrypted
 		printf("Code Incrypted\n");
 
+		//sets op3 and op4 to true so that the user can check the incrypted code and or decrypt the code
+		op3 = op4 = true;
+
+		//sets op2 to false so that the user cant try to incrypt the code again
+		op2 = false;
+
 	} //end else
 
 } //end incryptNumbers function
 
+
+//this function allows the user to compair the incrypted code they have to the correct code
+void compairNumbers(short userCode[])
+{
+
+	const short correctCode[] = {4, 5, 2, 3};
+	register short i =0;
+
+	//checks if the user has entered a code and incrypted it
+	if(op3 == true)
+	{
+
+		printf("Checking code...\n");
+
+		//checks to see if the users incrypted code matches the correct code
+		do
+		{
+
+			//compairs two numbers 1 from userCode and the other from correctCode
+			if(*(userCode+i) != *(correctCode+i))
+			{
+
+				//Tells the user that their code was incorrect
+				printf("That code is incorrect please try again\n");
+
+				//increases incorrect attempts by 1
+				attempts.wrong_code++;
+
+			} //end if
+			else
+			{
+
+				i++;
+
+			} //end else
+
+		} //end do while
+		while(i < LENGTH && *(userCode+i) == *(correctCode+i));
+
+		//checks if i == 4 since if it is the users code was correct
+		if(i == 4)
+		{
+
+			//tells the user that their code was correct
+			printf("The code you entered was correct\n");
+
+			//increases the correct attempts by 1
+			attempts.correct_code++;
+
+		} //end if
+
+		//sets op2 and 3 to false
+		op2 = op3 = false;
+
+	} //end if
+	else
+	{
+
+		//asks the user to complete options 1 and 2 befor this one
+		printf("Please enter a code and incrypt it befor selecting this option\n");
+
+	} //end else
+
+} //end compair numbers
 
 //this function allows the user to end the program
 void end()
