@@ -156,65 +156,45 @@ void enterNumbers(short userCode[])
 
 	printf("What do you want to do?\n1. Manually enter a code\n2. Randomly generate a code\n");
 
-	//goes to the errorCheck function and return a value to option
-	option = errorCheck(str, &min, &max);
-
-	//this switch case allows the user to pick between a manual and random code
-	switch(option)
+	//checks what the user wants to do
+	if(errorCheck(str, &min, &max) == 1)
 	{
 
-		case 1:
+		//asks the user to enter a code
+		printf("Please enter a 4 didget code\n");
+
+		//this sets the values of min to 0 and max to nine to be used in the error check function
+		min = 0;
+		max = 9;
+
+		//loops through the userCode array ajnd gets the user to fill it out
+		for(register short i = 0;i < LENGTH;i++)
 		{
 
-			printf("Please enter a 4 didget code\n");
+			//lets the user know what didget they are entering
+			printf("Didget %d/%d\n", i+1, LENGTH);
 
-			//this sets the values of min to 0 and max to nine to be used in the error check function
-			min = 0;
-			max = 9;
+			//goes to the error check function and returns a value to the userCode array
+			*(userCode+i) = errorCheck(str, &min, &max);
 
-			//loops through the userCode array ajnd gets the user to fill it out
-			for(register short i = 0;i < LENGTH;i++)
-			{
+		} //end for
 
-				//lets the user know what didget they are entering
-				printf("Didget %d/%d\n", i+1, LENGTH);
+	} //end if
+	else
+	{
 
-				//goes to the error check function and returns a value to the userCode array
-				*(userCode+i) = errorCheck(str, &min, &max);
+		//tells the user that a code is being generated
+		printf("Generateing code...\n");
 
-			} //end for
-
-			//breaks out of the switch case
-			break;
-
-		} //end case 1
-		//this case randomly generates the code for the user
-		case 2:
+		for(register short i = 0;i < LENGTH;i++)
 		{
 
-			printf("Generateing code...\n");
+			//generates a random number and stores it in the userCode array
+			*(userCode+i) = rand() %10;
 
-			for(register short i = 0;i < LENGTH;i++)
-			{
+		} //end for
 
-				//generates a random number and stores it in the userCode array
-				*(userCode+i) = rand() %10;
-
-			} //end for
-
-			//breaks out of the switch case
-			break;
-
-		} //end case 2
-		//if something goes wrong
-		default:
-		{
-
-			printf("Something has gone wrong please try again\n");
-
-		} //end default case
-
-	} //end option switch case
+	} //end else
 
 	printf("Your code is:\n");
 
