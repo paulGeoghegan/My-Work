@@ -14,6 +14,7 @@ Finished x/04/20
 
 //symbolic names
 #define LENGTH 4
+#define MINSTR 2
 
 //structures
 struct code_counter
@@ -35,7 +36,7 @@ void main()
 
 	short option;
 	unsigned short userCode[LENGTH];
-	char str[1];
+	char str[MINSTR];
 	struct code_counter attempts;
 
 	//this is the main loop for looping continiously through the program untill the user chooses to end the program
@@ -55,8 +56,10 @@ void main()
 		do
 		{
 
-			//this gets an input from the user
-			scanf("%s", str);
+			//this gets an input from the user and empties the input buffer
+			scanf("%1s", str);
+			fflush(stdin);
+
 
 			//this converts the character that the user entered in to a number corosponding with its ascii value
 			option = atoi(str);
@@ -98,11 +101,44 @@ void enterNumbers(short userCode[])
 {
 
 	short i = 0;
-	char temp[1];
+	char str[MINSTR];
 
 	printf("Please enter a 4 didget code\n");
 
+	//this gets an input from the user to fill out the userCode array
+	do
+	{
 
+		printf("Didget %d/%d\n", i+1, LENGTH);
+
+		//gets the users input and error checks it
+		do
+		{
+
+			//gets an input from the user and then empties the input buffer
+			scanf("%1s", str);
+			fflush(stdin);
+
+			//lets the user know if there input is invalid
+			//note: the last statement to check if the first char in str is not equil to the char 0 is used as atoi returns 0 if the value could not be converted to an int hence all non numerical characters would not be caught by this statement
+			if((atoi(str) < 1 || atoi(str) > 9) && *(str) != '0')
+			{
+
+				printf("Invalid input please enter a didget from 0 to 9\n");
+
+			} //end if
+
+		} //end do while also see note above
+		while((atoi(str) < 1 || atoi(str) > 9) && *(str) != '0');
+
+		//adds the didget to the userCode array
+		*(userCode+i) = atoi(str);
+
+		//adds 1 to i for indexing
+		i++;
+
+	} //end do while
+	while(i < LENGTH);
 
 } //end enterNumbers
 
