@@ -11,6 +11,7 @@ Finished x/04/20
 //header files
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 //symbolic names
 #define LENGTH 4
@@ -38,10 +39,13 @@ void main()
 	unsigned short userCode[LENGTH];
 	char str[MINSTR];
 	struct code_counter attempts;
+	srand(time(0));
 
 	//this is the main loop for looping continiously through the program untill the user chooses to end the program
 	do
 	{
+
+		//this prints a heading everytime the user goes back to the main menu
 
 		//this prints the main menu for the program
 		printf("\nPlease choose from one of the following options\n");
@@ -76,19 +80,63 @@ void main()
 		while(option < 1 || option > 6);
 		while(option < 1 || option > 6);
 
-		if(option == 1)
+		switch(option)
 		{
 
-			//goes to the enterNumbers function
-			enterNumbers(userCode);
+			case 1:
+			{
 
-	}	 //end if for option 1
-		else if(option == 6)
-	{	
+				//goes to the enter numbers function to allow the user to fill out the userCode array
+				enterNumbers(userCode);
+				break;
 
-			end();
+			} //end case 1
+			//if the user wants to incrypt there code
+			case 2:
+			{
 
-		} //end else if for option 6
+				break;
+
+			} //end case 2
+			//if the user wants to compair their code to the correct one
+			case 3:
+			{
+
+				break;
+
+			} //end case 3
+			//if the user wants to decrypt their code
+			case 4:
+			{
+
+				break;
+
+			} //end case 4
+			//if the user wants to see the number of correct and incorrect attempts
+			case 5:
+			{
+
+				break;
+
+			} //end case 5
+			//if the user wants to exit the program
+			case 6:
+			{
+
+				//goes to the end function to allow the user to exit the program
+				end();
+				break;
+
+			} //end case 6
+			//if something goes wrong
+			default:
+			{
+
+				printf("Sorry something has gone wrong please try again\n");
+
+			}//end default case
+
+		} //end option switch case
 
 	} //end do while
 	while(1);
@@ -101,44 +149,119 @@ void enterNumbers(short userCode[])
 {
 
 	short i = 0;
+	short option;
 	char str[MINSTR];
 
-	printf("Please enter a 4 didget code\n");
+	printf("What do you want to do?\n1. Manually enter a code\n2. Randomly generate a code\n");
 
-	//this gets an input from the user to fill out the userCode array
+	//this checks what option the user wants to choose
 	do
 	{
 
-		printf("Didget %d/%d\n", i+1, LENGTH);
+		//gets an input from the user
+		scanf("%1s", str);
+		fflush(stdin);
 
-		//gets the users input and error checks it
-		do
+		//checks the users input
+		if(atoi(str) < 1 || atoi(str) > 2)
 		{
 
-			//gets an input from the user and then empties the input buffer
-			scanf("%1s", str);
-			fflush(stdin);
+			printf("Invalid input please either enter 1 for a manual input or 2 for a randomly generated one\n");
 
-			//lets the user know if there input is invalid
-			//note: the last statement to check if the first char in str is not equil to the char 0 is used as atoi returns 0 if the value could not be converted to an int hence all non numerical characters would not be caught by this statement
-			if((atoi(str) < 1 || atoi(str) > 9) && *(str) != '0')
-			{
-
-				printf("Invalid input please enter a didget from 0 to 9\n");
-
-			} //end if
-
-		} //end do while also see note above
-		while((atoi(str) < 1 || atoi(str) > 9) && *(str) != '0');
-
-		//adds the didget to the userCode array
-		*(userCode+i) = atoi(str);
-
-		//adds 1 to i for indexing
-		i++;
+		} //end if
 
 	} //end do while
-	while(i < LENGTH);
+	while(atoi(str) < 1 || atoi(str) > 2);
+
+	//this stores the users selected option in the option variable by useing atoi
+	option = atoi(str);
+
+	//this switch case allows the user to pick between a manual and random code
+	switch(option)
+	{
+
+		case 1:
+		{
+
+			printf("Please enter a 4 didget code\n");
+
+			//this gets an input from the user to fill out the userCode array
+			do
+			{
+
+				printf("Didget %d/%d\n", i+1, LENGTH);
+
+				//gets the users input and error checks it
+				do
+				{
+
+					//gets an input from the user and then empties the input buffer
+					scanf("%1s", str);
+					fflush(stdin);
+
+					//lets the user know if there input is invalid
+					//note: the last statement to check if the first char in str is not equil to the char 0 is used as atoi returns 0 if the value could not be converted to an int hence all non numerical characters would not be caught by this statement
+					if((atoi(str) < 1 || atoi(str) > 9) && *(str) != '0')
+					{
+
+						printf("Invalid input please enter a didget from 0 to 9\n");
+
+					} //end if
+
+				} //end do while also see note above
+				while((atoi(str) < 1 || atoi(str) > 9) && *(str) != '0');
+
+				//adds the didget to the userCode array
+				*(userCode+i) = atoi(str);
+
+				//adds 1 to i for indexing
+				i++;
+
+			} //end do while
+			while(i < LENGTH);
+
+			//breaks out of the switch case
+			break;
+
+		} //end case 1
+		//this case randomly generates the code for the user
+		case 2:
+		{
+
+			printf("Generateing code...\n");
+
+			for(register short i = 0;i < LENGTH;i++)
+			{
+
+				//generates a random number and stores it in the userCode array
+				*(userCode+i) = rand() %10;
+
+			} //end for
+
+			//breaks out of the switch case
+			break;
+
+		} //end case 2
+		//if something goes wrong
+		default:
+		{
+
+			printf("Something has gone wrong please try again\n");
+
+		} //end default case
+
+	} //end option switch case
+
+	printf("Your code is:\n");
+
+	//prints the users code
+	for(register short i = 0;i < LENGTH;i++)
+	{
+
+		//prints a didget from the userCode array
+		printf("%d ", *(userCode+i));
+
+	} //end for
 
 } //end enterNumbers
 
