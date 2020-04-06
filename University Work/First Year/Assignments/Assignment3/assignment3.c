@@ -14,6 +14,7 @@ Finished x/04/20
 #include <time.h>
 #include <stdbool.h>
 #include <windows.h>
+#include <string.h>
 
 //symbolic names
 #define LENGTH 4
@@ -502,8 +503,8 @@ short errorCheck(char str[], short *min, short *max)
 
 	short num;
 
-	//checks to see if the min value required is 0 as this requires slightly different logic
-	if(*min <= 0)
+	//checks to see if the min value required is < 1 as this requires slightly different logic
+	if(*min < 1)
 	{
 
 		//this gets an input from the user and error checks it
@@ -511,20 +512,20 @@ short errorCheck(char str[], short *min, short *max)
 		{
 
 			//gets the input from the user and then clears the input buffer
-			scanf("%s", str);
+			scanf("%1s", str);
 			fflush(stdin);
 
 			//checks to see if the input is valid
 			//the last statement is used as if a non numeric char is converted to an int it will return 0 so this last statement checks for the user entering a 0 as otherwise this would not work as intended
-			if((atoi(str) < *min || atoi(str) > *max) && *(str) != '0')
+			if((atoi(str) < *min || atoi(str) > *max || atoi(str) == 0) && strcmp(str, "0") != 0)
 			{
 
-				printf("Invalid input please enter a value from %d to %d\n", min, max);
+				printf("Invalid input please enter a value from %d to %d\n", *min, *max);
 
 			} //end if
 
 		} //end do while also see note above
-		while((atoi(str) < *min || atoi(str) > *max) && *(str) != '0');
+		while((atoi(str) < *min || atoi(str) > *max || atoi(str) == 0) && strcmp(str, "0"));
 
 	} //end if
 	else
@@ -542,7 +543,7 @@ short errorCheck(char str[], short *min, short *max)
 			if(atoi(str) < *min || atoi(str) > *max)
 			{
 
-				printf("Invalid input please enter a value from %d to %d\n", min, max);
+				printf("Invalid input please enter a value from %d to %d\n", *min, *max);
 
 			} //end if
 
