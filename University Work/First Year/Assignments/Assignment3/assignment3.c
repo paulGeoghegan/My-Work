@@ -1,11 +1,28 @@
 /*
 	Description
-
+This program allows the user to pick from various options listed below in order to check a code securely
+Options:
+1. This option allows a user to select between 2 options:
+	1. The user can manually enter a 4 didget code,
+	2. The user will have a 4 didget code generated for them
+2. This option uses an incryption algorithm to let the user incrypt their code, 
+where the first and third elements and the second and fourth elements are swapped,
+Then 1 is added to each number and it is checked to see if it is equil to 10,
+if so then it is changed to 0.
+3. This option allows the user to compair their now incrypted code to the pre-defined correct code which while not incrypted is 1234 and while incrypted is 4523.
+If the users code is correct then 1 is added to the correct_code variable stored in the attempts variable of the code_counter structure
+else 1 is added to the wrong_code variable in the same structure
+4. This option uses the same incryption algorithm but in reverse to decrypt the code entered by the user
+5. This option allows the user to see how many correct and wrong attempts they have made
+6. This option allows the user to exit the program by pressing 1 or resuming the program if they press 2
+Note:
+The errorCheck function is used to get and validate any numerical input from the user
+The clear function is used to clear the screen after a function has completed running where at the end of the function the user presses enter to clear the screen
 	Author
 Paul Geoghegan
 	Date
 Started 04/04/20
-Finished x/04/20
+Finished 06/04/20
 */
 
 //header files
