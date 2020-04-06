@@ -12,6 +12,11 @@ Finished x/04/20
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
+#include <windows.h>
+
+//global variables
+bool op2, op3, op4;
 
 //symbolic names
 #define LENGTH 4
@@ -32,6 +37,10 @@ void decryptNumbers(short[]);
 void entryAttempts(struct code_counter attempts);
 void end();
 
+//utility functions
+void errorCheck(char[], short*, short*);
+void clear();
+
 void main()
 {
 
@@ -44,8 +53,6 @@ void main()
 	//this is the main loop for looping continiously through the program untill the user chooses to end the program
 	do
 	{
-
-		//this prints a heading everytime the user goes back to the main menu
 
 		//this prints the main menu for the program
 		printf("\nPlease choose from one of the following options\n");
@@ -95,6 +102,8 @@ void main()
 			case 2:
 			{
 
+				//this goes to the incryptNumbers function
+				incryptNumbers(userCode);
 				break;
 
 			} //end case 2
@@ -137,6 +146,9 @@ void main()
 			}//end default case
 
 		} //end option switch case
+
+		//goes to the clear function
+		clear();
 
 	} //end do while
 	while(1);
@@ -263,7 +275,75 @@ void enterNumbers(short userCode[])
 
 	} //end for
 
+	//this changes op2 to true so that the user may incrypt their code
+	op2 = true;
+
 } //end enterNumbers
+
+
+//this function allows the user to incrypt their code
+void incryptNumbers(short userCode[])
+{
+
+	short temp;
+
+	//this checks if the user has already incrypted their code or if they have not entered a code
+	if(op2 == false && op3 == true)
+	{
+
+		//tells the user they cant incrypt a code more than once
+		printf("This code has already been incrypted\n");
+
+	} //end if
+	else if(op2 == false)
+	{
+
+		//tells the user that they need to enter a code befor they can incrypt it
+		printf("It appears as if you have not entered a new code please enter one and tyy again\n");
+
+	} //end else if
+	else
+	{
+
+		printf("Incrypting code\n");
+
+	//this incrypts the users code
+		for(register short i = 0;i < LENGTH/2;i++)
+		{
+
+			//stores one didget in temp so it isnt over written
+			temp = *(userCode+i);
+
+			//swaps didgets
+			*(userCode+i) = *(userCode+(i+(LENGTH/2)));
+			*(userCode+(i+(LENGTH/2))) = temp;
+
+		} //end for
+
+		//adds one to each didget and checks the bounding
+		for(register short i = 0;i < LENGTH;i++)
+		{
+
+			//adds one to each of the re-aranged didgets
+			*(userCode+i) = *(userCode+i) + 1;
+
+			//checks to see if this number is still within the bounds of the code
+			if(*(userCode+i) == 10)
+			{
+
+				//replaces the 10 with a 0
+				*(userCode+i) = 0;
+
+			} //end if
+
+		} //end for
+
+		//lets the user know that there code has been incrypted
+		printf("Code Incrypted\n");
+
+	} //end else
+
+} //end incryptNumbers function
 
 
 //this function allows the user to end the program
@@ -327,3 +407,36 @@ void end()
 	} //end switch case
 
 } //end end function
+
+
+/*
+Note: these are extra utility functions which arent in the general requirements of the assignment
+*/
+
+
+
+//this function error checks any input from the user
+void errorCheck(char str[], short *min, short *max)
+{
+
+	printf("Temp");
+
+} //end errorCheck
+
+//this function will clear the screen at the end of each of the functions
+void clear()
+{
+
+	//this tells the user to press the enter key to continue
+	printf("Press enter to continue\n");
+
+	//this takes an input from the user but doesnt store it anywhere
+	getchar();
+
+	//this clears the screen
+	system("CLS");
+
+	//delays the program to fix an accessibility issue with clearing the screen in a terminal
+	Sleep(2);
+
+} //end clear function
