@@ -307,7 +307,7 @@ void incryptNumbers(short userCode[])
 void compairNumbers(short userCode[])
 {
 
-	const short correctCode[] = {4, 5, 2, 3};
+	const short access_code[] = {4, 5, 2, 3};
 	register short i =0;
 
 	//checks if the user has entered a code and incrypted it
@@ -320,8 +320,8 @@ void compairNumbers(short userCode[])
 		do
 		{
 
-			//compairs two numbers 1 from userCode and the other from correctCode
-			if(*(userCode+i) == *(correctCode+i))
+			//compairs two numbers 1 from userCode and the other from access_code
+			if(*(userCode+i) == *(access_code+i))
 			{
 
 				//increases i by 1
@@ -330,7 +330,7 @@ void compairNumbers(short userCode[])
 			} //end if
 
 		} //end do while
-		while(i < LENGTH && *(userCode+i) == *(correctCode+i));
+		while(i < LENGTH && *(userCode+i) == *(access_code+i));
 
 		//checks if i == 4 since if it is the users code was correct
 		if(i == 4)
