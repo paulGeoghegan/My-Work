@@ -337,7 +337,7 @@ void compairNumbers(short userCode[])
 		{
 
 			//tells the user that their code was correct
-			printf("The code you entered was correct\n");
+			printf("Correct Code entered\n");
 
 			//increases the correct attempts by 1
 			attempts.correct_code++;
@@ -347,14 +347,14 @@ void compairNumbers(short userCode[])
 		{
 
 			//lets the user know their code was wrong
-			printf("That code was incorrect please try again\n");
+			printf("Wrong Code entered\n");
 
 			//increases the incorrect attempts by 1
 			attempts.wrong_code++;
 
 		} //end else
 
-		//sets op2 and 3 to false
+		//sets 3 to false
 		op3 = false;
 
 	} //end if
