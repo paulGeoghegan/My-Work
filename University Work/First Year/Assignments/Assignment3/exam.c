@@ -23,6 +23,7 @@ Paul Geoghegan
 	Date
 Started 04/04/20
 Finished 06/04/20
+Editted 09/04/20
 */
 
 //header files
@@ -45,7 +46,7 @@ struct code_counter
 };
 
 //function signature
-void enterNumbers(short[], bool*, bool*);
+void enterNumbers(short[], bool*, bool*, bool*, bool*);
 void incryptNumbers(short[], bool*, bool*, bool*);
 void compairNumbers(short[], struct code_counter *attempts, bool*, bool*);
 void decryptNumbers(short[], bool*, bool*);
@@ -95,7 +96,7 @@ void main()
 			{
 
 				//goes to the enter numbers function to allow the user to fill out the userCode array
-				enterNumbers(userCode, &op1, &op2);
+				enterNumbers(userCode, &op1, &op2, &op3, &op4);
 				break;
 
 			} //end case 1
@@ -164,7 +165,7 @@ void main()
 
 
 //this function allows the user to enter a code in to the userCode array from the main function
-void enterNumbers(short userCode[], bool *op1, bool *op2)
+void enterNumbers(short userCode[], bool *op1, bool *op2, bool *op3, bool *op4)
 {
 
 	short i = 0;
@@ -228,11 +229,11 @@ void enterNumbers(short userCode[], bool *op1, bool *op2)
 	//prints a blank line to fix formatting
 	printf("\n");
 
-	//sets op1 to true so that the user cant keep compairing the same codes (see compairNumbers)
-	*op1 = true;
+	//sets op1 to true so that the user cant keep compairing the same codes (see compairNumbers) and sets op2 to true so that the user can incrypt their number
+	*op1 = *op2 = true;
 
-	//this changes op2 to true so that the user may incrypt their code
-	*op2 = true;
+	//sets all other options to false
+	*op3 = *op4 = false;
 
 } //end enterNumbers
 
@@ -572,6 +573,6 @@ void clear()
 	system("CLS");
 
 	//delays the program to fix an accessibility issue with clearing the screen in a terminal
-	Sleep(5);
+	Sleep(1000);
 
 } //end clear function
