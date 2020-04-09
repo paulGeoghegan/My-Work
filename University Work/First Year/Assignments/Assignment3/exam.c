@@ -45,9 +45,9 @@ struct code_counter
 };
 
 //function signature
-void enterNumbers(short[], bool*);
+void enterNumbers(short[], bool*, bool*);
 void incryptNumbers(short[], bool*, bool*, bool*);
-void compairNumbers(short[], struct code_counter *attempts, bool*);
+void compairNumbers(short[], struct code_counter *attempts, bool*, bool*);
 void decryptNumbers(short[], bool*, bool*);
 void entryAttempts(struct code_counter *attempts);
 void end();
@@ -64,9 +64,13 @@ void main()
 	short max = 6;
 	unsigned short userCode[LENGTH];
 	char str[MINSTR];
-	bool op2, op3, op4;
+	bool op1, op2, op3, op4;
 	struct code_counter attempts;
 	srand(time(0));
+
+	//sets values in attempts to 0
+	attempts.correct_code = 0;
+	attempts.wrong_code = 0;
 
 	//this is the main loop for looping continiously through the program untill the user chooses to end the program
 	do
@@ -91,7 +95,7 @@ void main()
 			{
 
 				//goes to the enter numbers function to allow the user to fill out the userCode array
-				enterNumbers(userCode, &op2);
+				enterNumbers(userCode, &op1, &op2);
 				break;
 
 			} //end case 1
@@ -109,7 +113,7 @@ void main()
 			{
 
 				//goes to the compairNumbers function
-				compairNumbers(userCode, &attempts, &op3);
+				compairNumbers(userCode, &attempts, &op1, &op3);
 				break;
 
 			} //end case 3
@@ -160,7 +164,7 @@ void main()
 
 
 //this function allows the user to enter a code in to the userCode array from the main function
-void enterNumbers(short userCode[], bool *op2)
+void enterNumbers(short userCode[], bool *op1, bool *op2)
 {
 
 	short i = 0;
@@ -223,6 +227,9 @@ void enterNumbers(short userCode[], bool *op2)
 
 	//prints a blank line to fix formatting
 	printf("\n");
+
+	//sets op1 to true so that the user cant keep compairing the same codes (see compairNumbers)
+	*op1 = true;
 
 	//this changes op2 to true so that the user may incrypt their code
 	*op2 = true;
@@ -302,14 +309,14 @@ void incryptNumbers(short userCode[], bool *op2, bool *op3, bool *op4)
 
 
 //this function allows the user to compair the incrypted code they have to the correct code
-void compairNumbers(short userCode[], struct code_counter *attempts, bool *op3)
+void compairNumbers(short userCode[], struct code_counter *attempts, bool *op1, bool *op3)
 {
 
 	const short access_code[] = {4, 5, 2, 3};
 	register short i =0;
 
 	//checks if the user has entered a code and incrypted it
-	if(*op3 == true)
+	if(*op1 == true && *op3 == true)
 	{
 
 		printf("Checking code...\n");
@@ -352,10 +359,18 @@ void compairNumbers(short userCode[], struct code_counter *attempts, bool *op3)
 
 		} //end else
 
-		//sets 3 to false
+		//sets op1 and op3 to false so that the user must enter a new code befor compairing again
+		*op1 = false;
 		*op3 = false;
 
 	} //end if
+	else if(*op1 == false && *op3 == true)
+	{
+
+		//lets the user know they must enter a new code befor compairing again
+		printf("Please enter a new code as this one has already been checked\n");
+
+	} //end else if
 	else
 	{
 
