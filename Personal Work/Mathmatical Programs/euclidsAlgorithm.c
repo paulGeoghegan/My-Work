@@ -57,6 +57,27 @@ long* part1(long *numbers, long *gcd)
 		//tells the user what line it is
 		printf("Line %d\n", i);
 
+		//finds how many times num2 devides in to num1
+		*(numbers+((i*4)-3)) = *(numbers+((i*4)-4)) / *(numbers+((i*4)-2));
+
+		//gets remainder of the above devision
+		*(numbers+((i*4)-1)) = *(numbers+((i*4)-4)) % *(numbers+((i*4)-2));
+
+		//prints out line of maths
+		printf("%ld = %ld(%ld) + %ld\n", *(numbers+((i*4)-4)), *(numbers+((i*4)-3)), *(numbers+((i*4)-2)), *(numbers+((i*4)-1)));
+
+		//reallocates memory if the algorithm hasnt finished
+		if(*(numbers+((i*4)-1)) != 0)
+		{
+
+			//adds 1 to i
+			i++;
+
+			//reallocates memory
+			numbers = realloc(numbers, (sizeof(long) * (i*4)));
+
+		} //end if
+
 	} // end do while
 	while(*(numbers+((i*4)-1)) != 0);
 
