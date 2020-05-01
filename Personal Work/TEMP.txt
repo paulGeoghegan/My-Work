@@ -1,2 +1,0 @@
-This document will be removed once I have decided which projects this repo should contain.
-It has been created purely for the fact that github desktop requires you to create a file inside of a folder/repo befor it can be pushed.
