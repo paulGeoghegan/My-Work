@@ -68,12 +68,6 @@ long* part1(long *numbers, long *gcd)
 	do
 	{
 
-		//sets values for n1, n2, q and r
-		n1 = (i*LENGTH)-4;
-		q = (i*LENGTH)-3;
-		n2 = (i*LENGTH)-2;
-		r = (i*LENGTH)-1;
-
 		//performs calculation to find quotient
 		*(numbers+q) = *(numbers+n1) / *(numbers+n2);
 
@@ -97,13 +91,17 @@ long* part1(long *numbers, long *gcd)
 			numbers = realloc(numbers, (sizeof(long)*(i*4)));
 
 
-			//recalculates n1 and then swaps values with n2
+			//re-calculates n1 and then swaps values with n2
 			n1 = (i*LENGTH)-4;
 			*(numbers+n1) = *(numbers+n2);
 
-			//recalculates value for n2 and swaps value with r
+			//re-calculates value for n2 and swaps value with r
 			n2 = (i*LENGTH)-2;
 			*(numbers+n2) = *(numbers+r);
+
+			//calculates values for q and r
+			q = (i*LENGTH)-3;
+			r = (i*LENGTH)-1;
 
 		} //end if
 
