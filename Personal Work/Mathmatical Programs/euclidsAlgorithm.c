@@ -12,6 +12,7 @@ Paul Geoghegan
 #include <stdlib.h>
 #include <windows.h>
 #include <string.h>
+#include <limits.h>
 
 //symbolic names
 #define LENGTH 4
@@ -30,24 +31,68 @@ void clear();
 void main()
 {
 
-	long gcd, num1, num2;
+	long gcd, min, max;
 	long *numbers;
+	char str[2];
 
 	//allocates memory for numbers which will be the main block of memory used throught the program
 	numbers = calloc(LENGTH, sizeof(long));
 
-	//this is temporary
-	printf("Enter the 2 numbers\n");
+	//This loop will continue untill the user chooses to end the program
+	do
+	{
 
-	//puts num1 and num2 in the numbers memory block
-	scanf("%ld", &*(numbers+0));
-	scanf("%ld", &*(numbers+2));
+		//sets values for min and max
+		min = 1;
+		max = 2;
 
-	//goes to the part 1 function
-	numbers = part1(numbers, &gcd);
+		//asks the user what they want to do
+		printf("Please choose from one of the following options:\n");
+		printf("1. Run the algorithm\n");
+		printf("2. Exit the program\n");
 
-	//displays GCD
-	printf("The gcd of %ld and %ld is %ld", *(numbers+0), *(numbers+2), gcd);
+		//checks to see what the user wants to do
+		switch(errorCheck(str, &min, &max))
+		{
+
+			case 1:
+			{
+
+				//this is temporary
+				printf("Enter the 2 numbers\n");
+
+				//sets values for min and max
+				min = LONG_MIN  ;
+				max = LONG_MAX  ;
+
+				//stores numbers in memory block
+				*(numbers+0) = errorCheck(str, &min, &max);
+				*(numbers+2) = errorCheck(str, &min, &max);
+
+				//goes to the part 1 function
+				numbers = part1(numbers, &gcd);
+
+				//displays GCD
+				printf("The gcd of %ld and %ld is %ld", *(numbers+0), *(numbers+2), gcd);
+
+				break;
+
+			} //end case 1
+			case 2:
+			{
+
+				//goes to the end function
+				end();
+
+			} //end case 2
+
+		} // end switch case
+
+		//clears screen
+		clear();
+
+	} // end do while
+	while(1);
 
 	free(numbers);
 
