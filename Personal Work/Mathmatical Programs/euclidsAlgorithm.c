@@ -16,12 +16,15 @@ Paul Geoghegan
 
 //symbolic names
 #define LENGTH 4
+#define LENGTH2 7
 
 //structures
 
 
 //function signatures
 long* part1(long*, long*);
+long* swap(long*, long, long);
+void part2(long *, long, long, long);
 
 //utility functions
 void end();
@@ -72,9 +75,6 @@ void main()
 				//goes to the part 1 function
 				numbers = part1(numbers, &gcd);
 
-				//displays GCD
-				printf("The gcd of %ld and %ld is %ld", *(numbers+0), *(numbers+2), gcd);
-
 				break;
 
 			} //end case 1
@@ -107,8 +107,6 @@ long* part1(long *numbers, long *gcd)
 
 	//sets value for i
 	i = 1;
-
-
 
 	//sets values for n1, n2, q and r
 	n1 = (i*LENGTH)-4;
@@ -163,10 +161,74 @@ long* part1(long *numbers, long *gcd)
 	//sets value for gcd
 	*gcd = *(numbers+n2);
 
+	//displays GCD
+	printf("The gcd of %ld and %ld is %ld", *(numbers+0), *(numbers+2), gcd);
+
+	//goes to the swap function
+	numbers = swap(numbers, i, *gcd);
+
 	return numbers;
 } // end part1
 
 
+//this function swaps around the elements in the numbers array so that they will be ready to be used in part2 of euclids algorithm
+long* swap(long*numbers, long j, long gcd)
+{
+
+	long n1, q, n2, r, temp;
+
+	//this will loop through the numbers memory block
+	for(long i =1;i < j;i++)
+	{
+
+		//sets values for n1, n2, q and r
+		n1 = (i*LENGTH)-4;
+		q = (i*LENGTH)-3;
+		n2 = (i*LENGTH)-2;
+		r = (i*LENGTH)-1;
+
+		//swaps values
+		temp = *(numbers+r);
+		*(numbers+r) = *(numbers+n2);
+		*(numbers+n2) = *(numbers+q) *-1;
+		*(numbers+q) = *(numbers+n1);
+		*(numbers+n1) = gcd;
+
+	} //end for
+
+} //end swap
+
+//this is part 2 of euclids algorithm which will find x and y values so that d = x(n1) + y(n2)
+void part2(long *temp, long gcd, long num1, long num2)
+{
+
+	long i, d, q1, q2, q3, n1, n2, n3;
+	long *numbers;
+
+	//allocates memory for numbers
+	numbers = calloc(LENGTH2, sizeof(long));
+
+	//assignes values for all other variables
+	i = 1;
+	d = i-(i*LENGTH2)-7;
+	q1 = (i*LENGTH2)-6;
+	n1 = (i*LENGTH)-5;
+	q2 = (i*LENGTH2)-4;
+	n2 = (i*LENGTH2)-3;
+	q3 = (i*LENGTH2)-2;
+	n3 = (i*LENGTH2)-1;
+
+	//this loop will continue untill the final line of the solution has been solved
+	do
+	{
+
+	} //end do while
+	while(*(numbers+n1) != num1 && *(numbers+n2) != num2);
+
+	//frees memory block
+	free(numbers);
+
+} //end part2
 
 /*
 NOTE: These following functions have been included purely for the sake of improveing usability and serve no function for euclids algorithm
