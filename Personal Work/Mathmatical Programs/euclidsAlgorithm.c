@@ -24,7 +24,7 @@ Paul Geoghegan
 //function signatures
 long* part1(long*, long*);
 long* swap(long*, long, long);
-void part2(long *, long, long, long);
+void part2(long *, long, long, long, long);
 
 //utility functions
 void end();
@@ -174,8 +174,21 @@ long* part1(long *numbers, long *gcd)
 	//displays GCD
 	printf("The gcd of %ld and %ld is %ld", *(numbers+0), *(numbers+2), *gcd);
 
+	//if numbers has more than 1 row then the last row isnt needed for part 2 so this will check and remove it
+	if(i > 1)
+	{
+
+		//reallocates the numbers memory block and changes the value of i
+		i--;
+		numbers = realloc(numbers, (sizeof(long) * LENGTH));
+
+	} //end if
+
 	//goes to the swap function
 	numbers = swap(numbers, i, *gcd);
+
+	//goes to the part 2 function
+	part2(numbers, i, *gcd, *(numbers+1), *(numbers+3));
 
 	return numbers;
 } // end part1
@@ -188,7 +201,7 @@ long* swap(long*numbers, long j, long gcd)
 	long n1, q, n2, r, temp;
 
 	//this will loop through the numbers memory block
-	for(long i =1;i <= j;i++)
+	for(long i = 1;i < j;i++)
 	{
 
 		//sets values for n1, n2, q and r
@@ -209,8 +222,9 @@ long* swap(long*numbers, long j, long gcd)
 	return numbers;
 } //end swap
 
+
 //this is part 2 of euclids algorithm which will find x and y values so that d = x(n1) + y(n2)
-void part2(long *temp, long gcd, long num1, long num2)
+void part2(long *temp, long j, long gcd, long num1, long num2)
 {
 
 	long i, d, q1, q2, q3, n1, n2, n3;
@@ -232,6 +246,8 @@ void part2(long *temp, long gcd, long num1, long num2)
 	//this loop will continue untill the final line of the solution has been solved
 	do
 	{
+
+
 
 	} //end do while
 	while(*(numbers+n1) != num1 && *(numbers+n2) != num2);
