@@ -188,7 +188,7 @@ long* swap(long*numbers, long j, long gcd)
 	long n1, q, n2, r, temp;
 
 	//this will loop through the numbers memory block
-	for(long i =1;i < j;i++)
+	for(long i =1;i <= j;i++)
 	{
 
 		//sets values for n1, n2, q and r
@@ -206,6 +206,7 @@ long* swap(long*numbers, long j, long gcd)
 
 	} //end for
 
+	return numbers;
 } //end swap
 
 //this is part 2 of euclids algorithm which will find x and y values so that d = x(n1) + y(n2)
