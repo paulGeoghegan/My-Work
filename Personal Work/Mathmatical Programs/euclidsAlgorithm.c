@@ -36,7 +36,7 @@ void main()
 
 	long gcd, min, max;
 	long *numbers;
-	char str[2];
+	char str[11];
 
 	//allocates memory for numbers which will be the main block of memory used throught the program
 	numbers = calloc(LENGTH, sizeof(long));
@@ -65,8 +65,8 @@ void main()
 				printf("Enter the 2 numbers\n");
 
 				//sets values for min and max
-				min = LONG_MIN  ;
-				max = LONG_MAX  ;
+				min = -1000000000;
+				max = 1000000000;
 
 				//stores numbers in memory block
 				*(numbers+0) = errorCheck(str, &min, &max);
@@ -104,6 +104,7 @@ long* part1(long *numbers, long *gcd)
 {
 
 	int i, n1, n2, q, r;
+	char loop;
 
 	//sets value for i
 	i = 1;
@@ -138,8 +139,7 @@ long* part1(long *numbers, long *gcd)
 			i++;
 
 			//reallocates memory
-			numbers = realloc(numbers, (sizeof(long)*(i*4)));
-
+			numbers = realloc(numbers, (sizeof(long)*(i*LENGTH)));
 
 			//re-calculates n1 and then swaps values with n2
 			n1 = (i*LENGTH)-4;
@@ -153,16 +153,26 @@ long* part1(long *numbers, long *gcd)
 			q = (i*LENGTH)-3;
 			r = (i*LENGTH)-1;
 
+			//sets value of continue to y
+			loop = 'y';
+
 		} //end if
+		else
+		{
+
+			//sets value of continue to n
+			loop = 'n';
+
+		} //end else
 
 	} // end do while
-	while(*(numbers+r) != 0);
+	while(loop == 'y');
 
 	//sets value for gcd
 	*gcd = *(numbers+n2);
 
 	//displays GCD
-	printf("The gcd of %ld and %ld is %ld", *(numbers+0), *(numbers+2), gcd);
+	printf("The gcd of %ld and %ld is %ld", *(numbers+0), *(numbers+2), *gcd);
 
 	//goes to the swap function
 	numbers = swap(numbers, i, *gcd);
@@ -282,20 +292,20 @@ long errorCheck(char str[], long *min, long *max)
 		{
 
 			//gets the input from the user and then clears the input buffer
-			scanf("%1s", str);
+			scanf("%s", str);
 			fflush(stdin);
 
 			//checks to see if the input is valid
 			//the last statement is used as if a non numeric char is converted to an int it will return 0 so this last statement checks for the user entering a 0 as otherwise this would not work as intended
-			if((atoi(str) < *min || atoi(str) > *max || atoi(str) == 0) && strcmp(str, "0") != 0)
+			if((atol(str) < *min || atol(str) > *max || atol(str) == 0) && strcmp(str, "0") != 0)
 			{
 
-				printf("Invalid input please enter a value from %d to %d\n", *min, *max);
+				printf("Invalid input please enter a value from %ld to %ld\n", *min, *max);
 
 			} //end if
 
 		} //end do while also see note above
-		while((atoi(str) < *min || atoi(str) > *max || atoi(str) == 0) && strcmp(str, "0"));
+		while((atol(str) < *min || atol(str) > *max || atol(str) == 0) && strcmp(str, "0"));
 
 	} //end if
 	else
@@ -310,7 +320,7 @@ long errorCheck(char str[], long *min, long *max)
 			fflush(stdin);
 
 			//checks to see if the input is valid
-			if(atoi(str) < *min || atoi(str) > *max)
+			if(atol(str) < *min || atol(str) > *max)
 			{
 
 				printf("Invalid input please enter a value from %d to %d\n", *min, *max);
@@ -318,12 +328,12 @@ long errorCheck(char str[], long *min, long *max)
 			} //end if
 
 		} //end do while
-		while(atoi(str) < *min || atoi(str) > *max);
+		while(atol(str) < *min || atol(str) > *max);
 
 	} //end else
 
 	// returns num
-	return num = atoi(str);
+	return num = atol(str);
 
 } //end errorCheck
 
