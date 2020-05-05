@@ -65,8 +65,8 @@ void main()
 				printf("Enter the 2 numbers\n");
 
 				//sets values for min and max
-				min = -1000000000;
-				max = 1000000000;
+				min = LONG_MIN;
+				max = LONG_MAX;
 
 				//stores numbers in memory block
 				*(numbers+0) = errorCheck(str, &min, &max);
