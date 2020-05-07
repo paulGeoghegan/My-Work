@@ -227,32 +227,36 @@ long* swap(long*numbers, long j, long gcd)
 void part2(long *temp, long j, long gcd)
 {
 
-	long i, d, q1, q2, q3, n1, n2, n3;
+	long d, q1, q2, q3, n1, n2, n3, tempQ, tempN1, tempN2;
 	long numbers[LENGTH2-1] = {0};
 
 	//assignes values for all other variables
-	i = 1;
-	d = i-(i*LENGTH2)-7;
-	q1 = (i*LENGTH2)-6;
-	n1 = (i*LENGTH)-5;
-	q2 = (i*LENGTH2)-4;
-	n2 = (i*LENGTH2)-3;
-	q3 = (i*LENGTH2)-2;
-	n3 = (i*LENGTH2)-1;
+	d = 0;
+	q1 = 1;
+	n1 = 2;
+	q2 = 3;
+	n2 = 4;
+	q3 = 5;
+	n3 = 6;
+
+	//gives values to index variables for the temp array
+	tempN1 = j-3;
+	tempQ = j-2;
+	tempN2 = j-1;
 
 	//puts initial values in the numbers array
-	numbers[d] = *(temp);
+	numbers[d] = gcd;
 	numbers[q1] = 1;
-	numbers[n1] = *(temp+2);
-	numbers[q2] = *(temp+2);
-	numbers[n2] = *(temp+3);
+	numbers[n1] = *(temp+tempN1);
+	numbers[q2] = *(temp+tempQ);
+	numbers[n2] = *(temp+tempN2);
 
 	//this loop will continue untill the final line of the solution has been solved
-	for(;i <= j;i++);
+	for(j = j-1;j > 0;j--);
 	{
 
 		//checks to see where to substitute the numbers
-		if(*(numbers+n1) < *(numbers+n2))
+		if(numbers[n1] < numbers[n2])
 		{
 
 
@@ -260,6 +264,8 @@ void part2(long *temp, long j, long gcd)
 		} //end if
 		else
 		{
+
+
 
 		} //end else
 
