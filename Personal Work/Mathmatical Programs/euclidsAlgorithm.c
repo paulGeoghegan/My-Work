@@ -24,7 +24,7 @@ Paul Geoghegan
 //function signatures
 long* part1(long*, long*);
 long* swap(long*, long, long);
-void part2(long *, long, long, long, long);
+void part2(long *, long, long);
 
 //utility functions
 void end();
@@ -188,7 +188,7 @@ long* part1(long *numbers, long *gcd)
 	numbers = swap(numbers, i, *gcd);
 
 	//goes to the part 2 function
-	part2(numbers, i, *gcd, *(numbers+1), *(numbers+3));
+	part2(numbers, i, *gcd);
 
 	return numbers;
 } // end part1
@@ -224,14 +224,11 @@ long* swap(long*numbers, long j, long gcd)
 
 
 //this is part 2 of euclids algorithm which will find x and y values so that d = x(n1) + y(n2)
-void part2(long *temp, long j, long gcd, long num1, long num2)
+void part2(long *temp, long j, long gcd)
 {
 
 	long i, d, q1, q2, q3, n1, n2, n3;
-	long *numbers;
-
-	//allocates memory for numbers
-	numbers = calloc(LENGTH2, sizeof(long));
+	long numbers[LENGTH2-1] = {0};
 
 	//assignes values for all other variables
 	i = 1;
@@ -243,17 +240,30 @@ void part2(long *temp, long j, long gcd, long num1, long num2)
 	q3 = (i*LENGTH2)-2;
 	n3 = (i*LENGTH2)-1;
 
+	//puts initial values in the numbers array
+	numbers[d] = *(temp);
+	numbers[q1] = 1;
+	numbers[n1] = *(temp+2);
+	numbers[q2] = *(temp+2);
+	numbers[n2] = *(temp+3);
+
 	//this loop will continue untill the final line of the solution has been solved
-	do
+	for(;i <= j;i++);
 	{
 
+		//checks to see where to substitute the numbers
+		if(*(numbers+n1) < *(numbers+n2))
+		{
 
 
-	} //end do while
-	while(*(numbers+n1) != num1 && *(numbers+n2) != num2);
 
-	//frees memory block
-	free(numbers);
+		} //end if
+		else
+		{
+
+		} //end else
+
+	} //end for
 
 } //end part2
 
