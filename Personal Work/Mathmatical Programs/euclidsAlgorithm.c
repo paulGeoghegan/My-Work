@@ -259,7 +259,9 @@ void part2(long *temp, long j, long gcd)
 		if(numbers[n1] < numbers[n2])
 		{
 
-
+			//moves n2 and q2 in to n3 and q3 respectivley
+			numbers[n3] = numbers[n2];
+			numbers[q3] = numbers[q2];
 
 		} //end if
 		else
