@@ -23,7 +23,7 @@ Paul Geoghegan
 	Date
 Started 04/04/20
 Finished 06/04/20
-Editted 09/04/20
+Editted 14/05/20
 */
 
 //header files
@@ -60,7 +60,6 @@ void clear();
 void main()
 {
 
-	short option;
 	short min = 1;
 	short max = 6;
 	unsigned short userCode[LENGTH];
@@ -86,44 +85,51 @@ void main()
 		printf("5. Check entry attempts\n");
 		printf("6. Exit the program\n\n");
 
-		//this sets option equil to the value returned by the errorCheck function
-		option = errorCheck(str, &min, &max);
-
-		switch(option)
+		//this switch case controlls which option the user wants to pick
+		switch(errorCheck(str, &min, &max))
 		{
 
+			//this case will allow the user to enter or generate a code
 			case 1:
 			{
 
 				//goes to the enter numbers function to allow the user to fill out the userCode array
 				enterNumbers(userCode, &op1, &op2, &op3, &op4);
+
+				//this breaks out of the case
 				break;
 
 			} //end case 1
-			//if the user wants to incrypt there code
+			// This allows the user to incrypt there code
 			case 2:
 			{
 
 				//this goes to the incryptNumbers function
 				incryptNumbers(userCode, &op2, &op3, &op4);
+
+				//This breaks out of the case
 				break;
 
 			} //end case 2
-			//if the user wants to compair their code to the correct one
+			// This allows the user to compair their code to the correct one
 			case 3:
 			{
 
 				//goes to the compairNumbers function
 				compairNumbers(userCode, &attempts, &op1, &op3);
+
+				//This breaks out of the case
 				break;
 
 			} //end case 3
-			//if the user wants to decrypt their code
+			// This allows the user to decrypt their code
 			case 4:
 			{
 
 				//goes to the decryptNumbers function
 				decryptNumbers(userCode, &op2, &op4);
+
+				//This breaks out of the case
 				break;
 
 			} //end case 4
@@ -133,15 +139,19 @@ void main()
 
 				//goes to the entryAttempts function
 				entryAttempts(&attempts);
+
+				//This breaks out of the case
 				break;
 
 			} //end case 5
-			//if the user wants to exit the program
+			// This allows the user to exit the program
 			case 6:
 			{
 
 				//goes to the end function to allow the user to exit the program
 				end();
+
+				//This breaks out of the case
 				break;
 
 			} //end case 6
@@ -149,13 +159,14 @@ void main()
 			default:
 			{
 
+				//This lets the user know that there was an issue
 				printf("Sorry something has gone wrong please try again\n");
 
 			}//end default case
 
 		} //end option switch case
 
-		//goes to the clear function
+		//goes to the clear function to clear text after each case has been complete
 		clear();
 
 	} //end do while
@@ -173,9 +184,10 @@ void enterNumbers(short userCode[], bool *op1, bool *op2, bool *op3, bool *op4)
 	short max = 2;
 	char str[MINSTR];
 
+	//Asks the user what they want to do
 	printf("What do you want to do?\n1. Manually enter a code\n2. Randomly generate a code\n");
 
-	//checks what the user wants to do
+	//Gets an imput from the user and checks what they want to do
 	if(errorCheck(str, &min, &max) == 1)
 	{
 
@@ -186,7 +198,7 @@ void enterNumbers(short userCode[], bool *op1, bool *op2, bool *op3, bool *op4)
 		min = 0;
 		max = 9;
 
-		//loops through the userCode array ajnd gets the user to fill it out
+		//loops through the userCode array and gets the user to fill it out
 		for(register short i = 0;i < LENGTH;i++)
 		{
 
@@ -205,6 +217,7 @@ void enterNumbers(short userCode[], bool *op1, bool *op2, bool *op3, bool *op4)
 		//tells the user that a code is being generated
 		printf("Generateing code...\n");
 
+		//This loop will generate the four didget code
 		for(register short i = 0;i < LENGTH;i++)
 		{
 
@@ -262,6 +275,7 @@ void incryptNumbers(short userCode[], bool *op2, bool *op3, bool *op4)
 	else
 	{
 
+		//Lets the user know that their code is being incrypted
 		printf("Incrypting code\n");
 
 	//this incrypts the users code
@@ -452,6 +466,8 @@ void decryptNumbers(short userCode[], bool *op2, bool *op4)
 void entryAttempts(struct code_counter *attempts)
 {
 
+	printf("Entry attempts...\n");
+
 	//displays the correct attempts
 	printf("The amount of correct attempts made was %d\n", attempts->correct_code);
 
@@ -459,6 +475,7 @@ void entryAttempts(struct code_counter *attempts)
 	printf("The amount of wrong attempts made was %d\n", attempts->wrong_code);
 
 } //end entryAttempts
+
 
 //this function allows the user to end the program
 void end()
@@ -494,7 +511,7 @@ void end()
 
 
 /*
-Note: these are extra utility functions which arent in the general requirements of the assignment
+Note: these are extra utility functions which arent in the general requirements of the assignment but have been added for a better user experience
 */
 
 
@@ -513,7 +530,7 @@ short errorCheck(char str[], short *min, short *max)
 		{
 
 			//gets the input from the user and then clears the input buffer
-			scanf("%1s", str);
+			scanf("%s", str);
 			fflush(stdin);
 
 			//checks to see if the input is valid
@@ -521,6 +538,7 @@ short errorCheck(char str[], short *min, short *max)
 			if((atoi(str) < *min || atoi(str) > *max || atoi(str) == 0) && strcmp(str, "0") != 0)
 			{
 
+				//Lets the user know that their imput was invalid
 				printf("Invalid input please enter a value from %d to %d\n", *min, *max);
 
 			} //end if
@@ -544,6 +562,7 @@ short errorCheck(char str[], short *min, short *max)
 			if(atoi(str) < *min || atoi(str) > *max)
 			{
 
+				//lets the user know that their imput was not valid
 				printf("Invalid input please enter a value from %d to %d\n", *min, *max);
 
 			} //end if
@@ -572,7 +591,7 @@ void clear()
 	//this clears the screen
 	system("CLS");
 
-	//delays the program to fix an accessibility issue with clearing the screen in a terminal
+	//delays the program to fix an accessibility issue with clearing the screen in a terminal as otherwise the following print statements will not be read by screen readers
 	Sleep(1000);
 
 } //end clear function
