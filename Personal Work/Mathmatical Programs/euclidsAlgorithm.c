@@ -195,7 +195,7 @@ long* part1(long *numbers, long *gcd)
 long* swap(long*numbers, long j, long gcd)
 {
 
-	long n1, q, n2, r, temp, i;
+	long n1, q, n2, r, i;
 
 	//this will loop through the numbers memory block
 	for(i = 1;i <= j;i++)
@@ -208,7 +208,6 @@ long* swap(long*numbers, long j, long gcd)
 		r = (i*LENGTH)-1;
 
 		//swaps values
-		temp = *(numbers+r);
 		*(numbers+r) = *(numbers+n2);
 		*(numbers+n2) = *(numbers+q) *-1;
 		*(numbers+q) = *(numbers+n1);
@@ -216,8 +215,11 @@ long* swap(long*numbers, long j, long gcd)
 
 	} //end for
 
+printf("%ld", *(numbers+q));
+getchar();
+
 	//goes to the part 2 function
-	part2(numbers, i, gcd);
+	part2(numbers, j, gcd);
 
 	return numbers;
 } //end swap
@@ -227,8 +229,11 @@ long* swap(long*numbers, long j, long gcd)
 void part2(long *temp, long j, long gcd)
 {
 
+printf("%ld", *(temp+j-3));
+getchar();
+
 	long d, q1, q2, q3, n1, n2, n3, tempQ, tempN1, tempN2;
-	long numbers[LENGTH2-1] = {0};
+	long numbers[LENGTH2] = {0};
 
 	//assignes values for all other variables
 	d = 0;
@@ -250,6 +255,9 @@ void part2(long *temp, long j, long gcd)
 	numbers[n1] = *(temp+tempN1);
 	numbers[q2] = *(temp+tempQ);
 	numbers[n2] = *(temp+tempN2);
+
+printf("%ld", numbers[n1]);
+getchar();
 
 	//this loop will continue untill the final line of the solution has been solved
 	for(j = j-1;j > 0;j--);
@@ -331,6 +339,8 @@ void part2(long *temp, long j, long gcd)
 	//this prints the final line of part2 of euclids algorithm
 	printf("The answer to part 2 is\n");
 	printf("%ld = %ld(%ld) %ld(%ld)\n", numbers[d], numbers[q1], numbers[n1], numbers[q2], numbers[n2]);
+	printf("x = %ld\n", numbers[q1]);
+	printf("y = %ld\n", numbers[q2]);
 
 } //end part2
 
