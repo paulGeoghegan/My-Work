@@ -172,7 +172,7 @@ long* part1(long *numbers, long *gcd)
 	*gcd = *(numbers+n2);
 
 	//displays GCD
-	printf("The gcd of %ld and %ld is %ld", *(numbers+0), *(numbers+2), *gcd);
+	printf("The gcd of %ld and %ld is %ld\n", *(numbers+0), *(numbers+2), *gcd);
 
 	//if numbers has more than 1 row then the last row isnt needed for part 2 so this will check and remove it
 	if(i > 1)
@@ -187,9 +187,6 @@ long* part1(long *numbers, long *gcd)
 	//goes to the swap function
 	numbers = swap(numbers, i, *gcd);
 
-	//goes to the part 2 function
-	part2(numbers, i, *gcd);
-
 	return numbers;
 } // end part1
 
@@ -198,10 +195,10 @@ long* part1(long *numbers, long *gcd)
 long* swap(long*numbers, long j, long gcd)
 {
 
-	long n1, q, n2, r, temp;
+	long n1, q, n2, r, temp, i;
 
 	//this will loop through the numbers memory block
-	for(long i = 1;i < j;i++)
+	for(i = 1;i <= j;i++)
 	{
 
 		//sets values for n1, n2, q and r
@@ -218,6 +215,9 @@ long* swap(long*numbers, long j, long gcd)
 		*(numbers+n1) = gcd;
 
 	} //end for
+
+	//goes to the part 2 function
+	part2(numbers, i, gcd);
 
 	return numbers;
 } //end swap
@@ -255,6 +255,11 @@ void part2(long *temp, long j, long gcd)
 	for(j = j-1;j > 0;j--);
 	{
 
+		//re-calculates values to index variables for the temp array
+		tempN1 = j-3;
+		tempQ = j-2;
+		tempN2 = j-1;
+
 		//checks to see where to substitute the numbers
 		if(numbers[n1] < numbers[n2])
 		{
@@ -263,21 +268,77 @@ void part2(long *temp, long j, long gcd)
 			numbers[n3] = numbers[n2];
 			numbers[q3] = numbers[q2];
 
+			//puts numbers from previous line that were after the = after they had been swapped in to n1, q2 and n2
+			numbers[n1] = *(temp+tempN1);
+			numbers[q2] = *(temp+tempQ);
+			numbers[n2] = *(temp+tempN2);
+
+			//multiplies out brackit as the equation should currently look like d = q1(n1 + q2(n2)) -q3(n3)
+			numbers[q2] = numbers[q1] * numbers[q2];
+
+			//checks if any of the n numbers are the same
+			if(numbers[n1] == numbers[n3])
+			{
+
+				//symplifies equation
+				numbers[q1] = numbers[q1] * numbers[q3];
+
+			} // end if
+			else
+			{
+
+				//simplifies equation
+				numbers[q2] = numbers[q2] * numbers[q3];
+
+			} // end else
+
 		} //end if
 		else
 		{
 
+			//puts numbers from previous line that were after the = after they had been swapped in to n2, q3 and n3
+			numbers[n2] = *(temp+tempN1);
+			numbers[q3] = *(temp+tempQ);
+			numbers[n3] = *(temp+tempN2);
 
+			//multiplies out brackit as the equation should currently look like d = q1(n1) - q2(n2 +q3(n3))
+			numbers[q3] = numbers[q2] * numbers[q3];
+
+			//checks if any of the n numbers are the same
+			if(numbers[n2] == numbers[n1])
+			{
+
+				//simplifies equation
+				numbers[q1] = numbers[q1] * numbers[q2];
+
+				//moves q3 and n3 to q2 and n2
+				numbers[q2] = numbers[q3];
+				numbers[n2] = numbers[n3];
+
+			} // end if
+			else
+			{
+
+				//simplifies equation
+				numbers[q1] = numbers[q1] * numbers[q3];
+
+			} // end else
 
 		} //end else
 
 	} //end for
 
+	//this prints the final line of part2 of euclids algorithm
+	printf("The answer to part 2 is\n");
+	printf("%ld = %ld(%ld) %ld(%ld)\n", numbers[d], numbers[q1], numbers[n1], numbers[q2], numbers[n2]);
+
 } //end part2
+
 
 /*
 NOTE: These following functions have been included purely for the sake of improveing usability and serve no function for euclids algorithm
 */
+
 
 //this function allows the user to end the program
 void end()
