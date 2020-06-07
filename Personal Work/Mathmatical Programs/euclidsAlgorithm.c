@@ -18,12 +18,9 @@ Paul Geoghegan
 #define LENGTH 4
 #define LENGTH2 7
 
-//structures
-
-
 //function signatures
-long* part1(long*, long*);
-long* swap(long*, long, long);
+void part1(long*, long*);
+void swap(long*, long, long);
 void part2(long *, long, long);
 
 //utility functions
@@ -73,8 +70,7 @@ void main()
 				*(numbers+2) = errorCheck(str, &min, &max);
 
 				//goes to the part 1 function
-				numbers = part1(numbers, &gcd);
-
+				part1(numbers, &gcd);
 				break;
 
 			} //end case 1
@@ -83,6 +79,7 @@ void main()
 
 				//goes to the end function
 				end();
+				break;
 
 			} //end case 2
 
@@ -94,13 +91,11 @@ void main()
 	} // end do while
 	while(1);
 
-	free(numbers);
-
 } //end main
 
 
 //this function handles the first part of euclids algorithm to find the gcd
-long* part1(long *numbers, long *gcd)
+void part1(long *numbers, long *gcd)
 {
 
 	int i, n1, n2, q, r;
@@ -185,17 +180,17 @@ long* part1(long *numbers, long *gcd)
 	} //end if
 
 	//goes to the swap function
-	numbers = swap(numbers, i, *gcd);
+	swap(numbers, i, *gcd);
 
-	return numbers;
 } // end part1
 
 
 //this function swaps around the elements in the numbers array so that they will be ready to be used in part2 of euclids algorithm
-long* swap(long*numbers, long j, long gcd)
+void swap(long*numbers, long j, long gcd)
 {
 
-	long n1, q, n2, r, i;
+	long n1, q, n2, r;
+	long register i;
 
 	//this will loop through the numbers memory block
 	for(i = 1;i <= j;i++)
@@ -215,13 +210,12 @@ long* swap(long*numbers, long j, long gcd)
 
 	} //end for
 
-printf("%ld", *(numbers+q));
+printf(" %ld, %ld, %ld, %ld\n", *(numbers+n1), *(numbers+q), *(numbers+n2), *(numbers+r));
 getchar();
 
 	//goes to the part 2 function
 	part2(numbers, j, gcd);
 
-	return numbers;
 } //end swap
 
 
@@ -341,6 +335,9 @@ getchar();
 	printf("%ld = %ld(%ld) %ld(%ld)\n", numbers[d], numbers[q1], numbers[n1], numbers[q2], numbers[n2]);
 	printf("x = %ld\n", numbers[q1]);
 	printf("y = %ld\n", numbers[q2]);
+
+	//this frees the memory block for numbers
+	free(temp);
 
 } //end part2
 
