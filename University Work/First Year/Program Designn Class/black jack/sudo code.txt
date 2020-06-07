@@ -1,0 +1,24 @@
+PROGRAM BlackJack
+
+	deck[2][4][13]
+	user_hand[10]
+	dealer_hand[10]
+
+	fill deck
+
+	PROMPT mode
+	GET mode
+
+	PROMPT deck_amount, starting_money
+	GET deck_amount, starting_money
+
+	IF mode == test
+		GET bet
+
+	REPEAT
+		IF mode == play || mode == auto_play
+			PROMPT bet
+			GET bet
+
+
+
