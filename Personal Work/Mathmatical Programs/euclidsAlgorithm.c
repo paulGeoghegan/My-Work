@@ -28,17 +28,18 @@ void end();
 long errorCheck(char[], long*, long*);
 void clear();
 
-void main()
+int main()
 {
 
 	long gcd, min, max;
 	long *numbers;
 	char str[11];
+	short cont = 1;
 
 	//allocates memory for numbers which will be the main block of memory used throught the program
 	numbers = calloc(LENGTH, sizeof(long));
 
-	//This loop will continue untill the user chooses to end the program
+	//This loop will continue until the user chooses to end the program
 	do
 	{
 
@@ -79,6 +80,10 @@ void main()
 
 				//goes to the end function
 				end();
+
+				//Infinite loops aren't great, also you're a nerd
+				cont = 0;
+
 				break;
 
 			} //end case 2
@@ -89,12 +94,12 @@ void main()
 		clear();
 
 	} // end do while
-	while(1);
+	while(cont == 1);
 
 } //end main
 
 
-//this function handles the first part of euclids algorithm to find the gcd
+//this function handles the first part of euclid's algorithm to find the gcd
 void part1(long *numbers, long *gcd)
 {
 
@@ -259,7 +264,7 @@ getchar();
 } //end for
 
 	//this loop will continue untill the final line of the solution has been solved
-	for(j = j-1;j > 0;j--);
+	for(j = j-1;j > 0;j--)
 	{
 
 		//re-calculates values to index variables for the temp array
@@ -346,8 +351,8 @@ getchar();
 			} //end else
 
 		} //end else if
-			else
-			{
+		else
+		    {
 
 				//Lets the user know that something has gone wrong
 				printf("Sorry something has gone wrong\nError code 3");
@@ -356,7 +361,7 @@ getchar();
 
 	} //end for
 
-	//this prints the final line of part2 of euclids algorithm
+    //this prints the final line of part2 of euclid's algorithm
 	printf("The answer to part 2 is\n");
 	printf("%ld = %ld(%ld) %ld(%ld)\n", numbers[d], numbers[q1], numbers[n1], numbers[q2], numbers[n2]);
 	printf("x = %ld\n", numbers[q1]);
@@ -369,7 +374,7 @@ getchar();
 
 
 /*
-NOTE: These following functions have been included purely for the sake of improveing usability and serve no function for euclids algorithm
+NOTE: These following functions have been included purely for the sake of improving usability and serve no function for euclid's algorithm
 */
 
 
@@ -395,7 +400,10 @@ void end()
 		exit(0);
 
 		} //end if
+
+
 		else
+
 		{
 
 			//lets the user know that the program is not exiting
