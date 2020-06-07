@@ -223,9 +223,6 @@ getchar();
 void part2(long *temp, long j, long gcd)
 {
 
-printf("%ld", *(temp+j-3));
-getchar();
-
 	long d, q1, q2, q3, n1, n2, n3, tempQ, tempN1, tempN2;
 	long numbers[LENGTH2] = {0};
 
@@ -239,9 +236,9 @@ getchar();
 	n3 = 6;
 
 	//gives values to index variables for the temp array
-	tempN1 = j-3;
-	tempQ = j-2;
-	tempN2 = j-1;
+	tempN1 = (j*LENGTH)-3;
+	tempQ = (j*LENGTH)-2;
+	tempN2 = (j*LENGTH)-1;
 
 	//puts initial values in the numbers array
 	numbers[d] = gcd;
@@ -258,9 +255,9 @@ getchar();
 	{
 
 		//re-calculates values to index variables for the temp array
-		tempN1 = j-3;
-		tempQ = j-2;
-		tempN2 = j-1;
+		tempN1 = (j*LENGTH)-3;
+		tempQ = (j*LENGTH)-2;
+		tempN2 = (j*LENGTH)-1;
 
 		//checks to see where to substitute the numbers
 		if(numbers[n1] < numbers[n2])
