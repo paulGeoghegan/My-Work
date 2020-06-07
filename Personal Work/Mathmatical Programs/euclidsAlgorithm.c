@@ -58,8 +58,7 @@ int main()
 			case 1:
 			{
 
-				//this is temporary
-				printf("Enter the 2 numbers\n");
+				printf("Enter the 2 numbers: X and Y in order to find the GCD\n");
 
 				//sets values for min and max
 				min = LONG_MIN;
@@ -68,6 +67,17 @@ int main()
 				//stores numbers in memory block
 				*(numbers+0) = errorCheck(&min, &max);
 				*(numbers+2) = errorCheck(&min, &max);
+
+				//checks if the second number is larger than the first and if so they get swapped
+				if(*(numbers+2) > *(numbers+0))
+				{
+
+					//swaps numbers around
+					*(numbers+1) =*(numbers+0);
+					*(numbers+0) = *(numbers+2);
+					*(numbers+2) = *(numbers+1);
+
+				} //end if
 
 				//goes to the part 1 function
 				part1(numbers, &gcd);
