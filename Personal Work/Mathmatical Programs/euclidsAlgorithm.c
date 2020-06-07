@@ -247,8 +247,16 @@ void part2(long *temp, long j, long gcd)
 	numbers[q2] = *(temp+tempQ);
 	numbers[n2] = *(temp+tempN2);
 
-printf("%ld", numbers[n1]);
+
+//temp
+for(int k = 0;k < 7;k++)
+{
+
+printf("num %d,", k);
+printf("%ld\n", numbers[k]);
 getchar();
+
+} //end for
 
 	//this loop will continue untill the final line of the solution has been solved
 	for(j = j-1;j > 0;j--);
@@ -276,23 +284,30 @@ getchar();
 			numbers[q2] = numbers[q1] * numbers[q2];
 
 			//checks if any of the n numbers are the same
-			if(numbers[n1] == numbers[n3])
+			if((unsigned) numbers[n1] == (unsigned) numbers[n3])
 			{
 
 				//symplifies equation
 				numbers[q1] = numbers[q1] * numbers[q3];
 
 			} // end if
-			else
+			else if((unsigned) numbers[n2] == (unsigned) numbers[n3])
 			{
 
 				//simplifies equation
 				numbers[q2] = numbers[q2] * numbers[q3];
 
-			} // end else
+			} // end else if
+			else
+			{
+
+				//lets the user know that something went wrong
+				printf("Sorry something has gone wrong please try again\nError code 1");
+
+			} //end else
 
 		} //end if
-		else
+		else if(numbers[n2] < numbers[n1])
 		{
 
 			//puts numbers from previous line that were after the = after they had been swapped in to n2, q3 and n3
@@ -304,7 +319,7 @@ getchar();
 			numbers[q3] = numbers[q2] * numbers[q3];
 
 			//checks if any of the n numbers are the same
-			if(numbers[n2] == numbers[n1])
+			if((unsigned) numbers[n2] == (unsigned) numbers[n1])
 			{
 
 				//simplifies equation
@@ -315,15 +330,29 @@ getchar();
 				numbers[n2] = numbers[n3];
 
 			} // end if
-			else
+			else if((unsigned) numbers[n3] == (unsigned) numbers[n1])
 			{
 
 				//simplifies equation
 				numbers[q1] = numbers[q1] * numbers[q3];
 
-			} // end else
+			} // end else if
+			else
+			{
 
-		} //end else
+				//Lets the user know that something went wrong
+				printf("Sorry something has gone wrong please try again\nError code 2\n");
+
+			} //end else
+
+		} //end else if
+			else
+			{
+
+				//Lets the user know that something has gone wrong
+				printf("Sorry something has gone wrong\nError code 3");
+
+			} //end else
 
 	} //end for
 
