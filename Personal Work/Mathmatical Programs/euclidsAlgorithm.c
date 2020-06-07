@@ -25,7 +25,7 @@ void part2(long *, long, long);
 
 //utility functions
 void end();
-long errorCheck(char[], long*, long*);
+long errorCheck(long*, long*);
 void clear();
 
 int main()
@@ -33,7 +33,6 @@ int main()
 
 	long gcd, min, max;
 	long *numbers;
-	char str[11];
 	short cont = 1;
 
 	//allocates memory for numbers which will be the main block of memory used throught the program
@@ -53,7 +52,7 @@ int main()
 		printf("2. Exit the program\n");
 
 		//checks to see what the user wants to do
-		switch(errorCheck(str, &min, &max))
+		switch(errorCheck(&min, &max))
 		{
 
 			case 1:
@@ -67,8 +66,8 @@ int main()
 				max = LONG_MAX;
 
 				//stores numbers in memory block
-				*(numbers+0) = errorCheck(str, &min, &max);
-				*(numbers+2) = errorCheck(str, &min, &max);
+				*(numbers+0) = errorCheck(&min, &max);
+				*(numbers+2) = errorCheck(&min, &max);
 
 				//goes to the part 1 function
 				part1(numbers, &gcd);
@@ -215,9 +214,6 @@ void swap(long*numbers, long j, long gcd)
 
 	} //end for
 
-printf(" %ld, %ld, %ld, %ld\n", *(numbers+n1), *(numbers+q), *(numbers+n2), *(numbers+r));
-getchar();
-
 	//goes to the part 2 function
 	part2(numbers, j, gcd);
 
@@ -251,17 +247,6 @@ void part2(long *temp, long j, long gcd)
 	numbers[n1] = *(temp+tempN1);
 	numbers[q2] = *(temp+tempQ);
 	numbers[n2] = *(temp+tempN2);
-
-
-//temp
-for(int k = 0;k < 7;k++)
-{
-
-printf("num %d,", k);
-printf("%ld\n", numbers[k]);
-getchar();
-
-} //end for
 
 	//this loop will continue untill the final line of the solution has been solved
 	for(j = j-1;j > 0;j--)
@@ -384,13 +369,12 @@ void end()
 
 	long min = 1;
 	long max = 2;
-	char str[2];
 
 	//asks the user if they want to end the program
 	printf("Are you sure you want to end the program?\n1: yes\n2: no\n");
 
 	//gets an input from the user and checks what they want to do
-	if(errorCheck(str, &min, &max) == 1)
+	if(errorCheck(&min, &max) == 1)
 	{
 
 		//tells the user that the program is stopping
@@ -415,10 +399,11 @@ void end()
 
 
 //this function error checks any input from the user
-long errorCheck(char str[], long *min, long *max)
+long errorCheck(long *min, long *max)
 {
 
 	char *ptr;
+	char str[11];
 
 	//checks to see if the min value required is < 1 as this requires slightly different logic
 	if(*min < 1)
