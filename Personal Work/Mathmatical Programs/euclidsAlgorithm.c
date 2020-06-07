@@ -418,7 +418,7 @@ void end()
 long errorCheck(char str[], long *min, long *max)
 {
 
-	long num;
+	char *ptr;
 
 	//checks to see if the min value required is < 1 as this requires slightly different logic
 	if(*min < 1)
@@ -434,7 +434,7 @@ long errorCheck(char str[], long *min, long *max)
 
 			//checks to see if the input is valid
 			//the last statement is used as if a non numeric char is converted to an int it will return 0 so this last statement checks for the user entering a 0 as otherwise this would not work as intended
-			if((atol(str) < *min || atol(str) > *max || atol(str) == 0) && strcmp(str, "0") != 0)
+			if((strtol(str, &ptr, 10) < *min || strtol(str, &ptr, 10) > *max || strtol(str, &ptr, 10) == 0) && strcmp(str, "0") != 0)
 			{
 
 				printf("Invalid input please enter a value from %ld to %ld\n", *min, *max);
@@ -442,7 +442,7 @@ long errorCheck(char str[], long *min, long *max)
 			} //end if
 
 		} //end do while also see note above
-		while((atol(str) < *min || atol(str) > *max || atol(str) == 0) && strcmp(str, "0"));
+		while((strtol(str, &ptr, 10) < *min || strtol(str, &ptr, 10) > *max || strtol(str, &ptr, 10) == 0) && strcmp(str, "0"));
 
 	} //end if
 	else
@@ -457,20 +457,20 @@ long errorCheck(char str[], long *min, long *max)
 			fflush(stdin);
 
 			//checks to see if the input is valid
-			if(atol(str) < *min || atol(str) > *max)
+			if(strtol(str, &ptr, 10) < *min || strtol(str, &ptr, 10) > *max)
 			{
 
-				printf("Invalid input please enter a value from %d to %d\n", *min, *max);
+				printf("Invalid input please enter a value from %ld to %ld\n", *min, *max);
 
 			} //end if
 
 		} //end do while
-		while(atol(str) < *min || atol(str) > *max);
+		while(strtol(str, &ptr, 10) < *min || strtol(str, &ptr, 10) > *max);
 
 	} //end else
 
 	// returns num
-	return num = atol(str);
+	return strtol(str, &ptr, 10);
 
 } //end errorCheck
 
