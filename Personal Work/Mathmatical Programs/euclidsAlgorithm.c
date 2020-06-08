@@ -4,7 +4,8 @@ This program uses Euclids Algorithm to find the greatest common denominator (GCD
 	Author
 Paul Geoghegan
 	Date
-01/05/20
+Started 01/05/20
+Finished 07/06/20
 */
 
 //header files
