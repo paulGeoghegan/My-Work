@@ -9,12 +9,18 @@ Paul Geoghegan
 */
 
 //Header files
-#include <stdio.h
+#include <stdio.h>
+#include <sys/stat.h>
 
 int main()
 {
 
+	int check;
+	char dirName[10];
 
+	scanf("%s", dirName);
 
-	return0;
+	//check = mkdir(dirName, 0777);
+
+	return 0;
 } //end main
