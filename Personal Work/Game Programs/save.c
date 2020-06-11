@@ -7,12 +7,13 @@
 #include <stdbool.h>
 
 //Global file variables
-FILE *characterF, *inventoryF, *mapF;
+
 
 //Function signatures
 long errorCheck(long*, long*);
 void mapGen(short[][101], int);
 
+//This function controlls all of the saving functionality for creading, loading and overwriting
 void save(short map[][101], char type)
 {
 
@@ -26,8 +27,8 @@ void save(short map[][101], char type)
 	bool exists = false;
 	struct dirent *de;
 	DIR *dr;
+	FILE *characterF, *inventoryF, *mapF;
 	int mapSize = 101;
-
 
 	//This switch case will controll what type of action is being performed
 	switch(type)
@@ -123,11 +124,16 @@ void save(short map[][101], char type)
 
 				//Creates map file
 				strcat(tempStr3, "/map.txt");
-				mapF = fopen(tempStr3, "w");
-				fclose(mapF);
+				mapF = fopen(tempStr3, "wb");
 
 				//Generates map
 			mapGen(map, mapSize);
+
+				//Writes the map to the map file
+fwrite(map, sizeof(short), sizeof(map), mapF);
+
+				//Closes the map file
+				fclose(mapF);
 
 				//Lets the user know that a new save has been created
 				printf("Finished creating\n");
