@@ -123,14 +123,14 @@ void save(short map[][101], char type)
 				fclose(inventoryF);
 
 				//Creates map file
-				strcat(tempStr3, "/map.txt");
+				strcat(tempStr3, "/map.bin");
 				mapF = fopen(tempStr3, "wb");
 
 				//Generates map
-			mapGen(map, mapSize);
+				mapGen(map, mapSize);
 
 				//Writes the map to the map file
-fwrite(map, sizeof(short), sizeof(map), mapF);
+fwrite(map, sizeof(short), (mapSize*mapSize), mapF);
 
 				//Closes the map file
 				fclose(mapF);
