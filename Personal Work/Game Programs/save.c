@@ -12,12 +12,8 @@ struct playerCharacter
 	char name[21];
 	short level;
 	int xp;
-	short strength;
-	short dexterity;
-	short constitution;
-	short inteligence;
-	short wisdom;
-	short charisma;
+	char *statNames[6];
+	short stats[6];
 }; //End playerCharacter
 
 //Function signatures
@@ -45,6 +41,7 @@ void save(char type)
 	int mapSize = 101;
 	short map[mapSize][mapSize];
 	struct playerCharacter character;
+character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; character.statNames[2] = "Constitution"; character.statNames[3] = "Inteligence"; character.statNames[4] = "Wisdom"; character.statNames[5] = "Charisma";
 
 	//This switch case will controll what type of action is being performed
 	switch(type)
@@ -132,7 +129,7 @@ void save(char type)
 				strcat(tempStr1, "/character.txt");
 				characterF = fopen(tempStr1, "w");
 
-				//Generates a new character
+				//Generates a new charactera
 				characterGen(&character);
 
 				//Closes the character file
