@@ -13,11 +13,8 @@ Paul Geoghegan
 #include <dirent.h>
 #include <string.h>
 
-//Symbolic names
-#define mapSize 101
-
 //function signatures
-void save(short[][mapSize], char);
+void save(char);
 void tiles(short);
 
 //utility functions
@@ -30,8 +27,8 @@ int main()
 
 	short option;
 	long min, max;
-	short map[mapSize][mapSize];
 
+	//This is the menu loop for the game
 	do
 	{
 
@@ -53,7 +50,7 @@ int main()
 			{
 
 				//Goes to the save function to create a new save
-				save(map, 'c');
+				save('c');
 				break;
 
 			} //end case 1
@@ -62,7 +59,7 @@ int main()
 			{
 
 				//Goes to the save function in order to load an existing save
-				save(map, 'l');
+				save('l');
 				break;
 
 			} //end case 2

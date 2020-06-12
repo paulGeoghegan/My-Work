@@ -6,15 +6,29 @@
 #include <string.h>
 #include <stdbool.h>
 
-//Global file variables
-
+//Structures
+struct playerCharacter
+{
+	char name[21];
+	short level;
+	int xp;
+	short strength;
+	short dexterity;
+	short constitution;
+	short inteligence;
+	short wisdom;
+	short charisma;
+}; //End playerCharacter
 
 //Function signatures
-long errorCheck(long*, long*);
+void characterGen(struct playerCharacter *character);
 void mapGen(short[][101], int);
 
-//This function controlls all of the saving functionality for creading, loading and overwriting
-void save(short map[][101], char type)
+//Utility functions
+long errorCheck(long*, long*);
+
+//This function controlls all of the saving functionality for creating, loading and overwriting
+void save(char type)
 {
 
 	int check, i, j;
@@ -29,6 +43,8 @@ void save(short map[][101], char type)
 	DIR *dr;
 	FILE *characterF, *inventoryF, *mapF;
 	int mapSize = 101;
+	short map[mapSize][mapSize];
+	struct playerCharacter character;
 
 	//This switch case will controll what type of action is being performed
 	switch(type)
@@ -115,6 +131,11 @@ void save(short map[][101], char type)
 				//Creates character file
 				strcat(tempStr1, "/character.txt");
 				characterF = fopen(tempStr1, "w");
+
+				//Generates a new character
+				characterGen(&character);
+
+				//Closes the character file
 				fclose(characterF);
 
 				//Creates inventory file
