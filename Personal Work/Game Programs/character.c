@@ -161,21 +161,25 @@ void characterGen(struct playerCharacter *character)
 		{
 
 			//Checks if the names match
-			if(strcmp(character->statNames[i], statNamesTemp[temp-1]) == 0)
+			if(strcmp(character->statNames[k], statNamesTemp[temp-1]) == 0)
 			{
 
 				//Stores stat
 				character->stats[k] = statsTemp[temp-1];
 
 				//Changes arrays
-				for(short l = temp-1;l < i;l++)
+				for(short l = temp;l < i;l++)
 				{
 
 					//Moves name and stat 1 towards 0
-					strcpy(statNamesTemp[l], statNamesTemp[l+1]);
-					statsTemp[l] = statsTemp[l+1];
+					strncpy(statNamesTemp[l-1], statNamesTemp[l], 12);
+					statsTemp[l-1] = statsTemp[l];
 
 				} //End for
+
+				//Reduces size of arrays
+				statNamesTemp[i];
+				statsTemp[i];
 
 			} //End if
 
