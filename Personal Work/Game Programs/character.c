@@ -26,7 +26,7 @@ void characterGen(struct playerCharacter *character)
 
 	bool loop = false;
 	long min, max;
-	short smallest, smallLocate, temp;
+	short smallest, smallLocate, temp, k;
 	short statGen[4] = {0};
 	short statsTemp[6];
 	char statNamesTemp[6][13] = {"Strength", "Dexterity", "Constitution", "Inteligence", "Wisdom", "Charisma"};
@@ -156,13 +156,19 @@ void characterGen(struct playerCharacter *character)
 		//Gets an imput from the user
 		temp = errorCheck(&min, &max);
 
+		//Sets k to 0
+		k = 0;
+
 		//moves selected stat to the character struct and re-aranges statsTemp and statNameTemp arrays
-		for(short k = 0;k < 6;k++)
+		do
 		{
 
 			//Checks if the names match
 			if(strcmp(character->statNames[k], statNamesTemp[temp-1]) == 0)
 			{
+
+				//Sets loop to false
+				loop = false;
 
 				//Stores stat
 				character->stats[k] = statsTemp[temp-1];
@@ -177,13 +183,21 @@ void characterGen(struct playerCharacter *character)
 
 				} //End for
 
-				//Reduces size of arrays
-				statNamesTemp[i];
-				statsTemp[i];
-
 			} //End if
+			else
+			{
 
-		} //end for
+				//Sets loop to true
+				loop = true;
+
+				//Increases k by 1
+				k++;
+
+			} //End else
+
+
+		} //end do while
+		while(loop == true);
 
 	} //end for
 
