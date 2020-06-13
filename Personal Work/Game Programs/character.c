@@ -29,7 +29,7 @@ void characterGen(struct playerCharacter *character)
 	short smallest, smallLocate, temp;
 	short statGen[4] = {0};
 	short statsTemp[6];
-	char *statNamesTemp[6] = {"Strength", "Dexterity", "Constitution", "Inteligence", "Wisdom", "Charisma"};
+	char statNamesTemp[6][13] = {"Strength", "Dexterity", "Constitution", "Inteligence", "Wisdom", "Charisma"};
 	srand(time(0));
 
 	//Sets values of minn and max for imput errorChecking()
@@ -172,7 +172,7 @@ void characterGen(struct playerCharacter *character)
 				{
 
 					//Moves name and stat 1 towards 0
-					strncpy(statNamesTemp[l-1], statNamesTemp[l], 12);
+					strcpy(statNamesTemp[l-1], statNamesTemp[l]);
 					statsTemp[l-1] = statsTemp[l];
 
 				} //End for
