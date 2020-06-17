@@ -2,8 +2,9 @@
 This repo contains code strictly made by just me including university assignments and other projects. All of my collaborative work is contained in other repos.
 
 	Repos:
-1. The University Work repo contains strictly assignment and test based code from my time spent in university,
+1. The Collaborative Work repo contains projects thsat have been completed by atleast one other person and myself.
 2. The Personal Work repo contains non university based projects which I have completed outside of university time and by myself.
+3. The University Work repo contains strictly assignment and test based code from my time spent in university,
 
 	Notes:
 For information on the re-distribbution or modification of any of the code contained in this repositry please refer to the GNU GENERAL PUBLIC LICENSE information on which can be found in the licence file.
