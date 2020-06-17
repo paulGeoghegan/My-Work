@@ -115,10 +115,10 @@ void characterGen(struct playerCharacter *character)
 		} //End for
 
 		//Checks where the smallest number is
-		if(smallLocate !=4)
+		if(smallLocate != 3)
 		{
 
-			//Moves the smallest number to the last element
+			//replaces the smallest number with the last element
 			statGen[smallLocate] = statGen[3];
 
 		} //End if
@@ -126,6 +126,7 @@ void characterGen(struct playerCharacter *character)
 		//Calculates value for this stat by using the first 3 values
 		statsTemp[i] = statGen[0] + statGen[1] + statGen[2];
 
+		//Prints stat
 		printf("%d\n", statsTemp[i]);
 
 	} //End for
@@ -178,8 +179,8 @@ void characterGen(struct playerCharacter *character)
 				{
 
 					//Moves name and stat 1 towards 0
+					//Moves name and stat 1 towards 0
 					strcpy(statNamesTemp[l-1], statNamesTemp[l]);
-					statsTemp[l-1] = statsTemp[l];
 
 				} //End for
 
