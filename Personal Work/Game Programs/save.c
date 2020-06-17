@@ -126,23 +126,26 @@ character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; chara
 				strcpy(tempStr3, saveLocation);
 
 				//Creates character file
-				strcat(tempStr1, "/character.txt");
+				strcat(tempStr1, "/character.dat");
 				characterF = fopen(tempStr1, "w");
 
 				//Generates a new charactera
 				characterGen(&character);
 
+				//Writes the character struct to the character save file
+				fwrite(&character, sizeof(struct playerCharacter), 1, characterF);
+
 				//Closes the character file
 				fclose(characterF);
 
 				//Creates inventory file
-				strcat(tempStr2, "/inventory.txt");
+				strcat(tempStr2, "/inventory.dat");
 				inventoryF = fopen(tempStr2, "w");
 				fclose(inventoryF);
 
 				//Creates map file
-				strcat(tempStr3, "/map.bin");
-				mapF = fopen(tempStr3, "wb");
+				strcat(tempStr3, "/map.dat");
+				mapF = fopen(tempStr3, "w");
 
 				//Generates map
 				mapGen(map, mapSize);
