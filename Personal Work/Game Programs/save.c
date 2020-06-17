@@ -16,9 +16,16 @@ struct playerCharacter
 	short stats[6];
 }; //End playerCharacter
 
+struct tile
+{
+	char name[21];
+	short id;
+	char description[100];
+}; //End tile struct
+
 //Function signatures
 void characterGen(struct playerCharacter *character);
-void mapGen(short[][101], int);
+void tiles(struct tile map[][101]);
 
 //Utility functions
 long errorCheck(long*, long*);
@@ -39,7 +46,7 @@ void save(char type)
 	DIR *dr;
 	FILE *characterF, *inventoryF, *mapF;
 	int mapSize = 101;
-	short map[mapSize][mapSize];
+	struct tile map[mapSize][mapSize];
 	struct playerCharacter character;
 character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; character.statNames[2] = "Constitution"; character.statNames[3] = "Inteligence"; character.statNames[4] = "Wisdom"; character.statNames[5] = "Charisma";
 
@@ -148,10 +155,10 @@ character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; chara
 				mapF = fopen(tempStr3, "w");
 
 				//Generates map
-				mapGen(map, mapSize);
+				tiles(map);
 
 				//Writes the map to the map file
-fwrite(map, sizeof(short), (mapSize*mapSize), mapF);
+fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 
 				//Closes the map file
 				fclose(mapF);

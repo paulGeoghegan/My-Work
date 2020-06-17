@@ -3,25 +3,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 //Symbolic names
 #define tileAmount 3
 
+//Structures
+struct tile
+{
+	char name[21];
+	short id;
+	char description[100];
+}; //End tile struct
+
 //This function will generate a new map
-void mapGen(short map[][101], int mapSize)
+void mapGen(struct tile map[][101], struct tile tileType[3], int mapSize)
 {
 
 	short x = mapSize / 2;
 	short y = mapSize / 2;
-	short xMod, yMod, currentTyle, temp;
+	short xMod, yMod, currentTile, temp;
 	srand(time(0));
 
-	//Sets values for xMod and Ymod
+	//Sets values for xMod and yMod
 	xMod = yMod = 1;
 	temp = 0;
 
 	//Assignes what tile will be the first on the map
-	map[y][x] = currentTyle = (rand()%(tileAmount-1)) +1;
+	map[y][x].id = currentTile = (rand()%(tileAmount-1)) +1;
+	strcpy(map[y][x].name, tileType[currentTile].name);
+	strcpy(map[y][x].description, tileType[currentTile].description);
 
 	//Increases y by one
 	y++;
@@ -103,17 +114,21 @@ void mapGen(short map[][101], int mapSize)
 					{
 
 						//Sets current tile to the new tile type
-						currentTyle = rand()%tileAmount;
+						currentTile = rand()%tileAmount;
 
 						//Stores tile
-						map[y][x] = currentTyle;
+						map[y][x].id = currentTile;
+						strcpy(map[y][x].name, tileType[currentTile].name);
+						strcpy(map[y][x].description, tileType[currentTile].description);
 
 					} //End if
 					else
 					{
 
 						//Stores tile
-						map[y][x] = currentTyle;
+						map[y][x].id = currentTile;
+						strcpy(map[y][x].name, tileType[currentTile].name);
+						strcpy(map[y][x].description, tileType[currentTile].description);
 
 					} //end else 
 
@@ -135,17 +150,21 @@ void mapGen(short map[][101], int mapSize)
 					{
 
 						//Sets current tile to the new tile type
-						currentTyle = rand()%tileAmount;
+						currentTile = rand()%tileAmount;
 
 						//Stores tile
-						map[y][x] = currentTyle;
+						map[y][x].id = currentTile;
+						strcpy(map[y][x].name, tileType[currentTile].name);
+						strcpy(map[y][x].description, tileType[currentTile].description);
 
 					} //End if
 					else
 					{
 
 						//Stores tile
-						map[y][x] = currentTyle;
+						map[y][x].id = currentTile;
+						strcpy(map[y][x].name, tileType[currentTile].name);
+						strcpy(map[y][x].description, tileType[currentTile].description);
 
 					} //end else
 

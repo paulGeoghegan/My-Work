@@ -5,30 +5,35 @@
 //structures
 struct tile
 {
-	char *name;
+	char name[21];
+	short id;
 	char description[100];
 }; //end tile struct
 
 //Symbolic names
 #define tileAmount 3
 
-//Global tiles array
-	struct tile tl[tileAmount];
+//Function signatures
+void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int);
 
 //This function stores all of the different map tiles in the game
-void tiles(short i)
+void tiles(struct tile map[][101])
 {
 
+	struct tile tileType[tileAmount];
+
 	//water tile
-	strcpy(tl[0].name, "Water");
-	strcpy(tl[0].description, "You swim through the water as small waves pass you");
+	strcpy(tileType[0].name, "Water");
+	strcpy(tileType[0].description, "You swim through the water as small waves pass you");
 
 	//Grass Land
-	strcpy(tl[1].name, "Grass Land");
-	strcpy(tl[1].description, "You walk through a field of low grass and small flowers");
+	strcpy(tileType[1].name, "Grass Land");
+	strcpy(tileType[1].description, "You walk through a field of low grass and small flowers");
 
 	//Forest
-	strcpy(tl[2].name, "Forest");
-	strcpy(tl[2].description, "You walk through a dense forest brushing past trees on either side of you");
+	strcpy(tileType[2].name, "Forest");
+	strcpy(tileType[2].description, "You walk through a dense forest brushing past trees on either side of you");
 
-} //end map
+mapGen(map, tileType, 101);
+
+} //end tiles
