@@ -263,16 +263,22 @@ fwrite(map, sizeof(short), (mapSize*mapSize), mapF);
 			strcpy(tempStr3, saveLocation);
 
 			//Opens character file
-			strcat(tempStr1, "/character.txt");
+			strcat(tempStr1, "/character.dat");
 			characterF = fopen(tempStr1, "r");
 
+			//Reads file
+			fread(&character, sizeof(struct playerCharacter), 1, characterF);
+
 			//Opens inventory file
-			strcat(tempStr2, "/inventory.txt");
+			strcat(tempStr2, "/inventory.dat");
 			inventoryF = fopen(tempStr2, "r");
 
 			//Opens map file
-			strcat(tempStr3, "/map.txt");
+			strcat(tempStr3, "/map.dat");
 			mapF = fopen(tempStr3, "r");
+
+			//Reads file
+			fread(map, sizeof(short), mapSize*mapSize, mapF);
 
 			//Lets the user know that the save has been loaded
 			printf("Loading complete!\n");
