@@ -14,6 +14,8 @@ struct playerCharacter
 	int xp;
 	char *statNames[6];
 	short stats[6];
+	short x;
+	short y;
 }; //End playerCharacter
 
 //Function signatures
@@ -31,6 +33,9 @@ void characterGen(struct playerCharacter *character)
 	short statsTemp[6];
 	char statNamesTemp[6][13] = {"Strength", "Dexterity", "Constitution", "Inteligence", "Wisdom", "Charisma"};
 	srand(time(0));
+
+	//Sets values for x and y so that the user will start in the center of the map
+character->x = character->y = 50;
 
 	//Sets values of minn and max for imput errorChecking()
 	min = 1;

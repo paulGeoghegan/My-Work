@@ -14,6 +14,8 @@ struct playerCharacter
 	int xp;
 	char *statNames[6];
 	short stats[6];
+	short x;
+	short y;
 }; //End playerCharacter
 
 struct tile
@@ -23,10 +25,24 @@ struct tile
 	char description[100];
 }; //End tile struct
 
+struct items
+{
+	char name[21];
+	short id;
+	short amount;
+	char description[100];
+	bool equipable;
+	bool equiped;
+	short attack;
+	short defence;
+	short value;
+}; //End item structure
+
 //Function signatures
 void characterGen(struct playerCharacter *character);
+void itemList(struct items item);
 void tiles(struct tile map[][101]);
-void play(char[]);
+void play(struct playerCharacter *character, struct tile map[][101], char[]);
 
 //Utility functions
 long errorCheck(long*, long*);
@@ -49,6 +65,7 @@ void save(char dirName[], char type)
 	struct tile map[mapSize][mapSize];
 	struct playerCharacter character;
 character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; character.statNames[2] = "Constitution"; character.statNames[3] = "Inteligence"; character.statNames[4] = "Wisdom"; character.statNames[5] = "Charisma";
+	struct items inventory[10];
 
 	//This switch case will controll what type of action is being performed
 	switch(type)
@@ -307,6 +324,6 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 	} //end switch
 
 	//Goes to the play function
-	play(dirName);
+	play(&character, map, dirName);
 
 } //end save function
