@@ -26,16 +26,16 @@ struct tile
 //Function signatures
 void characterGen(struct playerCharacter *character);
 void tiles(struct tile map[][101]);
+void play(char[]);
 
 //Utility functions
 long errorCheck(long*, long*);
 
 //This function controlls all of the saving functionality for creating, loading and overwriting
-void save(char type)
+void save(char dirName[], char type)
 {
 
 	int check, i, j;
-	char dirName[11];
 	long min, max;
 	char saveLocation[11] = "gameSaves/";
 	char tempStr1[21];
@@ -276,9 +276,15 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 			//Reads file
 			fread(&character, sizeof(struct playerCharacter), 1, characterF);
 
+			//Closes character file
+			fclose(characterF);
+
 			//Opens inventory file
 			strcat(tempStr2, "/inventory.dat");
 			inventoryF = fopen(tempStr2, "r");
+
+			//Closes inventory file
+			fclose(inventoryF);
 
 			//Opens map file
 			strcat(tempStr3, "/map.dat");
@@ -286,6 +292,9 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 
 			//Reads file
 			fread(map, sizeof(short), mapSize*mapSize, mapF);
+
+			//Closes map file
+			fclose(mapF);
 
 			//Lets the user know that the save has been loaded
 			printf("Loading complete!\n");
@@ -296,5 +305,8 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 		} //End load case
 
 	} //end switch
+
+	//Goes to the play function
+	play(dirName);
 
 } //end save function

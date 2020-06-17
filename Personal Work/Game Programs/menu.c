@@ -14,8 +14,7 @@ Paul Geoghegan
 #include <string.h>
 
 //function signatures
-void save(char);
-void tiles(short);
+void save(char[], char);
 
 //utility functions
 void end();
@@ -27,6 +26,7 @@ int main()
 
 	short option;
 	long min, max;
+char dirName[11];
 
 	//This is the menu loop for the game
 	do
@@ -50,7 +50,7 @@ int main()
 			{
 
 				//Goes to the save function to create a new save
-				save('c');
+				save(dirName, 'c');
 				break;
 
 			} //end case 1
@@ -59,7 +59,7 @@ int main()
 			{
 
 				//Goes to the save function in order to load an existing save
-				save('l');
+				save(dirName, 'l');
 				break;
 
 			} //end case 2
