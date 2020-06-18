@@ -83,7 +83,40 @@ void play(struct playerCharacter *character, struct tile map[][mapSize], char di
 				break;
 
 			} //End s case
+			//Moves to the right across the map
+			case 'd':
+			{
 
+				//Makes sure movement wont let user move outside of the map
+				if((character->x + 1) < 101)
+				{
+
+					//Increases x by one
+					character->x++;
+
+				} //End if
+
+				//Breaks out of switch
+				break;
+
+			} //End d case
+			//Moves to the left across the map
+			case 'a':
+			{
+
+				//Makes sure movement wont let user move outside of the map
+				if((character->x - 1) > -1)
+				{
+
+					//decreases x by one
+					character->x--;
+
+				} //End if
+
+				//Breaks out of switch
+				break;
+
+			} //End a case
 			default:
 			{
 
