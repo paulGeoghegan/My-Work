@@ -127,7 +127,7 @@ void play(struct playerCharacter *character, struct tile map[][mapSize], char di
 					return;
 
 				}//End exit case
-				else if(strcmp(str, "admin") == 0)
+				else if(strcmp(str, "ADMIN") == 0)
 				{
 
 					//Tells the user that they have entered the admin menu

@@ -17,11 +17,11 @@ struct tile
 }; //End tile struct
 
 //This function will generate a new map
-void mapGen(struct tile map[][101], struct tile tileType[3], int mapSize)
+void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSize)
 {
 
-	short x = mapSize / 2;
-	short y = mapSize / 2;
+	short x = 49;
+	short y = 49;
 	short xMod, yMod, currentTile, temp;
 	srand(time(0));
 
