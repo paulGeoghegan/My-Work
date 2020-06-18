@@ -34,9 +34,6 @@ void mapGen(struct tile map[][101], struct tile tileType[3], int mapSize)
 	strcpy(map[y][x].name, tileType[currentTile].name);
 	strcpy(map[y][x].description, tileType[currentTile].description);
 
-	//Increases y by one
-	y++;
-
 	//Lets the user know that the map is being created
 	printf("Generating map...\n");
 
