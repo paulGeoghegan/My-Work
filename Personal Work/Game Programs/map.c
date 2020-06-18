@@ -20,8 +20,8 @@ struct tile
 void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSize)
 {
 
-	short x = 49;
-	short y = 49;
+	short x = 50;
+	short y = 50;
 	short xMod, yMod, currentTile, temp;
 	srand(time(0));
 
@@ -58,10 +58,10 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 
 					//Changes values
 					xMod = 1;
-					yMod = 0;
+					yMod = 1;
 					break;
 
-				} //Ed case 0
+				} //End case 0
 				//This controlls the right side generation of the spirul
 				case 1:
 				{
@@ -99,8 +99,14 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 			if(j == 0 || j == 2)
 			{
 
-				//Changes value of y
-				y = y+yMod;
+				//Checks which side the loop is on
+				if(j == 0)
+				{
+
+					//Increases y
+					y = y + yMod;
+
+				} //End if
 
 				//This loop wil set which tiles should be generated in a spirul pattern
 				for(short k = 0;k < temp;k++)
@@ -134,9 +140,27 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 
 				} //End for
 
+				//Checks which side the loop is on
+				if(j == 2)
+				{
+
+					//Increases y
+					y = y + yMod;
+
+				} //End if
+
 			} // End if
 			else if(j == 1 || j == 3)
 			{
+
+				//Checks which side the loop is on
+				if(j == 1)
+				{
+
+					//Increases y
+					y = y + yMod;
+
+				} //End if
 
 				//This loop wil set which tiles should be generated in a spirul pattern
 				for(short k = 0;k < temp;k++)
@@ -170,8 +194,14 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 
 				} //End for
 
-				//Changes value of x
-				x = x+xMod;
+				//Checks which side the loop is on
+				if(j == 1)
+				{
+
+					//Increases y
+					x = x + xMod;
+
+				} //End if
 
 			} //End else if
 			else
