@@ -22,7 +22,7 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 
 	short x = 50;
 	short y = 50;
-	short xMod, yMod, currentTile, temp;
+	short xMod, yMod, currentTile, temp, adjaysant;
 	srand(time(0));
 
 	//Sets values for xMod and yMod
@@ -59,6 +59,7 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 					//Changes values
 					xMod = 1;
 					yMod = 1;
+					adjaysant = -1;
 					break;
 
 				} //End case 0
@@ -69,6 +70,7 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 					//Changes values
 					xMod = -1;
 					yMod = -1;
+					adjaysant = -1;
 					break;
 
 				} //End case 1
@@ -79,6 +81,7 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 					//Changes values
 					xMod = -1;
 					yMod = 1;
+					adjaysant = 1;
 					break;
 
 				} //End case 2
@@ -89,6 +92,7 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 					//Changes values
 					xMod = 0;
 					yMod = 1;
+					adjaysant = 1;
 					break;
 
 				} //End case 3
@@ -113,7 +117,29 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 				{
 
 					//Checks if a new tile will be picked or if the previous one will be expanded
-					if(rand()%5 == 4)
+					if((k != temp-1) && (rand()%6 != 5))
+					{
+
+						//Changes value of currentTile
+						currentTile = map[y+adjaysant][x].id;
+
+						//Stores tile
+						map[y][x].id = currentTile;
+						strcpy(map[y][x].name, tileType[currentTile].name);
+						strcpy(map[y][x].description, tileType[currentTile].description);
+
+					} //End if
+					else if(rand()%10 != 9)
+
+					{
+
+						//Stores tile
+						map[y][x].id = currentTile;
+						strcpy(map[y][x].name, tileType[currentTile].name);
+						strcpy(map[y][x].description, tileType[currentTile].description);
+
+					} //end else 
+					else
 					{
 
 						//Sets current tile to the new tile type
@@ -125,15 +151,6 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 						strcpy(map[y][x].description, tileType[currentTile].description);
 
 					} //End if
-					else
-					{
-
-						//Stores tile
-						map[y][x].id = currentTile;
-						strcpy(map[y][x].name, tileType[currentTile].name);
-						strcpy(map[y][x].description, tileType[currentTile].description);
-
-					} //end else 
 
 					//Adds xMod to x
 					x = x + xMod;
@@ -167,7 +184,29 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 				{
 
 					//Checks if a new tile will be picked or if the previous one will be expanded
-					if(rand()%5 == 4)
+					if((k != temp-1) && (rand()%6 != 5))
+					{
+
+						//Changes value of currentTile
+						currentTile = map[y][x+adjaysant].id;
+
+						//Stores tile
+						map[y][x].id = currentTile;
+						strcpy(map[y][x].name, tileType[currentTile].name);
+						strcpy(map[y][x].description, tileType[currentTile].description);
+
+					} //End if
+					else if(rand()%10 != 9)
+
+					{
+
+						//Stores tile
+						map[y][x].id = currentTile;
+						strcpy(map[y][x].name, tileType[currentTile].name);
+						strcpy(map[y][x].description, tileType[currentTile].description);
+
+					} //end else
+					else
 					{
 
 						//Sets current tile to the new tile type
@@ -179,15 +218,6 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 						strcpy(map[y][x].description, tileType[currentTile].description);
 
 					} //End if
-					else
-					{
-
-						//Stores tile
-						map[y][x].id = currentTile;
-						strcpy(map[y][x].name, tileType[currentTile].name);
-						strcpy(map[y][x].description, tileType[currentTile].description);
-
-					} //end else
 
 					//Adds yMod to y
 					y = y+yMod;
