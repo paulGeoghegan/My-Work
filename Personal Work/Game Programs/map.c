@@ -217,14 +217,51 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 
 	} //End for
 
+	//Sets x and y for use in following loop
+	x = 0;
+	y = 0;
+
+	//This loop will add a border of water tiles to the map along the y axis
+	for(short i = 0;i < 2;i++)
+	{
+
+		//Adds tiles to the left and right side of the map
+		for(short j = 0;j < mapSize;j++)
+		{
+
+			//Adds tile
+			map[j][x].id = 0;
+			strcpy(map[j][x].name, tileType[0].name);
+			strcmp(map[j][x].description, tileType[0].description);
+
+		} //End for
+
+		//Changes value of x
+		x = mapSize-1;
+
+	} //End for
+
+	//This loop will add a border of water tiles to the map along the x axis
+	for(short i = 0;i < 2;i++)
+	{
+
+		//Adds tiles to the left and right side of the map
+		for(short j = 0;j < mapSize;j++)
+		{
+
+			//Adds tile
+			map[y][j].id = 0;
+			strcpy(map[y][j].name, tileType[0].name);
+			strcmp(map[y][j].description, tileType[0].description);
+
+		} //End for
+
+		//Changes value of y
+		y = mapSize-1;
+
+	} //End for
+
 	//Lets the user know the map has been generated
 	printf("Map generated\n");
 
 } //End mapGen
-
-
-//This function will return a map from a game save
-void mapRet()
-{
-
-} //End mapRet
