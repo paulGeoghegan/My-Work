@@ -308,7 +308,7 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 			mapF = fopen(tempStr3, "r");
 
 			//Reads file
-			fread(map, sizeof(short), mapSize*mapSize, mapF);
+			fread(map, sizeof(struct tile), mapSize*mapSize, mapF);
 
 			//Closes map file
 			fclose(mapF);
