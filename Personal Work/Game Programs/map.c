@@ -42,7 +42,7 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 	{
 
 		//Increases value of temp
-		temp = temp+2;
+		temp = i-1;
 
 		//This loop will controll which side is being generated
 		for(short j = 0;j < 4;j++)
@@ -130,7 +130,6 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 
 					} //End if
 					else if(rand()%10 != 9)
-
 					{
 
 						//Stores tile
@@ -156,6 +155,9 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 					x = x + xMod;
 
 				} //End for
+
+				//Decreases x by one
+				x = x + xMod*-1;;
 
 				//Checks which side the loop is on
 				if(j == 2)
@@ -184,7 +186,7 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 				{
 
 					//Checks if a new tile will be picked or if the previous one will be expanded
-					if((k != temp-1) && (rand()%6 != 5))
+					if((k != temp-1) && (rand()%5 != 4))
 					{
 
 						//Changes value of currentTile
@@ -196,8 +198,7 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 						strcpy(map[y][x].description, tileType[currentTile].description);
 
 					} //End if
-					else if(rand()%10 != 9)
-
+					else if(rand()%5 != 4)
 					{
 
 						//Stores tile
@@ -224,11 +225,14 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 
 				} //End for
 
+				//Changes value of y
+				y = y + yMod*-1;
+
 				//Checks which side the loop is on
 				if(j == 1)
 				{
 
-					//Increases y
+					//Increases x
 					x = x + xMod;
 
 				} //End if

@@ -40,6 +40,7 @@ void play(struct playerCharacter *character, struct tile map[][mapSize], char di
 
 		//Lets the user know where they are
 		printf("%s\n", map[character->y][character->x].name);
+		printf("%d\n", map[character->y][character->x].id);
 		printf("X %d, Y %d\n", character->x, character->y);
 
 		//Gets an imput from the user
