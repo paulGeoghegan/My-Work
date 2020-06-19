@@ -5,9 +5,6 @@
 #include <time.h>
 #include <string.h>
 
-//Symbolic names
-#define tileAmount 3
-
 //Structures
 struct tile
 {
@@ -17,11 +14,11 @@ struct tile
 }; //End tile struct
 
 //This function will generate a new map
-void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSize)
+void mapGen(int mapSize, int tileAmount, struct tile map[][mapSize], struct tile tileType[tileAmount])
 {
 
-	short x = 50;
-	short y = 50;
+	short x = mapSize/2;
+	short y = mapSize/2;
 	short xMod, yMod, currentTile, temp, adjaysant;
 	srand(time(0));
 
@@ -117,7 +114,7 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 				{
 
 					//Checks if a new tile will be picked or if the previous one will be expanded
-					if((k != temp-1) && (rand()%6 != 5))
+					if((k != temp-1) && (rand()%3 != 2))
 					{
 
 						//Changes value of currentTile
@@ -129,7 +126,7 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 						strcpy(map[y][x].description, tileType[currentTile].description);
 
 					} //End if
-					else if(rand()%10 != 9)
+					else if(rand()%3 != 2)
 					{
 
 						//Stores tile
@@ -186,7 +183,7 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 				{
 
 					//Checks if a new tile will be picked or if the previous one will be expanded
-					if((k != temp-1) && (rand()%5 != 4))
+					if((k != temp-1) && (rand()%3 != 2))
 					{
 
 						//Changes value of currentTile
@@ -198,7 +195,7 @@ void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int mapSiz
 						strcpy(map[y][x].description, tileType[currentTile].description);
 
 					} //End if
-					else if(rand()%5 != 4)
+					else if(rand()%3 != 2)
 					{
 
 						//Stores tile

@@ -2,6 +2,9 @@
 //header files
 #include <string.h>
 
+//Symbolic names
+#define tileAmount 5
+
 //structures
 struct tile
 {
@@ -10,14 +13,11 @@ struct tile
 	char description[100];
 }; //end tile struct
 
-//Symbolic names
-#define tileAmount 3
-
 //Function signatures
-void mapGen(struct tile map[][101], struct tile tileType[tileAmount], int);
+void mapGen(int, int, struct tile map[][101], struct tile tileType[tileAmount]);
 
 //This function stores all of the different map tiles in the game
-void tiles(struct tile map[][101])
+void tiles(int mapSize, struct tile map[][mapSize])
 {
 
 	struct tile tileType[tileAmount];
@@ -34,6 +34,14 @@ void tiles(struct tile map[][101])
 	strcpy(tileType[2].name, "Forest");
 	strcpy(tileType[2].description, "You walk through a dense forest brushing past trees on either side of you");
 
-mapGen(map, tileType, 101);
+	//Tundra
+	strcpy(tileType[3].name, "Tundra");
+	strcpy(tileType[3].description, "A vast expance of ice and snow surounds you");
+
+	//Desert");
+	strcpy(tileType[4].name, "Desert");
+	strcpy(tileType[4].description, "Sand dunes rise on either side of you as the harsh sun beams down on you");
+
+mapGen(mapSize, tileAmount, map, tileType);
 
 } //end tiles

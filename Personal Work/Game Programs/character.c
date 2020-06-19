@@ -23,7 +23,7 @@ long errorCheck(long*, long*);
 void clear();
 
 //This function will create a new character
-void characterGen(struct playerCharacter *character)
+void characterGen(int mapSize, struct playerCharacter *character)
 {
 
 	bool loop = false;
@@ -35,7 +35,7 @@ void characterGen(struct playerCharacter *character)
 	srand(time(0));
 
 	//Sets values for x and y so that the user will start in the center of the map
-character->x = character->y = 50;
+character->x = character->y = mapSize/2;
 
 	//Sets values of minn and max for imput errorChecking()
 	min = 1;

@@ -6,6 +6,9 @@
 #include <string.h>
 #include <stdbool.h>
 
+//Symbolic names
+#define mapSize 101
+
 //Structures
 struct playerCharacter
 {
@@ -39,10 +42,10 @@ struct items
 }; //End item structure
 
 //Function signatures
-void characterGen(struct playerCharacter *character);
+void characterGen(int, struct playerCharacter *character);
 void itemList(struct items item);
-void tiles(struct tile map[][101]);
-void play(struct playerCharacter *character, struct tile map[][101], char[]);
+void tiles(int, struct tile map[][mapSize]);
+void play(struct playerCharacter *character, struct tile map[][mapSize], char[]);
 
 //Utility functions
 long errorCheck(long*, long*);
@@ -61,7 +64,6 @@ void save(char dirName[], char type)
 	struct dirent *de;
 	DIR *dr;
 	FILE *characterF, *inventoryF, *mapF;
-	int mapSize = 101;
 	struct tile map[mapSize][mapSize];
 	struct playerCharacter character;
 character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; character.statNames[2] = "Constitution"; character.statNames[3] = "Inteligence"; character.statNames[4] = "Wisdom"; character.statNames[5] = "Charisma";
@@ -154,7 +156,7 @@ character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; chara
 				characterF = fopen(tempStr1, "w");
 
 				//Generates a new charactera
-				characterGen(&character);
+				characterGen(mapSize, &character);
 
 				//Writes the character struct to the character save file
 				fwrite(&character, sizeof(struct playerCharacter), 1, characterF);
@@ -172,7 +174,7 @@ character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; chara
 				mapF = fopen(tempStr3, "w");
 
 				//Generates map
-				tiles(map);
+				tiles(mapSize, map);
 
 				//Writes the map to the map file
 fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
