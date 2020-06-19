@@ -2,30 +2,12 @@
 //Header files
 #include <stdio.h>
 #include <string.h>
-
-//Structures
-struct playerCharacter
-{
-	char name[21];
-	short level;
-	int xp;
-	char *statNames[6];
-	short stats[6];
-	short x;
-	short y;
-}; //End playerCharacter
-
-struct tile
-{
-	char name[21];
-	short id;
-	char description[100];
-}; //End tile struct
+#include "structs.h"
 
 //Function signatures
 long errorCheck(long*, long*);
 
-void play(int mapSize, struct playerCharacter *character, struct tile map[][mapSize], char dirName[])
+void play(char dirName[])
 {
 
 	char str[11];
@@ -36,9 +18,9 @@ void play(int mapSize, struct playerCharacter *character, struct tile map[][mapS
 	{
 
 		//Lets the user know where they are
-		printf("%s\n", map[character->y][character->x].name);
-		printf("%d\n", map[character->y][character->x].id);
-		printf("X %d, Y %d\n", character->x, character->y);
+		printf("%s\n", map[character.y][character.x].name);
+		printf("%d\n", map[character.y][character.x].id);
+		printf("X %d, Y %d\n", character.x, character.y);
 
 		//Gets an imput from the user
 		gets(str);
@@ -52,11 +34,11 @@ void play(int mapSize, struct playerCharacter *character, struct tile map[][mapS
 			{
 
 				//Makes sure movement wont let user move outside of the map
-				if((character->y + 1) < 101)
+				if((character.y + 1) < 101)
 				{
 
 					//increases y by one
-					character->y++;
+					character.y++;
 
 				} //End if
 
@@ -69,11 +51,11 @@ void play(int mapSize, struct playerCharacter *character, struct tile map[][mapS
 			{
 
 				//Makes sure movement wont let user move outside of the map
-				if((character->y - 1) > -1)
+				if((character.y - 1) > -1)
 				{
 
 					//decreases y by one
-					character->y--;
+					character.y--;
 
 				} //End if
 
@@ -86,11 +68,11 @@ void play(int mapSize, struct playerCharacter *character, struct tile map[][mapS
 			{
 
 				//Makes sure movement wont let user move outside of the map
-				if((character->x + 1) < 101)
+				if((character.x + 1) < 101)
 				{
 
 					//Increases x by one
-					character->x++;
+					character.x++;
 
 				} //End if
 
@@ -103,11 +85,11 @@ void play(int mapSize, struct playerCharacter *character, struct tile map[][mapS
 			{
 
 				//Makes sure movement wont let user move outside of the map
-				if((character->x - 1) > -1)
+				if((character.x - 1) > -1)
 				{
 
 					//decreases x by one
-					character->x--;
+					character.x--;
 
 				} //End if
 
@@ -149,11 +131,11 @@ void play(int mapSize, struct playerCharacter *character, struct tile map[][mapS
 
 							//Asks the user where they want to go for x
 							printf("Enter X\n");
-							character->x = errorCheck(&min, &max);
+							character.x = errorCheck(&min, &max);
 
 							//Asks the user where they want to go for y
 							printf("Enter Y\n");
-							character->y = errorCheck(&min, &max);
+							character.y = errorCheck(&min, &max);
 
 							//Breaks out of switch
 							break;

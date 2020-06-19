@@ -5,47 +5,13 @@
 #include <dirent.h>
 #include <string.h>
 #include <stdbool.h>
-
-//Symbolic names
-#define mapSize 101
-
-//Structures
-struct playerCharacter
-{
-	char name[21];
-	short level;
-	int xp;
-	char *statNames[6];
-	short stats[6];
-	short x;
-	short y;
-}; //End playerCharacter
-
-struct tile
-{
-	char name[21];
-	short id;
-	char description[100];
-}; //End tile struct
-
-struct items
-{
-	char name[21];
-	short id;
-	short amount;
-	char description[100];
-	bool equipable;
-	bool equiped;
-	short attack;
-	short defence;
-	short value;
-}; //End item structure
+#include "structs.h"
 
 //Function signatures
-void characterGen(int, struct playerCharacter *character);
+void characterGen();
 void itemList(struct items item);
-void tiles(int, struct tile map[][mapSize]);
-void play(int, struct playerCharacter *character, struct tile map[][mapSize], char[]);
+void tiles();
+void play(char[]);
 
 //Utility functions
 long errorCheck(long*, long*);
@@ -64,9 +30,7 @@ void save(char dirName[], char type)
 	struct dirent *de;
 	DIR *dr;
 	FILE *characterF, *inventoryF, *mapF;
-	struct tile map[mapSize][mapSize];
-	struct playerCharacter character;
-character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; character.statNames[2] = "Constitution"; character.statNames[3] = "Inteligence"; character.statNames[4] = "Wisdom"; character.statNames[5] = "Charisma";
+	character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; character.statNames[2] = "Constitution"; character.statNames[3] = "Inteligence"; character.statNames[4] = "Wisdom"; character.statNames[5] = "Charisma";
 	struct items inventory[10];
 
 	//This switch case will controll what type of action is being performed
@@ -155,8 +119,8 @@ character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; chara
 				strcat(tempStr1, "/character.dat");
 				characterF = fopen(tempStr1, "w");
 
-				//Generates a new charactera
-				characterGen(mapSize, &character);
+				//Generates a new character
+				characterGen();
 
 				//Writes the character struct to the character save file
 				fwrite(&character, sizeof(struct playerCharacter), 1, characterF);
@@ -326,6 +290,6 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 	} //end switch
 
 	//Goes to the play function
-	play(mapSize, &character, map, dirName);
+	play(dirName);
 
 } //end save function

@@ -4,17 +4,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-
-//Structures
-struct tile
-{
-	char name[21];
-	short id;
-	char description[100];
-}; //End tile struct
+#include "structs.h"
 
 //This function will generate a new map
-void mapGen(int mapSize, int tileAmount, struct tile map[][mapSize], struct tile tileType[tileAmount])
+void mapGen()
 {
 
 	short x = mapSize/2;

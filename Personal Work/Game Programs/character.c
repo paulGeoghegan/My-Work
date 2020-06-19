@@ -5,25 +5,14 @@
 #include <time.h>
 #include <stdbool.h>
 #include <string.h>
-
-//Structures
-struct playerCharacter
-{
-	char name[21];
-	short level;
-	int xp;
-	char *statNames[6];
-	short stats[6];
-	short x;
-	short y;
-}; //End playerCharacter
+#include "structs.h"
 
 //Function signatures
 long errorCheck(long*, long*);
 void clear();
 
 //This function will create a new character
-void characterGen(int mapSize, struct playerCharacter *character)
+void characterGen()
 {
 
 	bool loop = false;
@@ -35,7 +24,7 @@ void characterGen(int mapSize, struct playerCharacter *character)
 	srand(time(0));
 
 	//Sets values for x and y so that the user will start in the center of the map
-character->x = character->y = mapSize/2;
+character.x = character.y = mapSize/2;
 
 	//Sets values of minn and max for imput errorChecking()
 	min = 1;
@@ -49,10 +38,10 @@ character->x = character->y = mapSize/2;
 		printf("What should your new characters name be?\nThe name can be no longer than 20 characters\n");
 
 		//Gets an imput from the user
-		gets(character->name);
+		gets(character.name);
 
 		//Checks that the user is happy with this name
-		printf("You entered %s is this correct?\n1. Yes\n2. No\n", character->name);
+		printf("You entered %s is this correct?\n1. Yes\n2. No\n", character.name);
 
 		//Checks if its correct
 		switch(errorCheck(&min, &max))
@@ -83,15 +72,15 @@ character->x = character->y = mapSize/2;
 	while(loop == true);
 
 	//Sets level and xp of new character
-	character->level = 1;
-	character->xp = 0;
+	character.level = 1;
+	character.xp = 0;
 
 	//Tells player basic info about there character
-	printf("You are %s a level %d character with %d xp\n", character->name, character->level, character->xp);
+	printf("You are %s a level %d character with %d xp\n", character.name, character.level, character.xp);
 	clear();
 
 	//Tells the user that there stats will be displayed
-	printf("The numbers generated for %s's stats were:\n", character->name);
+	printf("The numbers generated for %s's stats were:\n", character.name);
 
 	//This will generate stats for the user
 	for(short i = 0;i < 6;i++)
@@ -170,14 +159,14 @@ character->x = character->y = mapSize/2;
 		{
 
 			//Checks if the names match
-			if(strcmp(character->statNames[k], statNamesTemp[temp-1]) == 0)
+			if(strcmp(character.statNames[k], statNamesTemp[temp-1]) == 0)
 			{
 
 				//Sets loop to false
 				loop = false;
 
 				//Stores stat
-				character->stats[k] = statsTemp[temp-1];
+				character.stats[k] = statsTemp[temp-1];
 
 				//Changes arrays
 				for(short l = temp;l < i;l++)
