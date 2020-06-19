@@ -45,7 +45,7 @@ struct items
 void characterGen(int, struct playerCharacter *character);
 void itemList(struct items item);
 void tiles(int, struct tile map[][mapSize]);
-void play(struct playerCharacter *character, struct tile map[][mapSize], char[]);
+void play(int, struct playerCharacter *character, struct tile map[][mapSize], char[]);
 
 //Utility functions
 long errorCheck(long*, long*);
@@ -326,6 +326,6 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 	} //end switch
 
 	//Goes to the play function
-	play(&character, map, dirName);
+	play(mapSize, &character, map, dirName);
 
 } //end save function

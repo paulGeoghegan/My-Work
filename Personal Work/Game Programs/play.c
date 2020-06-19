@@ -3,9 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 
-//Symbolic names
-#define mapSize 101
-
 //Structures
 struct playerCharacter
 {
@@ -28,7 +25,7 @@ struct tile
 //Function signatures
 long errorCheck(long*, long*);
 
-void play(struct playerCharacter *character, struct tile map[][mapSize], char dirName[])
+void play(int mapSize, struct playerCharacter *character, struct tile map[][mapSize], char dirName[])
 {
 
 	char str[11];
@@ -148,7 +145,7 @@ void play(struct playerCharacter *character, struct tile map[][mapSize], char di
 
 							//Sets values for min and max
 							min = 0;
-							max = 100;
+							max = mapSize-1;
 
 							//Asks the user where they want to go for x
 							printf("Enter X\n");
