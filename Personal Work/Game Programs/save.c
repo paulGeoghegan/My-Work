@@ -13,9 +13,6 @@ void itemList(struct items item);
 void tiles();
 void play(char[]);
 
-//Utility functions
-long errorCheck(long*, long*);
-
 //This function controlls all of the saving functionality for creating, loading and overwriting
 void save(char dirName[], char type)
 {

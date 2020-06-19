@@ -7,10 +7,6 @@
 #include <string.h>
 #include "structs.h"
 
-//Function signatures
-long errorCheck(long*, long*);
-void clear();
-
 //This function will create a new character
 void characterGen()
 {

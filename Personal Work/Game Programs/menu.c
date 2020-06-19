@@ -12,15 +12,12 @@ Paul Geoghegan
 #include <stdio.h>
 #include <dirent.h>
 #include <string.h>
+#include "structs.h"
 
 //function signatures
 void save(char[], char);
 
-//utility functions
-void end();
-long errorCheck(long*, long*);
-void clear();
-
+//Main function for the welcome menu
 int main()
 {
 

@@ -38,6 +38,11 @@ struct tile
 	char description[100];
 }; //End tile struct
 
+//Function signatures
+long errorCheck(long*, long*);
+void clear();
+void end();
+
 //Struct global variables
 struct playerCharacter character;
 struct tile map[mapSize][mapSize];

@@ -4,9 +4,6 @@
 #include <string.h>
 #include "structs.h"
 
-//Function signatures
-long errorCheck(long*, long*);
-
 void play(char dirName[])
 {
 
