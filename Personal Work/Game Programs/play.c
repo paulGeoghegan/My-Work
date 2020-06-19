@@ -98,12 +98,34 @@ void play(char dirName[])
 			{
 
 				//Checks if the user wants to exit the game
-				if(strcmp(str, "exit") == 0)
+				if(strcmp(str, "EXIT") == 0)
 				{
 
+					//Lets the user know that they are leaving the game
+					printf("Exiting game...\n");
+
+					//Leaves the play function
 					return;
 
 				}//End exit case
+				//Help command
+				else if(strcmp(str, "HELP") == 0)
+				{
+
+					//Gives the user a list of commands
+					printf("The following is the lfull list of in game commands\n");
+					printf("\"w\" Allows you to move upwards in the y direction\n");
+					printf("\"s\" Allows you to move downwards in the y direction\n");
+					printf("\"d\" Allows you to move upwards in the x direction\n");
+					printf("\"a\" Allows you to move downwards in the x direction\n");
+					printf("\"EXIT\" Allows you to exit the game\n");
+					printf("\"HELP\" Allows the help menu to be displayed\n");
+
+					//Clears screen
+					clear();
+
+				} //End else if
+				//Admin command
 				else if(strcmp(str, "ADMIN") == 0)
 				{
 
@@ -114,6 +136,7 @@ void play(char dirName[])
 					//Sets values for min and max
 					min = 1;
 					max = 1;
+
 					//Uses a switch for admin commands
 					switch(errorCheck(&min, &max))
 					{
@@ -138,10 +161,25 @@ void play(char dirName[])
 							break;
 
 						} //End teleport case
+						default:
+						{
+
+							//Lets the user know that that wasnt a valid option
+							printf("That was not a valid option\n");
+
+						} //End default case
 
 					} //End admin switch
 
 				} //End else if
+				else
+				{
+
+					//Tells the user that that was not a valid imput
+					printf("That was not a valid option please try again\n");
+					clear();
+
+				} //End else
 
 			} //End default case
 
