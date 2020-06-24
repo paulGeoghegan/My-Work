@@ -19,7 +19,6 @@ void play()
 
 		//Lets the user know where they are
 		printf("%s\n", map[character.y][character.x].name);
-		printf("%d\n", map[character.y][character.x].id);
 		printf("X %d, Y %d\n", character.x, character.y);
 
 		//Gets an imput from the user
@@ -129,6 +128,7 @@ void play()
 					printf("\"d\" Allows you to move upwards in the x direction\n");
 					printf("\"a\" Allows you to move downwards in the x direction\n");
 					printf("\"EXIT\" Allows you to exit the game\n");
+					printf("\"SAVE\" allows you to save the game\n");
 					printf("\"HELP\" Allows the help menu to be displayed\n");
 
 					//Clears screen
