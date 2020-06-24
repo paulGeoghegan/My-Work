@@ -5,6 +5,7 @@
 //Symbolic names
 #define mapSize 301
 #define tileAmount 5
+#define tileTypeAmount 3
 
 //Structures
 struct playerCharacter

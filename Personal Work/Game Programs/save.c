@@ -85,6 +85,9 @@ void save(char type)
 						//Lets the user know that that save already exists
 						printf("The save %s already exists please enter another name\n", dirName);
 
+					//exits function
+					return;
+
 					} //end if
 
 				} //end else
