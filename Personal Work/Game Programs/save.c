@@ -332,6 +332,9 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 
 	} //end switch
 
+	//Tells the user how to access the help menu
+	printf("At any time you can enter \"HELP\" to access the help menu during the game\n");
+
 	//Clears the screen
 	clear();
 

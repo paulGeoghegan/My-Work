@@ -33,7 +33,7 @@ void play()
 			{
 
 				//Makes sure movement wont let user move outside of the map
-				if((character.y + 1) < 101)
+				if((character.y + 1) < mapSize)
 				{
 
 					//increases y by one
@@ -67,7 +67,7 @@ void play()
 			{
 
 				//Makes sure movement wont let user move outside of the map
-				if((character.x + 1) < 101)
+				if((character.x + 1) < mapSize)
 				{
 
 					//Increases x by one
