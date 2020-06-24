@@ -15,7 +15,7 @@ Paul Geoghegan
 #include "structs.h"
 
 //function signatures
-void save(char[], char);
+void save(char);
 
 //Main function for the welcome menu
 int main()
@@ -47,7 +47,7 @@ char dirName[11];
 			{
 
 				//Goes to the save function to create a new save
-				save(dirName, 'c');
+				save('c');
 				break;
 
 			} //end case 1
@@ -56,7 +56,7 @@ char dirName[11];
 			{
 
 				//Goes to the save function in order to load an existing save
-				save(dirName, 'l');
+				save('l');
 				break;
 
 			} //end case 2

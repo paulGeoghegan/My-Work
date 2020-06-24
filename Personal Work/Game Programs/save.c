@@ -11,10 +11,10 @@
 void characterGen();
 void itemList(struct items item);
 void tiles();
-void play(char[]);
+void play();
 
 //This function controlls all of the saving functionality for creating, loading and overwriting
-void save(char dirName[], char type)
+void save(char type)
 {
 
 	int check, i, j;
@@ -283,10 +283,59 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 			break;
 
 		} //End load case
+		//This case will overwrite an existing save with a newer version
+		case 's':
+		{
+
+			//Concatinates dirName with saveLocation
+			strcat(saveLocation, dirName);
+
+			//Coppies saveLocation to 3 different strings
+			strcpy(tempStr1, saveLocation);
+			strcpy(tempStr2, saveLocation);
+			strcpy(tempStr3, saveLocation);
+
+			//Opens character file
+			strcat(tempStr1, "/character.dat");
+			characterF = fopen(tempStr1, "w");
+
+			//Reads file
+			fwrite(&character, sizeof(struct playerCharacter), 1, characterF);
+
+			//Closes character file
+			fclose(characterF);
+
+			//Opens inventory file
+			strcat(tempStr2, "/inventory.dat");
+			inventoryF = fopen(tempStr2, "w");
+
+			//Closes inventory file
+			fclose(inventoryF);
+
+			//Opens map file
+			strcat(tempStr3, "/map.dat");
+			mapF = fopen(tempStr3, "w");
+
+			//Reads file
+			fwrite(map, sizeof(struct tile), mapSize*mapSize, mapF);
+
+			//Closes map file
+			fclose(mapF);
+
+			//Lets the user know that the save is complete
+			printf("Game Saved!\n");
+
+			//breaks out of case
+			break;
+
+		} //End save case
 
 	} //end switch
 
+	//Clears the screen
+	clear();
+
 	//Goes to the play function
-	play(dirName);
+	play();
 
 } //end save function

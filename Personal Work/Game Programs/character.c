@@ -186,17 +186,9 @@ character.x = character.y = mapSize/2;
 
 			} //End else
 
-
 		} //end do while
 		while(loop == true);
 
 	} //end for
 
 } //End characterGen
-
-
-//This function will load a character from a file
-void characterRet(struct playerCharacter *character)
-{
-
-} //End characterRet

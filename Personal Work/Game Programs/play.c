@@ -4,7 +4,10 @@
 #include <string.h>
 #include "structs.h"
 
-void play(char dirName[])
+//Function signatures
+void save(char);
+
+void play()
 {
 
 	char str[11];
@@ -108,6 +111,13 @@ void play(char dirName[])
 					return;
 
 				}//End exit case
+				else if(strcmp(str, "SAVE") == 0)
+				{
+
+					//Saves current game state
+					save('s');
+
+				} //End else if for saving
 				//Help command
 				else if(strcmp(str, "HELP") == 0)
 				{
