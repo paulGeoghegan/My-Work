@@ -13,6 +13,7 @@ Paul Geoghegan
 #include <dirent.h>
 #include <string.h>
 #include "structs.h"
+#include <gtk.h>
 
 //function signatures
 void save(char);
