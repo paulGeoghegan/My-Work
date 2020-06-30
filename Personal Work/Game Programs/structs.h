@@ -27,11 +27,13 @@ struct items
 	char name[21];
 	short id;
 	short amount;
-	char description[100];
+	char description[51];
 	bool equipable;
+	bool consumable;
 	bool equiped;
 	short attack;
 	short defence;
+	short health;
 	short value;
 }; //End item structure
 
