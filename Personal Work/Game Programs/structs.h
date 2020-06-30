@@ -6,8 +6,10 @@
 #define mapSize 301
 #define tileAmount 5
 #define tileTypeAmount 3
+#define desAmount 3
 
 //Structures
+//This struct will hold all values related to the player character
 struct playerCharacter
 {
 	char name[21];
@@ -19,6 +21,7 @@ struct playerCharacter
 	short y;
 }; //End playerCharacter
 
+//This struct will store values for items
 struct items
 {
 	char name[21];
@@ -32,12 +35,21 @@ struct items
 	short value;
 }; //End item structure
 
+//This struct will be used for map generation and storage
 struct tile
 {
 	char name[21];
 	short id;
 	char description[100];
 }; //End tile struct
+
+//This struct will hold the templates for every tile
+struct tileTemp
+{
+	char name[21];
+	short id;
+	char description[desAmount][100];
+}; //End tileTemp struct
 
 //Function signatures
 long errorCheck(long*, long*);
@@ -47,7 +59,7 @@ void end();
 //Struct global variables
 struct playerCharacter character;
 struct tile map[mapSize][mapSize];
-struct tile tileType[tileAmount];
+struct tileTemp tileType[tileAmount];
 
 //File name global variable
 char dirName[11];

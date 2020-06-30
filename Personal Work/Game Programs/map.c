@@ -22,7 +22,7 @@ void mapGen()
 	//Assignes what tile will be the first on the map
 	map[y][x].id = currentTile = (rand()%(tileAmount-1)) +1;
 	strcpy(map[y][x].name, tileType[currentTile].name);
-	strcpy(map[y][x].description, tileType[currentTile].description);
+	strcpy(map[y][x].description, tileType[currentTile].description[rand()%desAmount]);
 
 	//Lets the user know that the map is being created
 	printf("Generating map...\n");
@@ -116,7 +116,7 @@ void mapGen()
 						//Stores tile
 						map[y][x].id = currentTile;
 						strcpy(map[y][x].name, tileType[currentTile].name);
-						strcpy(map[y][x].description, tileType[currentTile].description);
+						strcpy(map[y][x].description, tileType[currentTile].description[rand()%desAmount]);
 
 					} //End if
 					else if(rand()%3 != 2)
@@ -125,7 +125,7 @@ void mapGen()
 						//Stores tile
 						map[y][x].id = currentTile;
 						strcpy(map[y][x].name, tileType[currentTile].name);
-						strcpy(map[y][x].description, tileType[currentTile].description);
+						strcpy(map[y][x].description, tileType[currentTile].description[rand()%desAmount]);
 
 					} //end else 
 					else
@@ -137,7 +137,7 @@ void mapGen()
 						//Stores tile
 						map[y][x].id = currentTile;
 						strcpy(map[y][x].name, tileType[currentTile].name);
-						strcpy(map[y][x].description, tileType[currentTile].description);
+						strcpy(map[y][x].description, tileType[currentTile].description[rand()%desAmount]);
 
 					} //End if
 
@@ -185,7 +185,7 @@ void mapGen()
 						//Stores tile
 						map[y][x].id = currentTile;
 						strcpy(map[y][x].name, tileType[currentTile].name);
-						strcpy(map[y][x].description, tileType[currentTile].description);
+						strcpy(map[y][x].description, tileType[currentTile].description[rand()%desAmount]);
 
 					} //End if
 					else if(rand()%3 != 2)
@@ -194,7 +194,7 @@ void mapGen()
 						//Stores tile
 						map[y][x].id = currentTile;
 						strcpy(map[y][x].name, tileType[currentTile].name);
-						strcpy(map[y][x].description, tileType[currentTile].description);
+						strcpy(map[y][x].description, tileType[currentTile].description[rand()%desAmount]);
 
 					} //end else
 					else
@@ -206,7 +206,7 @@ void mapGen()
 						//Stores tile
 						map[y][x].id = currentTile;
 						strcpy(map[y][x].name, tileType[currentTile].name);
-						strcpy(map[y][x].description, tileType[currentTile].description);
+						strcpy(map[y][x].description, tileType[currentTile].description[rand()%desAmount]);
 
 					} //End if
 
@@ -256,7 +256,7 @@ void mapGen()
 			//Adds tile
 			map[j][x].id = 0;
 			strcpy(map[j][x].name, tileType[0].name);
-			strcmp(map[j][x].description, tileType[0].description);
+			strcmp(map[j][x].description, tileType[0].description[rand()%desAmount]);
 
 		} //End for
 
@@ -276,7 +276,7 @@ void mapGen()
 			//Adds tile
 			map[y][j].id = 0;
 			strcpy(map[y][j].name, tileType[0].name);
-			strcmp(map[y][j].description, tileType[0].description);
+			strcmp(map[y][j].description, tileType[0].description[rand()%desAmount]);
 
 		} //End for
 
