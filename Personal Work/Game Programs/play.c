@@ -199,14 +199,29 @@ void play()
 							//Gets itemId
 							itemId = errorCheck(&min, &max);
 
-							//Asks the user where they want to put the item
-							printf("Where do you want this item to go in your inventory\nEnter a value from 0 to %d\nAny item in this slot will be destroyed\n", inventorySize);
+							//Checks if the users inventory is full
+							if(character.currentInventory == inventorySize)
+							{
 
-							//Sets value for max
-							max = inventorySize;
+								//Asks the user where they want to put the item
+								printf("Where do you want this item to go in your inventory\nEnter a value from 0 to %d\nAny item in this slot will be destroyed\n", inventorySize-1);
 
-							//Gets value for itemLocation
-							itemLocation = errorCheck(&min, &max);
+								//Sets value for max
+								max = inventorySize - 1;
+
+								//Gets value for itemLocation
+								itemLocation = errorCheck(&min, &max);
+
+							} //End if
+							else
+							{
+
+								//Sets value for itemLocation
+								itemLocation = character.currentInventory;
+
+								//
+
+							} //End else
 
 							//This gets the item
 							itemList(itemType, itemId, itemLocation);
