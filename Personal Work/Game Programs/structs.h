@@ -64,6 +64,7 @@ void end();
 struct playerCharacter character;
 struct tile map[mapSize][mapSize];
 struct tileTemp tileType[tileAmount];
+struct items inventory[inventorySize];
 
 //File name global variable
 char dirName[11];

@@ -27,7 +27,6 @@ void save(char type)
 	DIR *dr;
 	FILE *characterF, *inventoryF, *mapF;
 	character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; character.statNames[2] = "Constitution"; character.statNames[3] = "Inteligence"; character.statNames[4] = "Wisdom"; character.statNames[5] = "Charisma";
-	struct items inventory[10];
 
 	//This switch case will controll what type of action is being performed
 	switch(type)
@@ -206,9 +205,21 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 			//closes directory
 			closedir(dr);
 
+			//Checks if any directories were listed
+			if(i == 0)
+		{
+
+			//Lets the user know that there is no saves
+			printf("There are currently no save games\n");
+
+			//Returns to main menu
+			return;
+
+			} //End if
+
 			//Sets values for min and max
-			min = 0;
-			max = i+2;
+			min = 1;
+			max = i;
 
 			//Gets an imput from the user
 			i = errorCheck(&min, &max) + 2;
