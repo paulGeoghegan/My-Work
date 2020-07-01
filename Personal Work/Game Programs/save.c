@@ -9,7 +9,6 @@
 
 //Function signatures
 void characterGen();
-void itemList(struct items item);
 void tiles();
 void play();
 

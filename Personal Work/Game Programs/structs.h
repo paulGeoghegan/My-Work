@@ -26,6 +26,7 @@ struct items
 {
 	char name[21];
 	short id;
+	short type;
 	short amount;
 	char description[51];
 	bool equipable;

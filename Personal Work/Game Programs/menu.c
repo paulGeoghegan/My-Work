@@ -23,14 +23,14 @@ int main()
 
 	short option;
 	long min, max;
-char dirName[11];
+
 
 	//This is the menu loop for the game
 	do
 	{
 
 		printf("Main menu\n");
-		printf("Please select 1 of the following options by entering the corosponding number\n");
+		printf("Please select 1 of the following options by entering the corresponding number\n");
 		printf("1. Create New Game\n");
 		printf("2. Load An Existing Game\n");
 		printf("0. End The Program\n");
