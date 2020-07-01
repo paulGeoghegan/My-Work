@@ -22,6 +22,9 @@ void characterGen()
 	//Sets values for x and y so that the user will start in the center of the map
 character.x = character.y = mapSize/2;
 
+	//Sets values for inventory variable
+	character.currentInventory = 0;
+
 	//Sets values of minn and max for imput errorChecking()
 	min = 1;
 	max = 2;

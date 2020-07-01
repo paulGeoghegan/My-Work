@@ -20,6 +20,7 @@ struct playerCharacter
 	short stats[6];
 	short x;
 	short y;
+	short currentInventory;
 }; //End playerCharacter
 
 //This struct will store values for items
