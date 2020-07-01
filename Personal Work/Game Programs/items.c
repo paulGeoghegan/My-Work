@@ -19,8 +19,15 @@ void itemList(short itemType, short itemId, short itemLocation)
 			switch(itemId)
 			{
 
-				//Case 0:
+				//This case will generate a dagger
+				case 0:
 				{
+
+					//Saves properties of the dagger
+					strcpy(inventory[itemLocation].name, "Dagger");
+
+					//Increases value of currentInventory
+					character.currentInventory++;
 
 					//This breaks out of the case
 					break;
@@ -44,14 +51,19 @@ void itemList(short itemType, short itemId, short itemLocation)
 		case 1:
 		{
 
-
-
 			//This switch will get the armor
 			switch(itemId)
 			{
 
-				//Case 0:
+				//This case will get leather armor
+				case 0:
 				{
+
+					//Coppies properties of leather armor
+					strcpy(inventory[itemLocation].name, "Leather Armor");
+
+					//Increases value of currentInventory
+					character.currentInventory++;
 
 					//This breaks out of the case
 					break;
@@ -75,14 +87,19 @@ void itemList(short itemType, short itemId, short itemLocation)
 		case 2:
 		{
 
-
-
 			//This switch will get the consumable
 			switch(itemId)
 			{
 
-				//Case 0:
+				//Gets health potion
+				case 0:
 				{
+
+					//Coppies properties of health potion
+					strcpy(inventory[itemLocation].name, "Health Potion");
+
+					//Increases value of currentInventory
+					character.currentInventory++;
 
 					//This breaks out of the case
 					break;
@@ -106,14 +123,19 @@ void itemList(short itemType, short itemId, short itemLocation)
 		case 3:
 		{
 
-
-
 			//This switch will get the item
 			switch(itemId)
 			{
 
-				//Case 0:
+				//Gets wood plank
+				case 0:
 				{
+
+					//Coppies properties of wood plank
+					strcpy(inventory[itemLocation].name, "Wood Plank");
+
+					//Increases value of currentInventory
+					character.currentInventory++;
 
 					//This breaks out of the case
 					break;
