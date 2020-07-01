@@ -15,10 +15,26 @@ void itemList(short itemType, short itemId, short itemLocation)
 		case 0:
 		{
 
-			//Adds a sword
-		//This is temporary
-			strcpy(inventory[character.currentInventory].name, "Sword");
-			character.currentInventory++;
+			//This switch will get the weapon
+			switch(itemId)
+			{
+
+				//Case 0:
+				{
+
+					//This breaks out of the case
+					break;
+
+				} //End case 0
+				default:
+				{
+
+					//Lets the user know that that weapon does not exist
+					printf("A weapon with the id %d does not exist\n", itemId);
+
+				} //End default case
+
+			} //End weapon switch
 
 			//This breaks out of the weapon case
 			break;
@@ -28,6 +44,29 @@ void itemList(short itemType, short itemId, short itemLocation)
 		case 1:
 		{
 
+
+
+			//This switch will get the armor
+			switch(itemId)
+			{
+
+				//Case 0:
+				{
+
+					//This breaks out of the case
+					break;
+
+				} //End case 0
+				default:
+				{
+
+					//Lets the user know that that armor does not exist
+					printf("An armor with the id %d does not exist\n", itemId);
+
+				} //End default case
+
+			} //End armor switch
+
 			//This breaks out of the armor case
 			break;
 
@@ -36,6 +75,29 @@ void itemList(short itemType, short itemId, short itemLocation)
 		case 2:
 		{
 
+
+
+			//This switch will get the consumable
+			switch(itemId)
+			{
+
+				//Case 0:
+				{
+
+					//This breaks out of the case
+					break;
+
+				} //End case 0
+				default:
+				{
+
+					//Lets the user know that that weapon does not exist
+					printf("A consumable with the id %d does not exist\n", itemId);
+
+				} //End default case
+
+			} //End consumable switch
+
 			//This breaks out of the consumable case
 			break;
 
@@ -43,6 +105,29 @@ void itemList(short itemType, short itemId, short itemLocation)
 		//This case will return all other items
 		case 3:
 		{
+
+
+
+			//This switch will get the item
+			switch(itemId)
+			{
+
+				//Case 0:
+				{
+
+					//This breaks out of the case
+					break;
+
+				} //End case 0
+				default:
+				{
+
+					//Lets the user know that that weapon does not exist
+					printf("An item with the id %d does not exist\n", itemId);
+
+				} //End default case
+
+			} //End item switch
 
 			//This breaks out of the item case
 			break;
