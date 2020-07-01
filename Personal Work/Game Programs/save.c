@@ -276,6 +276,9 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 			strcat(tempStr2, "/inventory.dat");
 			inventoryF = fopen(tempStr2, "r");
 
+			//Reads inventory file
+			fread(inventory, sizeof(struct items), character.currentInventory, inventoryF);
+
 			//Closes inventory file
 			fclose(inventoryF);
 
@@ -321,6 +324,9 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 			//Opens inventory file
 			strcat(tempStr2, "/inventory.dat");
 			inventoryF = fopen(tempStr2, "w");
+
+			//Writes inventory to file
+			fwrite(inventory, sizeof(struct items), character.currentInventory, inventoryF);
 
 			//Closes inventory file
 			fclose(inventoryF);

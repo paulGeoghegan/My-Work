@@ -158,8 +158,8 @@ void play()
 					printf("\"d\" Allows you to move upwards in the x direction\n");
 					printf("\"a\" Allows you to move downwards in the x direction\n");
 					printf("\"EXIT\" Allows you to exit the game\n");
+					printf("\"INVENTORY\" Allows you to interact with your inventory\n");
 					printf("\"SAVE\" allows you to save the game\n");
-					printf("\"HELP\" Allows the help menu to be displayed\n");
 
 					//Clears screen
 					clear();
