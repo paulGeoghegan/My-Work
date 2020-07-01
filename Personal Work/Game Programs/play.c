@@ -6,13 +6,14 @@
 
 //Function signatures
 void save(char);
+void itemList(short, short, short);
 
 void play()
 {
 
 	char str[11];
 	long min, max;
-	short temp;
+	short temp, itemType, itemId, itemLocation;
 
 	//This is the main loop for controlling the game
 	do
@@ -148,10 +149,11 @@ void play()
 					//Tells the user that they have entered the admin menu
 					printf("Admin menu:\n");
 					printf("1. teleport\n");
+					printf("2. get item\n");
 
 					//Sets values for min and max
 					min = 1;
-					max = 1;
+					max = 2;
 
 					//Uses a switch for admin commands
 					switch(errorCheck(&min, &max))
@@ -177,6 +179,42 @@ void play()
 							break;
 
 						} //End teleport case
+						//This allows the user to return an item
+						case 2:
+						{
+
+							//Asks the user for the type of the item
+							printf("Enter the item type\n");
+
+							//Sets values for min and max
+							min = 0;
+							max = 1000000;
+
+							//Gets itemType
+							itemType = errorCheck(&min, &max);
+
+							//Asks the user for the itemId
+							printf("Enter the item id\n");
+
+							//Gets itemId
+							itemId = errorCheck(&min, &max);
+
+							//Asks the user where they want to put the item
+							printf("Where do you want this item to go in your inventory\nEnter a value from 0 to %d\nAny item in this slot will be destroyed\n", inventorySize);
+
+							//Sets value for max
+							max = inventorySize;
+
+							//Gets value for itemLocation
+							itemLocation = errorCheck(&min, &max);
+
+							//This gets the item
+							itemList(itemType, itemId, itemLocation);
+
+							//Breaks out of item case
+							break;
+
+						} //End item case
 						default:
 						{
 

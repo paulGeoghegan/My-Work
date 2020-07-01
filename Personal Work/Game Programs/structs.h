@@ -7,6 +7,7 @@
 #define tileAmount 5
 #define tileTypeAmount 3
 #define desAmount 3
+#define inventorySize 30
 
 //Structures
 //This struct will hold all values related to the player character

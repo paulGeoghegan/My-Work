@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "structs.h"
 
-void itemList(short itemType, short itemId)
+void itemList(short itemType, short itemId, short itemLocation)
 {
 
 	//This switch will check what type of item is needed and then find the item
