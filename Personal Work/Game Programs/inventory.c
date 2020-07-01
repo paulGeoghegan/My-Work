@@ -13,8 +13,8 @@ void inventoryManagement()
 	for(short i = 0;i < character.currentInventory;i++)
 	{
 
-		//Printf item
-		printf("%d. %s\n", i+1, inventory[i].name);
+		//Prints item
+		printf("%d. %s X %d\n", i+1, inventory[i].name, inventory[i].amount);
 
 	} //End for
 

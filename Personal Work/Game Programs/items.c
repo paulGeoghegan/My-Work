@@ -7,6 +7,24 @@
 void itemList(short itemType, short itemId, short itemLocation)
 {
 
+	//Checks if this item is already in the users inventory
+	for(short i = 0;i < character.currentInventory;i++)
+	{
+
+		//Checks if the user already has this item
+		if((itemType == inventory[i].type) && (itemId == inventory[i].id))
+		{
+
+			//Increases amount
+			inventory[i].amount++;
+
+			//Exits itemList function
+			return;
+
+		} //End if
+
+	} //End for
+
 	//This switch will check what type of item is needed and then find the item
 	switch(itemType)
 	{
@@ -25,6 +43,7 @@ void itemList(short itemType, short itemId, short itemLocation)
 
 					//Saves properties of the dagger
 					strcpy(inventory[itemLocation].name, "Dagger");
+					inventory[itemLocation].amount = 1;
 
 					//Increases value of currentInventory
 					character.currentInventory++;
@@ -61,6 +80,7 @@ void itemList(short itemType, short itemId, short itemLocation)
 
 					//Coppies properties of leather armor
 					strcpy(inventory[itemLocation].name, "Leather Armor");
+					inventory[itemLocation].amount = 1;
 
 					//Increases value of currentInventory
 					character.currentInventory++;
@@ -97,6 +117,7 @@ void itemList(short itemType, short itemId, short itemLocation)
 
 					//Coppies properties of health potion
 					strcpy(inventory[itemLocation].name, "Health Potion");
+					inventory[itemLocation].amount = 1;
 
 					//Increases value of currentInventory
 					character.currentInventory++;
@@ -133,6 +154,7 @@ void itemList(short itemType, short itemId, short itemLocation)
 
 					//Coppies properties of wood plank
 					strcpy(inventory[itemLocation].name, "Wood Plank");
+					inventory[itemLocation].amount = 1;
 
 					//Increases value of currentInventory
 					character.currentInventory++;
@@ -144,7 +166,7 @@ void itemList(short itemType, short itemId, short itemLocation)
 				default:
 				{
 
-					//Lets the user know that that weapon does not exist
+					//Lets the user know that that item does not exist
 					printf("An item with the id %d does not exist\n", itemId);
 
 				} //End default case
