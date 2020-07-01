@@ -10,7 +10,6 @@ Paul Geoghegan
 
 //Header files
 #include <stdio.h>
-#include <dirent.h>
 #include <string.h>
 #include "structs.h"
 

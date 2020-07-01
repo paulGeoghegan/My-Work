@@ -1,6 +1,7 @@
 
 //Header files
 #include <stdio.h>
+#include <string.h>
 #include "structs.h"
 
 void itemList(short itemType, short itemId, short itemLocation)
@@ -13,6 +14,11 @@ void itemList(short itemType, short itemId, short itemLocation)
 		//This case will return a weapon
 		case 0:
 		{
+
+			//Adds a sword
+		//This is temporary
+			strcpy(inventory[character.currentInventory].name, "Sword");
+			character.currentInventory++;
 
 			//This breaks out of the weapon case
 			break;
