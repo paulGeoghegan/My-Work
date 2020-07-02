@@ -26,10 +26,10 @@ void play()
 		printf("%s\n", map[character.y][character.x].name);
 		printf("X %d, Y %d\n", character.x, character.y);
 		printf("%s\n", map[character.y][character.x].description);
-		printf("To the north you can see a %s\n", map[character.y+1][character.x].name);
-		printf("To the south is a %s\n", map[character.y-1][character.x].name);
-		printf("To the east is a %s\n", map[character.y][character.x+1].name);
-		printf("To the west is a %s\n", map[character.y][character.x-1].name);
+		printf("To the north is %s\n", map[character.y+1][character.x].name);
+		printf("To the south is %s\n", map[character.y-1][character.x].name);
+		printf("To the east is %s\n", map[character.y][character.x+1].name);
+		printf("To the west is %s\n", map[character.y][character.x-1].name);
 
 		//Gets an imput from the user
 		gets(str);

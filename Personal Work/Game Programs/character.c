@@ -173,7 +173,7 @@ character.x = character.y = mapSize/2;
 
 					//Moves name and stat 1 towards 0
 					//Moves name and stat 1 towards 0
-					strcpy(statNamesTemp[l-1], statNamesTemp[l]);
+					strncpy(statNamesTemp[l-1], statNamesTemp[l], sizeof(statNamesTemp[0]));
 
 				} //End for
 
