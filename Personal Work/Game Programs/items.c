@@ -45,9 +45,9 @@ void itemList(short itemType, short itemId, short itemLocation)
 				{
 
 					//Saves properties of the dagger
-					strcpy(inventory[itemLocation].name, "Dagger");
+					strncpy(inventory[itemLocation].name, "Dagger", sizeof(inventory[0].name));
 					inventory[itemLocation].amount = 1;
-					strcpy(inventory[itemLocation].description, "A small blade that can be easily hidden");
+					strncpy(inventory[itemLocation].description, "A small blade that can be easily hidden", sizeof(inventory[0].description));
 					inventory[itemLocation].value = 5;
 					inventory[itemLocation].attack = 4;
 
@@ -88,9 +88,9 @@ void itemList(short itemType, short itemId, short itemLocation)
 				{
 
 					//Coppies properties of leather armor
-					strcpy(inventory[itemLocation].name, "Leather Armor");
+					strncpy(inventory[itemLocation].name, "Leather Armor", sizeof(inventory[0].name));
 					inventory[itemLocation].amount = 1;
-					strcpy(inventory[itemLocation].description, "A basic set of leather armor");
+					strncpy(inventory[itemLocation].description, "A basic set of leather armor", sizeof(inventory[0].description));
 					inventory[itemLocation].value = 10;
 					inventory[itemLocation].defence = 11;
 
@@ -131,9 +131,9 @@ void itemList(short itemType, short itemId, short itemLocation)
 				{
 
 					//Coppies properties of health potion
-					strcpy(inventory[itemLocation].name, "Health Potion");
+					strncpy(inventory[itemLocation].name, "Health Potion", sizeof(inventory[0].name));
 					inventory[itemLocation].amount = 1;
-					strcpy(inventory[itemLocation].description, "A vile full of a red sparkling liquid");
+					strncpy(inventory[itemLocation].description, "A vile full of a red sparkling liquid", sizeof(inventory[0].description));
 					inventory[itemLocation].attack = 0;
 					inventory[itemLocation].defence = 0;
 					inventory[itemLocation].health = 5;
@@ -176,9 +176,9 @@ void itemList(short itemType, short itemId, short itemLocation)
 				{
 
 					//Coppies properties of wood plank
-					strcpy(inventory[itemLocation].name, "Wood Plank");
+					strncpy(inventory[itemLocation].name, "Wood Plank", sizeof(inventory[0].name));
 					inventory[itemLocation].amount = 1;
-					strcpy(inventory[itemLocation].description, "A small wooden plank");
+					strncpy(inventory[itemLocation].description, "A small wooden plank", sizeof(inventory[0].description));
 					inventory[itemLocation].value = 1;
 
 					//Increases value of currentInventory

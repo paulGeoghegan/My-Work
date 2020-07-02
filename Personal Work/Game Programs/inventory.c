@@ -65,6 +65,9 @@ void inventoryManagement()
 					//Displays weapon info
 					printf("Attack %d\n", inventory[option-1].attack);
 
+					//Displays options
+					printf("\n1. Equip\n");
+
 					//Breaks out of case
 					break;
 
@@ -75,6 +78,9 @@ void inventoryManagement()
 
 					//Displays armor info
 					printf("Defence %d\n", inventory[option-1].defence);
+
+					//Displays options
+					printf("\n1. Equip\n");
 
 					//Breaks out of case
 					break;
@@ -89,6 +95,9 @@ void inventoryManagement()
 					printf("Defence %d\n", inventory[option-1].defence);
 					printf("Health %d\n", inventory[option-1].health);
 
+					//displays options
+					printf("\n1. Use\n");
+
 					//Breaks out of case
 					break;
 
@@ -97,6 +106,31 @@ void inventoryManagement()
 			} //End switch for checking item type
 
 		} //End else
+
+		//Checks if the item can be interacted with
+		if(inventory[option-1].type != 2)
+		{
+
+			//Displays the rest of the menu
+			printf("2. Drop\n");
+
+		} //End if
+		else
+		{
+
+			//Displays the rest of the menu
+			printf("1. Drop\n");
+
+		} //End else
+
+		//Tells the user how to cancel and leave the menu
+		printf("0. cancel\n");
+
+		//Changes value of max
+		max = 2;
+
+		//Gets an   imput from the user
+		option = errorCheck(&min, &max);
 
 		//Clears screen
 		clear();
