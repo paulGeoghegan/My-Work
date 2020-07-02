@@ -114,8 +114,9 @@ void clear()
 	//this tells the user to press the enter key to continue
 	printf("Press enter to continue\n");
 
-	//this takes an input from the user but doesnt store it anywhere
+	//this takes an input from the user but doesnt store it anywhere and clears the buffer
 	getchar();
+	fflush(stdin);
 
 	//this clears the screen
 	system("CLS");
