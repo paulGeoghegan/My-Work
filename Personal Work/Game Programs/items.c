@@ -33,6 +33,9 @@ void itemList(short itemType, short itemId, short itemLocation)
 		case 0:
 		{
 
+			//Sets item type
+			inventory[itemLocation].type = 0;
+
 			//This switch will get the weapon
 			switch(itemId)
 			{
@@ -44,6 +47,9 @@ void itemList(short itemType, short itemId, short itemLocation)
 					//Saves properties of the dagger
 					strcpy(inventory[itemLocation].name, "Dagger");
 					inventory[itemLocation].amount = 1;
+					strcpy(inventory[itemLocation].description, "A small blade that can be easily hidden");
+					inventory[itemLocation].value = 5;
+					inventory[itemLocation].attack = 4;
 
 					//Increases value of currentInventory
 					character.currentInventory++;
@@ -70,6 +76,9 @@ void itemList(short itemType, short itemId, short itemLocation)
 		case 1:
 		{
 
+			//Sets item type
+			inventory[itemLocation].type = 1;
+
 			//This switch will get the armor
 			switch(itemId)
 			{
@@ -81,6 +90,9 @@ void itemList(short itemType, short itemId, short itemLocation)
 					//Coppies properties of leather armor
 					strcpy(inventory[itemLocation].name, "Leather Armor");
 					inventory[itemLocation].amount = 1;
+					strcpy(inventory[itemLocation].description, "A basic set of leather armor");
+					inventory[itemLocation].value = 10;
+					inventory[itemLocation].defence = 11;
 
 					//Increases value of currentInventory
 					character.currentInventory++;
@@ -107,6 +119,9 @@ void itemList(short itemType, short itemId, short itemLocation)
 		case 2:
 		{
 
+			//Sets item type
+			inventory[itemLocation].type = 2;
+
 			//This switch will get the consumable
 			switch(itemId)
 			{
@@ -118,6 +133,11 @@ void itemList(short itemType, short itemId, short itemLocation)
 					//Coppies properties of health potion
 					strcpy(inventory[itemLocation].name, "Health Potion");
 					inventory[itemLocation].amount = 1;
+					strcpy(inventory[itemLocation].description, "A vile full of a red sparkling liquid");
+					inventory[itemLocation].attack = 0;
+					inventory[itemLocation].defence = 0;
+					inventory[itemLocation].health = 5;
+					inventory[itemLocation].value = 25;
 
 					//Increases value of currentInventory
 					character.currentInventory++;
@@ -144,6 +164,9 @@ void itemList(short itemType, short itemId, short itemLocation)
 		case 3:
 		{
 
+			//Sets item type
+			inventory[itemLocation].type = 3;
+
 			//This switch will get the item
 			switch(itemId)
 			{
@@ -155,6 +178,8 @@ void itemList(short itemType, short itemId, short itemLocation)
 					//Coppies properties of wood plank
 					strcpy(inventory[itemLocation].name, "Wood Plank");
 					inventory[itemLocation].amount = 1;
+					strcpy(inventory[itemLocation].description, "A small wooden plank");
+					inventory[itemLocation].value = 1;
 
 					//Increases value of currentInventory
 					character.currentInventory++;
