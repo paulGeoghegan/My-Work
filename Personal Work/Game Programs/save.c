@@ -173,9 +173,8 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 			//asks the user which directory they wish to open
 			printf("Please choose a save game listed below\n");
 
-			//sets i to 0
-			i = 0;
-			j = 0;
+			//sets i and j to 0
+			i = j = 0;
 
 			//Displays all of the save games in the directory
 			while((de = readdir(dr)) != NULL)
@@ -196,7 +195,7 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 					i++;
 
 					//Prints directory
-					printf("%d, %s\n", i, de->d_name);
+					printf("%d. %s\n", i, de->d_name);
 
 				} //end else
 
@@ -207,22 +206,33 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 
 			//Checks if any directories were listed
 			if(i == 0)
-		{
+			{
 
-			//Lets the user know that there is no saves
-			printf("There are currently no save games\n");
-
-			//Returns to main menu
-			return;
+				//Lets the user know that there is no saves and returns to the main menu
+				printf("There are currently no save games\n");
+				return;
 
 			} //End if
 
+			//Tells the user how to exit the menu
+			printf("0. Cancel\n");
+
 			//Sets values for min and max
-			min = 1;
+			min = 0;
 			max = i;
 
 			//Gets an imput from the user
-			i = errorCheck(&min, &max) + 2;
+			i = errorCheck(&min, &max);
+
+			//Checks if the user wants to exit the menu
+			if(i == 0)
+			{
+
+				//Returns to main menu
+				printf("Exiting...\n");
+				return;
+
+			} //End if
 
 			//Sets j to 0
 			j = 0;
@@ -231,11 +241,11 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 			dr = opendir("./gameSaves");
 
 			//This loop wil select the directory that the user wants to open
-			while(((de = readdir(dr)) != NULL) && j < i)
+			while(((de = readdir(dr)) != NULL) && j <= i+1)
 			{
 
 				//Checks if this is the directory that the user chose
-				if(j == i-1)
+				if(j == i+1)
 				{
 
 					//Sets dirName to the current directory
