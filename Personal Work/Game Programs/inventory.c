@@ -2,6 +2,7 @@
 //Header files
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "structs.h"
  
 //This function will allow the user to manage there inventory
@@ -160,6 +161,27 @@ void inventoryManagement()
 			} //End if
 			else
 			{
+
+				//Drops the items on to the current map tile
+				map[character.y][character.x].itemAmount++;
+				//Checks if memory has already been alocated for this tile
+				if(map[character.y][character.x].itemAmount == 1)
+				{
+
+					//Allocates memory
+					map[character.y][character.x].item = (struct mapItem *)calloc(map[character.y][character.x].itemAmount, sizeof(struct mapItem));
+
+				} //End if
+				else
+				{
+
+					//Re allocates memory
+					map[character.y][character.x].item = (struct mapItem *)realloc(map[character.y][character.x].item, (map[character.y][character.x].itemAmount * sizeof(struct mapItem)));
+
+				} //End else
+
+				//Drops item on to the tile
+				//strncpy(map[character.y][character.x].item, inventory[option-1], sizeof(inventory[0].name));
 
 				//Checks if the user is dropping the whole stack or not
 				if(option2 == inventory[option-1].amount)

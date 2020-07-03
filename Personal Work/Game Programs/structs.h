@@ -37,12 +37,23 @@ struct items
 	short value;
 }; //End item structure
 
+//This struct will be used to store item data in the map
+struct mapItem
+{
+	char name[21];
+	short id;
+	short type;
+	short amount;
+}; //End mapItem
+
 //This struct will be used for map generation and storage
 struct tile
 {
 	char name[21];
 	short id;
 	char description[100];
+	short itemAmount;
+	struct mapItem *item;
 }; //End tile struct
 
 //This struct will hold the templates for every tile
