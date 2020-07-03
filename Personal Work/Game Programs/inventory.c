@@ -181,7 +181,8 @@ void inventoryManagement()
 				} //End else
 
 				//Drops item on to the tile
-				//strncpy(map[character.y][character.x].item, inventory[option-1], sizeof(inventory[0].name));
+				strncpy((map[character.y][character.x].item+(map[character.y][character.x].itemAmount-1))->name, inventory[option-1].name, sizeof(inventory[0].name));
+				(map[character.y][character.x].item+(map[character.y][character.x].itemAmount-1))->amount = option2;
 
 				//Checks if the user is dropping the whole stack or not
 				if(option2 == inventory[option-1].amount)

@@ -354,6 +354,12 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 			//Lets the user know that the save is complete
 			printf("Game Saved!\n");
 
+			//Clears screen
+			clear();
+
+			//Returns to game
+			return;
+
 			//breaks out of case
 			break;
 

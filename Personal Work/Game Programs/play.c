@@ -26,6 +26,22 @@ void play()
 		printf("%s\n", map[character.y][character.x].name);
 		printf("X %d, Y %d\n", character.x, character.y);
 		printf("%s\n", map[character.y][character.x].description);
+
+		//Checks if there is an item here
+		if(map[character.y][character.x].itemAmount > 0)
+		{
+
+			//Tells user what items are there
+			for(short i = 0;i < map[character.y][character.x].itemAmount;i++)
+			{
+
+				//printS item name
+				printf("There are %d %s here\n", (map[character.y][character.x].item+i)->amount, (map[character.y][character.x].item+i)->name);
+
+			} //End for
+
+		} //End if
+
 		printf("To the north is %s\n", map[character.y+1][character.x].name);
 		printf("To the south is %s\n", map[character.y-1][character.x].name);
 		printf("To the east is %s\n", map[character.y][character.x+1].name);
