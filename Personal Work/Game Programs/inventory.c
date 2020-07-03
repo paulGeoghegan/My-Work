@@ -1,13 +1,14 @@
 
 //Header files
 #include <stdio.h>
+#include <string.h>
 #include "structs.h"
  
 //This function will allow the user to manage there inventory
 void inventoryManagement()
 {
 
-	short option;
+	short option, option2;
 	long min, max;
 
 	//Infinite do while loop
@@ -108,11 +109,14 @@ void inventoryManagement()
 		} //End else
 
 		//Checks if the item can be interacted with
-		if(inventory[option-1].type != 2)
+		if(inventory[option-1].type != 3)
 		{
 
 			//Displays the rest of the menu
 			printf("2. Drop\n");
+
+			//Sets value of max
+			max = 2;
 
 		} //End if
 		else
@@ -121,16 +125,78 @@ void inventoryManagement()
 			//Displays the rest of the menu
 			printf("1. Drop\n");
 
+			//Sets value of max
+			max = 1;
+
 		} //End else
 
 		//Tells the user how to cancel and leave the menu
 		printf("0. cancel\n");
 
-		//Changes value of max
-		max = 2;
-
 		//Gets an   imput from the user
-		option = errorCheck(&min, &max);
+		option2 = errorCheck(&min, &max);
+
+		//Checks if the user wants to drop an item
+		if((option2 == 1 && inventory[option-1].type == 3) || (option2 == 2 && inventory[option-1].type != 3))
+		{
+
+			//Asks the user how many they want to drop
+			printf("You have %d %s, how many do you want to drop?\nPress 0 to cancel\n", inventory[option-1].amount, inventory[option-1].name);
+
+			//Sets values for min and max
+			min = 0;
+			max = inventory[option-1].amount;
+
+			//Gets an imput from the user
+			option2 = errorCheck(&min, &max);
+
+			//Checks if they want to cancel or drop it
+			if(option2 == 0)
+			{
+
+				//Lets the user know that it has been canceled
+				printf("Canceling\n");
+
+			} //End if
+			else
+			{
+
+				//Checks if the user is dropping the whole stack or not
+				if(option2 == inventory[option-1].amount)
+				{
+
+					//Moves items to make the inventory propperly display its contents
+					for(short i = option-1;i < character.currentInventory-1;i++)
+					{
+
+						//Coppies properties of item
+						strncpy(inventory[i].name, inventory[i+1].name, sizeof(inventory[0].name));
+						inventory[i].id = inventory[i+1].id;
+						inventory[i].type = inventory[i+1].type;
+						inventory[i].amount = inventory[i+1].amount;
+						strncpy(inventory[i].description, inventory[i+1].description, sizeof(inventory[0].description));
+						inventory[i].attack = inventory[i+1].attack;
+						inventory[i].defence = inventory[i+1].defence;
+						inventory[i].health = inventory[i+1].health;
+						inventory[i].value = inventory[i+1].value;
+
+					} //End for
+
+					//Decreases current inventory size
+					character.currentInventory--;
+
+				} //End if
+				else
+				{
+
+					//Decreases amount by the amount the user chose
+					inventory[option-1].amount = inventory[option-1].amount - option2;
+
+				} //End else
+
+			} //End else
+
+		} //End if
 
 		//Clears screen
 		clear();

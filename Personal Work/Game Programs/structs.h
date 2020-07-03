@@ -31,9 +31,6 @@ struct items
 	short type;
 	short amount;
 	char description[51];
-	bool equipable;
-	bool consumable;
-	bool equiped;
 	short attack;
 	short defence;
 	short health;
