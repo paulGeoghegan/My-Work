@@ -1,7 +1,4 @@
 
-//Header files
-#include <stdbool.h>
-
 //Symbolic names
 #define mapSize 301
 #define tileAmount 5

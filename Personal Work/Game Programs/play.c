@@ -8,6 +8,7 @@
 void admin();
 void inventoryManagement();
 void itemList(short, short, short);
+void itemPickUp();
 void save(char);
 
 //This function will be where the user actually interacts with the game
@@ -16,7 +17,6 @@ void play()
 
 	char str[11];
 	long min, max;
-	short temp;
 
 	//This is the main loop for controlling the game
 	do
@@ -163,6 +163,14 @@ void play()
 					} //End else
 
 				} //End else if for inventory
+				//Allows the user to pick up an item from the map
+				else if(strcmp(str, "TAKE") == 0)
+				{
+
+					//Goes to the item pick up function
+					itemPickUp();
+
+				} //End else if for picking up items
 				//Help command
 				else if(strcmp(str, "HELP") == 0)
 				{
@@ -176,6 +184,7 @@ void play()
 					printf("\"EXIT\" Allows you to exit the game\n");
 					printf("\"INVENTORY\" Allows you to interact with your inventory\n");
 					printf("\"SAVE\" allows you to save the game\n");
+					printf("\"TAKE\" Allows you to pick up an item\n");
 
 					//Clears screen
 					clear();
