@@ -52,8 +52,10 @@ void save(char type)
 			{
 
 				//Tells the user that it could not be opened
-				printf("The gameSaves directory could not be opened. Please try again\n");
-				return;
+				printf("The gameSaves directory could not be opened. wait one second while it is created...\n");
+
+				//Creates game saves directory
+				check = mkdir("gameSaves");
 
 			}
 
