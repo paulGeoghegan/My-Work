@@ -292,6 +292,7 @@ strcat(tempStr4, "/map");
 			strcpy(tempStr1, saveLocation);
 			strcpy(tempStr2, saveLocation);
 			strcpy(tempStr3, saveLocation);
+			strcpy(tempStr4, saveLocation);
 
 			//Opens character file
 			strcat(tempStr1, "/character.dat");
@@ -313,18 +314,29 @@ strcat(tempStr4, "/map");
 			//Closes inventory file
 			fclose(inventoryF);
 
+			//Changes temp strings for map opening
+			strcat(tempStr3, "/map");
+			strcat(tempStr4, "/map");
+
 			//Opens map file
 			strcat(tempStr3, "/map.dat");
 			mapF = fopen(tempStr3, "r");
 
 			//Reads file
-			fread(map, sizeof(struct tile), mapSize*mapSize, mapF);
-
-			//Gets items in tiles
-
+			fread(map, offsetof(struct tile, item), mapSize*mapSize, mapF);
 
 			//Closes map file
 			fclose(mapF);
+
+			//Opens mapItems file
+			strcat(tempStr4, "/mapItems.dat");
+			mapF = fopen(tempStr4, "r");
+
+			//Reads mapItems file
+			//not finished
+
+			//Closes mapItems file
+			fclose(mapItemsF);
 
 			//Lets the user know that the save has been loaded
 			printf("Loading complete!\n");
@@ -344,6 +356,7 @@ strcat(tempStr4, "/map");
 			strcpy(tempStr1, saveLocation);
 			strcpy(tempStr2, saveLocation);
 			strcpy(tempStr3, saveLocation);
+			strcpy(tempStr4, saveLocation);
 
 			//Opens character file
 			strcat(tempStr1, "/character.dat");
@@ -365,31 +378,31 @@ strcat(tempStr4, "/map");
 			//Closes inventory file
 			fclose(inventoryF);
 
+			//Changes temp strings for writing to map
+			strcat(tempStr3, "/map");
+			strcat(tempStr4, "/map");
+
 			//Opens map file
 			strcat(tempStr3, "/map.dat");
 			mapF = fopen(tempStr3, "w");
 
-			//Reads file
+			//writes to file
 			fwrite(map, offsetof(struct tile, item), mapSize*mapSize, mapF);
-
-/*
-			for (int y = 0; y < mapSize; y++)
-			{
-				for (int x = 0; x < mapSize; y++)
-				{
-
-					//Writes the current tile to the map file
-					fwrite(&map[y][x],  1, mapF);
-
-					//Writes the current items in the current tile to the file
-					fwrite(map[y][x].item, sizeof(struct mapItem), map[y][x].itemAmount, mapF);
-
-				} //End for
-			} //End for
-*/
 
 			//Closes map file
 			fclose(mapF);
+
+
+
+			//Opens mapItems file
+			strcat(tempStr4, "/mapItems.dat");
+			mapF = fopen(tempStr4, "w");
+
+			//writes to mapItems file
+			//Not finished
+
+			//Closes mapItems file
+			fclose(mapItemsF);
 
 			//Lets the user know that the save is complete
 			printf("Game Saved!\n");
