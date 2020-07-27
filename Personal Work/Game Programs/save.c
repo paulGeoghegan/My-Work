@@ -335,7 +335,17 @@ strcat(tempStr4, "/map");
 			mapItemsF = fopen(tempStr4, "r");
 
 			//Reads mapItems file
-			//not finished
+			for(short y = 0;y < mapSize;y++)
+			{
+				for(short x = 0;x < mapSize;x++)
+				{
+
+					//Allocates memory for items and puts them in the tile
+					map[y][x].item = (struct mapItem *)calloc(map[y][x].itemAmount, sizeof(struct mapItem));
+					fread(map[y][x].item, sizeof(struct mapItem), map[y][x].itemAmount, mapItemsF);
+
+				} //End for
+			} //End for
 
 			//Closes mapItems file
 			fclose(mapItemsF);
@@ -404,8 +414,14 @@ strcat(tempStr4, "/map");
 				for(short x = 0;x < mapSize;x++)
 				{
 
-					//Writes the items in the current tile to the mapItem file
-					fwrite(map[y][x].item, sizeof(struct mapItem), map[y][x].itemAmount, mapF);
+					//Checks if there should be any items in this tile
+					if(map[y][x].itemAmount != 0)
+					{
+
+						//Writes the items in the current tile to the mapItem file
+						fwrite(map[y][x].item, sizeof(struct mapItem), map[y][x].itemAmount, mapItemsF);
+
+					} //End if
 
 				} //End for
 			}//End for
