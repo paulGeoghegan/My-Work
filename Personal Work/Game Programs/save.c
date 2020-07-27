@@ -332,7 +332,7 @@ strcat(tempStr4, "/map");
 
 			//Opens mapItems file
 			strcat(tempStr4, "/mapItems.dat");
-			mapF = fopen(tempStr4, "r");
+			mapItemsF = fopen(tempStr4, "r");
 
 			//Reads mapItems file
 			//not finished
@@ -399,7 +399,16 @@ strcat(tempStr4, "/map");
 			mapItemsF = fopen(tempStr4, "w");
 
 			//writes to mapItems file
-			//Not finished
+			for(short y = 0;y < mapSize;y++)
+			{
+				for(short x = 0;x < mapSize;x++)
+				{
+
+					//Writes the items in the current tile to the mapItem file
+					fwrite(map[y][x].item, sizeof(struct mapItem), map[y][x].itemAmount, mapF);
+
+				} //End for
+			}//End for
 
 			//Closes mapItems file
 			fclose(mapItemsF);

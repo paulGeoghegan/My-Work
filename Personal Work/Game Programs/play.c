@@ -1,6 +1,7 @@
 
 //Header files
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "structs.h"
 
@@ -131,6 +132,9 @@ void play()
 
 					//Lets the user know that they are leaving the game
 					printf("Exiting game...\n");
+
+					//frees memory that had been allocated for the map
+					free(map);
 
 					//Leaves the play function
 					return;
