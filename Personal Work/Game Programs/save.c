@@ -5,6 +5,7 @@
 #include <dirent.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stddef.h>
 #include "structs.h"
 
 //Function signatures
@@ -138,8 +139,24 @@ void save(char type)
 				//Generates map
 				tiles(mapSize, map);
 
+/* checking if new method works better
 				//Writes the map to the map file
-fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
+				fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
+*/
+
+				for (int y = 0; y < mapSize; y++)
+				{
+					for (int x = 0; x < mapSize; y++)
+					{
+
+						//Writes the current tile to the map file
+						fwrite(&map[y][x], offsetof(struct tile, item), 1, mapF);
+
+						//Writes the current items in the current tile to the file
+						fwrite(map[y][x].item, sizeof(struct mapItem), map[y][x].itemAmount, mapF);
+
+					} //End for
+				} //End for
 
 				//Closes the map file
 				fclose(mapF);
@@ -299,6 +316,9 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 			//Reads file
 			fread(map, sizeof(struct tile), mapSize*mapSize, mapF);
 
+			//Gets items in tiles
+
+
 			//Closes map file
 			fclose(mapF);
 
@@ -354,7 +374,7 @@ fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
 			//Lets the user know that the save is complete
 			printf("Game Saved!\n");
 
-			//Clears screen
+			//Clears	 screen
 			clear();
 
 			//Returns to game
