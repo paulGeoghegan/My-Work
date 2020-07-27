@@ -22,11 +22,12 @@ void save(char type)
 	char saveLocation[11] = "gameSaves/";
 	char tempStr1[21];
 	char tempStr2[21];
-	char tempStr3[21];
+	char tempStr3[25];
+	char tempStr4[25];
 	bool exists = false;
 	struct dirent *de;
 	DIR *dr;
-	FILE *characterF, *inventoryF, *mapF;
+	FILE *characterF, *inventoryF, *mapF, *mapItemsF;
 	character.statNames[0] = "Strength"; character.statNames[1] = "Dexterity"; character.statNames[2] = "Constitution"; character.statNames[3] = "Inteligence"; character.statNames[4] = "Wisdom"; character.statNames[5] = "Charisma";
 
 	//This switch case will controll what type of action is being performed
@@ -113,6 +114,7 @@ void save(char type)
 				strcpy(tempStr1, saveLocation);
 				strcpy(tempStr2, saveLocation);
 				strcpy(tempStr3, saveLocation);
+				strcpy(tempStr4, saveLocation);
 
 				//Creates character file
 				strcat(tempStr1, "/character.dat");
@@ -132,34 +134,36 @@ void save(char type)
 				inventoryF = fopen(tempStr2, "w");
 				fclose(inventoryF);
 
+				//Creates new directory and changes temp strings
+	strcat(tempStr3, "/map");
+strcat(tempStr4, "/map");
+				check = mkdir(tempStr3);
+
 				//Creates map file
 				strcat(tempStr3, "/map.dat");
 				mapF = fopen(tempStr3, "w");
 
 				//Generates map
-				tiles(mapSize, map);
+				tiles();
 
-/* checking if new method works better
 				//Writes the map to the map file
-				fwrite(map, sizeof(struct tile), (mapSize*mapSize), mapF);
-*/
+				fwrite(map, offsetof(struct tile, item), (mapSize*mapSize), mapF);
 
-				for (int y = 0; y < mapSize; y++)
-				{
-					for (int x = 0; x < mapSize; y++)
-					{
-
-						//Writes the current tile to the map file
-						fwrite(&map[y][x], offsetof(struct tile, item), 1, mapF);
-
-						//Writes the current items in the current tile to the file
-						fwrite(map[y][x].item, sizeof(struct mapItem), map[y][x].itemAmount, mapF);
-
-					} //End for
-				} //End for
-
-				//Closes the map file
+				//Closes map file
 				fclose(mapF);
+
+				//Creates map file
+				strcat(tempStr4, "/mapItems.dat");
+				mapItemsF = fopen(tempStr4, "w");
+
+				//Writes the mapItems to the mapItems file
+				//Not yet implamented
+
+				//Closes mapItems file
+				fclose(mapItemsF);
+
+				//Closes map directory
+				closedir(dr);
 
 				//Lets the user know that a new save has been created
 				printf("Finished creating\n");
@@ -366,7 +370,23 @@ void save(char type)
 			mapF = fopen(tempStr3, "w");
 
 			//Reads file
-			fwrite(map, sizeof(struct tile), mapSize*mapSize, mapF);
+			fwrite(map, offsetof(struct tile, item), mapSize*mapSize, mapF);
+
+/*
+			for (int y = 0; y < mapSize; y++)
+			{
+				for (int x = 0; x < mapSize; y++)
+				{
+
+					//Writes the current tile to the map file
+					fwrite(&map[y][x],  1, mapF);
+
+					//Writes the current items in the current tile to the file
+					fwrite(map[y][x].item, sizeof(struct mapItem), map[y][x].itemAmount, mapF);
+
+				} //End for
+			} //End for
+*/
 
 			//Closes map file
 			fclose(mapF);
