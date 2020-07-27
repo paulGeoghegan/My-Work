@@ -388,17 +388,15 @@ strcat(tempStr4, "/map");
 			strcat(tempStr3, "/map.dat");
 			mapF = fopen(tempStr3, "w");
 
-			//writes to file
+			//writes to map file
 			fwrite(map, offsetof(struct tile, item), mapSize*mapSize, mapF);
 
 			//Closes map file
 			fclose(mapF);
 
-
-
 			//Opens mapItems file
 			strcat(tempStr4, "/mapItems.dat");
-			mapF = fopen(tempStr4, "w");
+			mapItemsF = fopen(tempStr4, "w");
 
 			//writes to mapItems file
 			//Not finished
@@ -409,7 +407,7 @@ strcat(tempStr4, "/map");
 			//Lets the user know that the save is complete
 			printf("Game Saved!\n");
 
-			//Clears	 screen
+			//Clears screen
 			clear();
 
 			//Returns to game
