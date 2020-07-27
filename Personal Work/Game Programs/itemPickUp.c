@@ -1,6 +1,7 @@
 
 //Header files
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include "structs.h"
 
@@ -89,6 +90,12 @@ void itemPickUp()
 
 				//Increases value of currentInventory
 				character.currentInventory++;
+
+				//Decreases amount of items on the current map tile
+				(map[character.y][character.x].item+(itemToTake-1))->amount--;
+
+				//Reallocates memory
+				map[character.y][character.x].item = (struct mapItem *)realloc(map[character.y][character.x].item, (map[character.y][character.x].itemAmount * sizeof(struct mapItem)));
 
 			} //End if
 			else
