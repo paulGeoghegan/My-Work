@@ -1,0 +1,30 @@
+This file contains instructions on how to get up and running with the autoBanBot
+
+1. create a new twitch account which the bot can use.
+2. Go to https://twitchapps.com/tmi/ in order to generate an oaurth token for the new account.
+3. Put the username and the oaurth token in there respective fields inside of the autoBanBot.js file
+4. Fill out the list of channels you want the bot to opporate in remembering to add a , at the end of each after the ' except for the last one
+E.G.
+'channel1',
+'channel2',
+'channel3'
+5. Make sure the bot is a modorator in each of the channels listed
+6. Either change the commands listed in the switch case or leave them as default
+NOTE: the switch case should look like 
+case '!multiban':
+and 
+case 'unmultiban':
+7. Either host the bot locally or use a hosting servis like Glitch https://glitch.com/
+NOTE: if you wish to host the bot locally you will need to install node which can be downloaded at https://nodejs.org/en/download/
+During the install make sure that NPM is being installed and when the install is complete go to the command prompt and enter
+npm install tmi.js
+After this head to the directory where you have the autoBanBot.js file saved
+Open command prompt for the directory and type
+node autoBanBot.js
+If there are anny issues connecting make sure that the username and password are correct
+8. Now the bot should be up and running and ready to keep your chat and the chats of your friends clear of bad users
+
+If you have any issues or questions please feel free to contact me
+Twitter: https://twitter.com/PaulGeogheganII
+Linkedin: https://www.linkedin.com/in/paultdgeoghegan/
+Email: mrpaultdgeoghegan@gmail.com

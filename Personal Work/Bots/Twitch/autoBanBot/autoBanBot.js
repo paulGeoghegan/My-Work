@@ -1,0 +1,90 @@
+
+const tmi = require('tmi.js');
+
+// Define configuration options
+const opts = {
+	identity: {
+		username: ''userName,
+		password: 'oauth:example'
+	},
+
+	//List of channels
+	channels: [
+		'Channel1',
+		'Channel2'
+	] //End channel list
+}; //End opts
+ 
+// Create a client with our options
+const client = new tmi.client(opts);
+
+// Register our event handlers (defined below)
+client.on('message', onMessageHandler);
+client.on('connected', onConnectedHandler);
+
+// Connect to Twitch:
+client.connect();
+
+// Called every time a message comes in
+function onMessageHandler (target, userstate, msg, self) {
+
+	// Ignore messages from the bot and non broadcasters
+	if (self || userstate.username !== target.split('#').pop()) { return; }
+
+	//This splits up the command wherever there will be a space e.g. 1 command 2 userName 3 reason
+	const commandName = msg.split(' ');
+
+	//This will check which command the broadcaster wants to use by passing the first part of the commandName array to a switch case NOTE: the 0th element of the array should contain the command
+	switch(commandName[0]) {
+
+		//Bans the user
+		case '!multiban':
+
+			//Converts all elements after the 1st element in the commandName array to a string called reason
+			var reason = commandName.slice(2, commandName.length);
+			reason.join(' ');
+
+			//This loop will ban the user in each chat
+			for(let i = 0;i < opts.channels.length;i++)
+			{
+
+				//Banns user from chat
+				client.ban(opts.channels[i], commandName[1], reason);
+
+				//This shows who has been banned and why NOTE: this is just for testing and will be removed
+				client.action(opts.channels[i], `${commandName[1]} has been banned for ${reason}`);
+
+				//Loggs command in console
+				console.log(`* Executed ${commandName[0]} command in ${opts.channels[i]} channel`);
+
+			} //End for
+
+			break;
+			//Unbanns a user
+		case '!unmultiban':
+
+			//This loop will unban a user in all chats
+			for(let i = 0;i < opts.channels.length;i++)
+			{
+
+				//Unbanns user from chat
+				client.ban(opts.channels[i], commandName[1]);
+
+				//This shows who has been unbanned NOTE: this is just for testing and will be removed
+				client.action(opts.channels[i], `${commandName[1]} has been unbanned`);
+
+				//logs command on console
+				console.log(`* Executed ${commandName[0]} command in ${opts.channels[i]} channel`);
+
+			} //End for
+
+			break;
+		default:
+			console.log(`* Unknown command ${commandName[0]}`);
+	} //End switch case
+} //End messageHandeler
+ 
+// Called every time the bot connects to Twitch chat
+function onConnectedHandler (addr, port) {
+	console.log(`* Connected to ${addr}:${port}`);
+}
