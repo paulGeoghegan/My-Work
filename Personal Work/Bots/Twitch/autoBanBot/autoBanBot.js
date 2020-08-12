@@ -59,7 +59,7 @@ function onMessageHandler (target, userstate, msg, self) {
 				}, function(err) {
 
 					//Logs error in console
-					console.log(err in ${opts.channels[i]});
+					console.log(`err in ${opts.channels[i]}`);
 
 				}); //End error checking
 
@@ -85,7 +85,7 @@ function onMessageHandler (target, userstate, msg, self) {
 				}, function(err) {
 
 					//Logs error in console
-					console.log(err in ${opts.channels[i]});
+					console.log(`err in ${opts.channels[i]}`);
 
 				}); //End error checking
 
