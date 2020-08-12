@@ -2,7 +2,6 @@
 //Symbolic names
 #define mapSize 301
 #define tileAmount 5
-#define tileTypeAmount 3
 #define desAmount 3
 #define inventorySize 30
 

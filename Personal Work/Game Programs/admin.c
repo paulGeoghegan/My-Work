@@ -4,13 +4,13 @@
 #include "structs.h"
 
 //Function signatures
-void itemList(short, short, short);
+void itemList(short, short, short, short);
 
 //This function allows the user to exicute admin only actions
 void admin()
 {
 
-	short itemType, itemId, itemLocation;
+	short itemType, itemId, itemAmount, itemLocation;
 	long min, max;
 	char str[11];
 
@@ -67,6 +67,12 @@ void admin()
 			//Gets itemId
 			itemId = errorCheck(&min, &max);
 
+			//Asks the user how many of the item they want
+			printf("How many do you want?\n");
+
+			//Gets itemAmount
+			itemAmount = errorCheck(&min, &max);
+
 			//Checks if the users inventory is full
 			if(character.currentInventory == inventorySize)
 			{
@@ -90,7 +96,7 @@ void admin()
 			} //End else
 
 			//This gets the item
-			itemList(itemType, itemId, itemLocation);
+			itemList(itemType, itemId, itemAmount, itemLocation);
 
 			//Breaks out of item case
 			break;

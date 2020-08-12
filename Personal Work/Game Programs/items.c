@@ -4,7 +4,7 @@
 #include <string.h>
 #include "structs.h"
 
-void itemList(short itemType, short itemId, short itemLocation)
+void itemList(short itemType, short itemId, short itemAmount, short itemLocation)
 {
 
 	//Checks if this item is already in the users inventory
@@ -46,7 +46,7 @@ void itemList(short itemType, short itemId, short itemLocation)
 
 					//Saves properties of the dagger
 					strncpy(inventory[itemLocation].name, "Dagger", sizeof(inventory[0].name));
-					inventory[itemLocation].amount = 1;
+					inventory[itemLocation].amount = itemAmount;
 					strncpy(inventory[itemLocation].description, "A small blade that can be easily hidden", sizeof(inventory[0].description));
 					inventory[itemLocation].value = 5;
 					inventory[itemLocation].attack = 4;
@@ -77,7 +77,7 @@ void itemList(short itemType, short itemId, short itemLocation)
 		{
 
 			//Sets item type
-			inventory[itemLocation].type = 1;
+			inventory[itemLocation].type = itemAmount;
 
 			//This switch will get the armor
 			switch(itemId)
@@ -89,10 +89,10 @@ void itemList(short itemType, short itemId, short itemLocation)
 
 					//Coppies properties of leather armor
 					strncpy(inventory[itemLocation].name, "Leather Armor", sizeof(inventory[0].name));
-					inventory[itemLocation].amount = 1;
+					inventory[itemLocation].amount = itemAmount;
 					strncpy(inventory[itemLocation].description, "A basic set of leather armor", sizeof(inventory[0].description));
-					inventory[itemLocation].value = 10;
-					inventory[itemLocation].defence = 11;
+					inventory[itemLocation].value = itemAmount;
+					inventory[itemLocation].defence = itemAmount;
 
 					//Increases value of currentInventory
 					character.currentInventory++;
@@ -132,7 +132,7 @@ void itemList(short itemType, short itemId, short itemLocation)
 
 					//Coppies properties of health potion
 					strncpy(inventory[itemLocation].name, "Health Potion", sizeof(inventory[0].name));
-					inventory[itemLocation].amount = 1;
+					inventory[itemLocation].amount = itemAmount;
 					strncpy(inventory[itemLocation].description, "A vile full of a red sparkling liquid", sizeof(inventory[0].description));
 					inventory[itemLocation].attack = 0;
 					inventory[itemLocation].defence = 0;
@@ -177,9 +177,9 @@ void itemList(short itemType, short itemId, short itemLocation)
 
 					//Coppies properties of wood plank
 					strncpy(inventory[itemLocation].name, "Wood Plank", sizeof(inventory[0].name));
-					inventory[itemLocation].amount = 1;
+					inventory[itemLocation].amount = itemAmount;
 					strncpy(inventory[itemLocation].description, "A small wooden plank", sizeof(inventory[0].description));
-					inventory[itemLocation].value = 1;
+					inventory[itemLocation].value = itemAmount;
 
 					//Increases value of currentInventory
 					character.currentInventory++;

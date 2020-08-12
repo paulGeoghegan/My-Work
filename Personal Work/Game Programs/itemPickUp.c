@@ -6,7 +6,7 @@
 #include "structs.h"
 
 //Function signatures
-void itemList(short, short, short);
+void itemList(short, short, short, short);
 
 //This function allows the user to pick up an item from the map
 void itemPickUp()
@@ -83,10 +83,7 @@ void itemPickUp()
 			{
 
 				//Puts the item in the users inventory
-				itemList((map[character.y][character.x].item+(itemToTake-1))->type, (map[character.y][character.x].item+(itemToTake-1))->id, i);
-
-				//Sets item amount
-				inventory[i].amount = (map[character.y][character.x].item+(itemToTake-1))->amount;
+				itemList((map[character.y][character.x].item+(itemToTake-1))->type, (map[character.y][character.x].item+(itemToTake-1))->id, (map[character.y][character.x].item+(itemToTake-1))->amount, i);
 
 				//Increases value of currentInventory
 				character.currentInventory++;
