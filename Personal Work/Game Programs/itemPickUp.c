@@ -45,7 +45,7 @@ void itemPickUp()
 			} //End for
 
 			//Gets user imput
-			itemToTake = errorCheck(&min, &max);
+			itemToTake = errorCheck(min, max);
 
 		} //End if
 

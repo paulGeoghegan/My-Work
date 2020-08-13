@@ -43,7 +43,7 @@ character.x = character.y = mapSize/2;
 		printf("You entered %s is this correct?\n1. Yes\n2. No\n", character.name);
 
 		//Checks if its correct
-		switch(errorCheck(&min, &max))
+		switch(errorCheck(min, max))
 		{
 
 			//Case 1 for correct
@@ -148,7 +148,7 @@ character.x = character.y = mapSize/2;
 		max = i;
 
 		//Gets an imput from the user
-		temp = errorCheck(&min, &max);
+		temp = errorCheck(min, max);
 
 		//Sets k to 0
 		k = 0;

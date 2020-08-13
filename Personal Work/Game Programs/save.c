@@ -245,7 +245,7 @@ strcat(tempStr4, "/map");
 			max = i;
 
 			//Gets an imput from the user
-			i = errorCheck(&min, &max);
+			i = errorCheck(min, max);
 
 			//Checks if the user wants to exit the menu
 			if(i == 0)

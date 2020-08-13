@@ -38,7 +38,8 @@ int main()
 		min = 0;
 		max = 2;
 
-		switch(errorCheck(&min, &max))
+		//This switch will check what option the user wants to pick
+		switch(errorCheck(min, max))
 		{
 
 			//this case will create a new save

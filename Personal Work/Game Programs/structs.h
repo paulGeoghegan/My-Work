@@ -61,7 +61,7 @@ struct tileTemp
 }; //End tileTemp struct
 
 //Function signatures
-long errorCheck(long*, long*);
+long errorCheck(long, long);
 void clear();
 void end();
 

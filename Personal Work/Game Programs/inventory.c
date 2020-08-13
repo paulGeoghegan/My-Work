@@ -35,7 +35,7 @@ void inventoryManagement()
 		max = character.currentInventory;
 
 		//This gets an imput from the user
-		option = errorCheck(&min, &max);
+		option = errorCheck(min, max);
 
 		//Checks what the user wants to do
 		if(option == 0)
@@ -135,7 +135,7 @@ void inventoryManagement()
 		printf("0. cancel\n");
 
 		//Gets an   imput from the user
-		option2 = errorCheck(&min, &max);
+		option2 = errorCheck(min, max);
 
 		//Checks if the user wants to drop an item
 		if((option2 == 1 && inventory[option-1].type == 3) || (option2 == 2 && inventory[option-1].type != 3))
@@ -149,7 +149,7 @@ void inventoryManagement()
 			max = inventory[option-1].amount;
 
 			//Gets an imput from the user
-			option2 = errorCheck(&min, &max);
+			option2 = errorCheck(min, max);
 
 			//Checks if they want to cancel or drop it
 			if(option2 == 0)

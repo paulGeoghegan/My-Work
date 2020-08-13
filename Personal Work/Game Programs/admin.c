@@ -24,7 +24,7 @@ void admin()
 	max = 2;
 
 	//Uses a switch for admin commands
-	switch(errorCheck(&min, &max))
+	switch(errorCheck(min, max))
 	{
 
 		//Allows the user to teleport
@@ -37,11 +37,11 @@ void admin()
 
 			//Asks the user where they want to go for x
 			printf("Enter X\n");
-			character.x = errorCheck(&min, &max);
+			character.x = errorCheck(min, max);
 
 			//Asks the user where they want to go for y
 			printf("Enter Y\n");
-			character.y = errorCheck(&min, &max);
+			character.y = errorCheck(min, max);
 
 			//Breaks out of switch
 			break;
@@ -59,19 +59,19 @@ void admin()
 			max = 1000000;
 
 			//Gets itemType
-			itemType = errorCheck(&min, &max);
+			itemType = errorCheck(min, max);
 
 			//Asks the user for the itemId
 			printf("Enter the item id\n");
 
 			//Gets itemId
-			itemId = errorCheck(&min, &max);
+			itemId = errorCheck(min, max);
 
 			//Asks the user how many of the item they want
 			printf("How many do you want?\n");
 
 			//Gets itemAmount
-			itemAmount = errorCheck(&min, &max);
+			itemAmount = errorCheck(min, max);
 
 			//Checks if the users inventory is full
 			if(character.currentInventory == inventorySize)
@@ -84,7 +84,7 @@ void admin()
 				max = inventorySize - 1;
 
 				//Gets value for itemLocation
-				itemLocation = errorCheck(&min, &max);
+				itemLocation = errorCheck(min, max);
 
 		} //End if
 			else
