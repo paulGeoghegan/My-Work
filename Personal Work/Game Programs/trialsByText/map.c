@@ -29,14 +29,14 @@ void mapGen()
 	printf("Generating map...\n");
 
 	//This loop wil controll the tile generation
-	for(short i = 3;i < mapSize;i = i+2)
+	for(register short i = 3;i < mapSize;i = i+2)
 	{
 
 		//Increases value of temp
 		temp = i-1;
 
 		//This loop will controll which side is being generated
-		for(short j = 0;j < 4;j++)
+		for(register short j = 0;j < 4;j++)
 		{
 
 			//This switch casemakes sure that x and y Mod have the correct values
@@ -104,7 +104,7 @@ void mapGen()
 				} //End if
 
 				//This loop wil set which tiles should be generated in a spirul pattern
-				for(short k = 0;k < temp;k++)
+				for(register short k = 0;k < temp;k++)
 				{
 
 					//Checks if a new tile will be picked or if the previous one will be expanded

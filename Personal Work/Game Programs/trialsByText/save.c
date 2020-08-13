@@ -335,9 +335,9 @@ strcat(tempStr4, "/map");
 			mapItemsF = fopen(tempStr4, "r");
 
 			//Reads mapItems file
-			for(short y = 0;y < mapSize;y++)
+			for(register short y = 0;y < mapSize;y++)
 			{
-				for(short x = 0;x < mapSize;x++)
+				for(register short x = 0;x < mapSize;x++)
 				{
 
 					//Allocates memory for items and puts them in the tile
