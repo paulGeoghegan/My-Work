@@ -1,5 +1,5 @@
 # My-Work
-This repo contains code strictly made by just me including university assignments and other projects. All of my collaborative work is contained in other repos.
+This repo contains all of my currently publicly available current and previous projects which are split between my personal projects, university projects and Collaborative projects
 
 	Repos:
 1. The Collaborative Work repo contains projects thsat have been completed by atleast one other person and myself.
@@ -7,7 +7,7 @@ This repo contains code strictly made by just me including university assignment
 3. The University Work repo contains strictly assignment and test based code from my time spent in university,
 
 	Notes:
-For information on the re-distribbution or modification of any of the code contained in this repositry please refer to the GNU GENERAL PUBLIC LICENSE information on which can be found in the licence file.
+For information on the re-distribution or modification of any of the code contained in this repositry please refer to the GNU GENERAL PUBLIC LICENSE information on which can be found in the licence file.
 If you wish to contact me please do so onn the social media listed below or via my email which will also be listed below:
 Twitter: https://twitter.com/PaulGeogheganII
 Linkedin: https://www.linkedin.com/in/paultdgeoghegan/
