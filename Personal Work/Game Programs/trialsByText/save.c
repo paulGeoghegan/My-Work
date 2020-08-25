@@ -11,6 +11,8 @@
 //Function signatures
 void characterGen();
 void tiles();
+void mapGen();
+void mapItemGen();
 void play();
 
 //This function controlls all of the saving functionality for creating, loading and overwriting
@@ -112,7 +114,7 @@ void save(char type)
 				//Creates new save
 				check = mkdir(saveLocation);
 
-				//Coppies saveLocation to 3 strings
+				//Coppies saveLocation to 4 strings
 				strcpy(tempStr1, saveLocation);
 				strcpy(tempStr2, saveLocation);
 				strcpy(tempStr3, saveLocation);
@@ -145,8 +147,9 @@ strcat(tempStr4, "/map");
 				strcat(tempStr3, "/map.dat");
 				mapF = fopen(tempStr3, "w");
 
-				//Generates map
+				//Fills out tiles array and then Generates map
 				tiles();
+				mapGen();
 
 				//Writes the map to the map file
 				fwrite(map, offsetof(struct tile, item), (mapSize*mapSize), mapF);
@@ -154,12 +157,30 @@ strcat(tempStr4, "/map");
 				//Closes map file
 				fclose(mapF);
 
-				//Creates map file
+				//Creates mapItems file
 				strcat(tempStr4, "/mapItems.dat");
 				mapItemsF = fopen(tempStr4, "w");
 
-				//Writes the mapItems to the mapItems file
-				//Not yet implamented
+				//Generates map items
+				mapItemGen();
+
+				//writes to mapItems file
+				for(short y = 0;y < mapSize;y++)
+				{
+					for(short x = 0;x < mapSize;x++)
+					{
+
+						//Checks if there should be any items in this tile
+						if(map[y][x].itemAmount != 0)
+						{
+
+							//Writes the items in the current tile to the mapItem file
+							fwrite(map[y][x].item, sizeof(struct mapItem), map[y][x].itemAmount, mapItemsF);
+
+						} //End if
+
+					} //End for
+				} //End for
 
 				//Closes mapItems file
 				fclose(mapItemsF);

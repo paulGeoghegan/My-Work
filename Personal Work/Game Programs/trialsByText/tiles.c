@@ -40,6 +40,4 @@ void tiles()
 	strcpy(tileType[4].description[1], "Planes of glittering sand stretch out on either side of you");
 	strcpy(tileType[4].description[2], "The sun seems to be coming from every direction as it reflects off the sand around you");
 
-mapGen();
-
 } //end tiles
