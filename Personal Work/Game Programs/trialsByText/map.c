@@ -405,13 +405,16 @@ void mapGen()
 			{
 
 				//Increases value of itemAmount for this tile
-				map[y][x].itemAmount++j;
+				map[y][x].itemAmount++;
 
 				//reallocates memory
 				map[y][x].item = (struct mapItem *)realloc(map[y][x].item, (map[y][x].itemAmount * sizeof(struct mapItem)));
 
 				//Coppies properties of item
 				strncpy((map[y][x].item+(map[x][y].itemAmount-1))->name, itemName, sizeof(itemName));
+				(map[y][x].item+(map[y][x].itemAmount-1))->type = itemType;
+				(map[y][x].item+(map[y][x].itemAmount))->id = itemId;
+				(map[y][x].item+(map[y][x].itemAmount-1))->amount = itemAmount;
 
 			} //End if
 
