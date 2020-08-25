@@ -54,7 +54,7 @@ void inventoryManagement()
 			//Prints the basic info for the item
 			printf("%s\n", inventory[option-1].name);
 			printf("%s\n", inventory[option-1].description);
-			printf("Value %d\n", inventory[option-1].value);
+			printf("Value %d/%d\n", inventory[option-1].value, (inventory[option-1].value * inventory[option-1].amount));
 
 			//Checks what type of item the user chose
 			switch(inventory[option-1].type)

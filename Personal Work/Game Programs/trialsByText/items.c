@@ -91,7 +91,7 @@ void itemList(short itemType, short itemId, short itemAmount, short itemLocation
 					strncpy(inventory[itemLocation].name, "Leather Armor", sizeof(inventory[0].name));
 					inventory[itemLocation].amount = itemAmount;
 					strncpy(inventory[itemLocation].description, "A basic set of leather armor", sizeof(inventory[0].description));
-					inventory[itemLocation].value = itemAmount;
+					inventory[itemLocation].value = 10;
 					inventory[itemLocation].defence = itemAmount;
 
 					//Increases value of currentInventory
@@ -171,15 +171,15 @@ void itemList(short itemType, short itemId, short itemAmount, short itemLocation
 			switch(itemId)
 			{
 
-				//Gets wood plank
+				//Gets plant
 				case 0:
 				{
 
-					//Coppies properties of wood plank
-					strncpy(inventory[itemLocation].name, "Wood Plank", sizeof(inventory[0].name));
+					//Coppies properties of plant
+					strncpy(inventory[itemLocation].name, "Plant", sizeof(inventory[0].name));
 					inventory[itemLocation].amount = itemAmount;
-					strncpy(inventory[itemLocation].description, "A small wooden plank", sizeof(inventory[0].description));
-					inventory[itemLocation].value = itemAmount;
+					strncpy(inventory[itemLocation].description, "A small plant", sizeof(inventory[0].description));
+					inventory[itemLocation].value = 1;
 
 					//Increases value of currentInventory
 					character.currentInventory++;
@@ -188,6 +188,57 @@ void itemList(short itemType, short itemId, short itemAmount, short itemLocation
 					break;
 
 				} //End case 0
+				//Gets wood plank
+				case 1:
+				{
+
+					//Coppies properties of wood plank
+					strncpy(inventory[itemLocation].name, "Wood Plank", sizeof(inventory[0].name));
+					inventory[itemLocation].amount = itemAmount;
+					strncpy(inventory[itemLocation].description, "A small wooden plank", sizeof(inventory[0].description));
+					inventory[itemLocation].value = 2;
+
+					//Increases value of currentInventory
+					character.currentInventory++;
+
+					//This breaks out of the case
+					break;
+
+				} //End case 1
+				//gets bone
+				case 2:
+				{
+
+
+					//Coppies properties of bone
+					strncpy(inventory[itemLocation].name, "Bone", sizeof(inventory[0].name));
+					inventory[itemLocation].amount = itemAmount;
+					strncpy(inventory[itemLocation].description, "The bone from a creature", sizeof(inventory[0].description));
+					inventory[itemLocation].value = 4;
+
+					//Increases value of currentInventory
+					character.currentInventory++;
+
+					//This breaks out of the case
+					break;
+
+				} //End case 2
+				case 3:
+				{
+
+					//Coppies properties of dirty gem
+					strncpy(inventory[itemLocation].name, "Gem", sizeof(inventory[0].name));
+					inventory[itemLocation].amount = itemAmount;
+					strncpy(inventory[itemLocation].description, "A tiny dirty gem", sizeof(inventory[0].description));
+					inventory[itemLocation].value = 20;
+
+					//Increases value of currentInventory
+					character.currentInventory++;
+
+					//This breaks out of the case
+					break;
+
+				} //End case 3
 				default:
 				{
 
