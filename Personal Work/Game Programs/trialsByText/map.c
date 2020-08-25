@@ -297,6 +297,8 @@ void mapGen()
 
 	} //End for
 
+/*
+
 	//Sets value for itemGenAmount
 	itemGenAmount = (mapSize / 5) + ((rand() % 20) - 10);
 
@@ -421,6 +423,8 @@ void mapGen()
 		} //End else
 
 	} //End for
+
+*/
 
 	//Lets the user know the map has been generated
 	printf("Map generated\n");
