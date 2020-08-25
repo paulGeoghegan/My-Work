@@ -36,7 +36,7 @@ void play()
 			for(short i = 0;i < map[character.y][character.x].itemAmount;i++)
 			{
 
-				//printS item name
+				//prints item name
 				printf("There are %d %s here\n", (map[character.y][character.x].item+i)->amount, (map[character.y][character.x].item+i)->name);
 
 			} //End for

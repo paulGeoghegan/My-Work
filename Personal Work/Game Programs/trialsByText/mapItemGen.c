@@ -14,11 +14,10 @@ void mapItemGen()
 	srand(time(0));
 
 	//Lets the user know that items are being added to the map
-
 	printf("Adding items to the map...\n");
 
 	//Sets value for itemGenAmount
-	itemGenAmount = ((mapSize-1) / 5) + ((rand() % 20) - 10);
+	itemGenAmount = ((mapSize-1) / 5) + ((rand()%20) - 10);
 
 	//This will add random items to the map
 	for(short i = 0;i < itemGenAmount;i++)
@@ -28,6 +27,10 @@ void mapItemGen()
 		itemToGen = (rand()%100)+1;
 		x = rand()%mapSize;
 		y = rand()%mapSize;
+
+printf("I is %d\n", i);
+printf("X %d, Y %d\n", x, y);
+getchar();
 
 		//Checks which item is being generated
 		if(itemToGen < 2)
@@ -86,10 +89,10 @@ void mapItemGen()
 			map[y][x].item = (struct mapItem *)calloc(map[y][x].itemAmount, sizeof(struct mapItem));
 
 			//Coppies properties to tile
-			strncpy((map[y][x].item+0)->name, itemName, sizeof(itemName));
-			(map[y][x].item+0)->type = itemType;
-			(map[y][x].item+0)->id = itemId;
-			(map[y][x].item+0)->amount = itemAmount;
+			strncpy((map[y][x].item)->name, itemName, sizeof(itemName));
+			(map[y][x].item)->type = itemType;
+			(map[y][x].item)->id = itemId;
+			(map[y][x].item)->amount = itemAmount;
 
 			//Increases itemAmount for the current tile
 			map[y][x].itemAmount++;

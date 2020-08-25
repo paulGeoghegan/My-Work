@@ -90,6 +90,7 @@ void itemPickUp()
 
 				//Decreases amount of items on the current map tile
 				(map[character.y][character.x].item+(itemToTake-1))->amount--;
+				map[character.y][character.x].itemAmount--;
 
 				//Reallocates memory
 				map[character.y][character.x].item = (struct mapItem *)realloc(map[character.y][character.x].item, (map[character.y][character.x].itemAmount * sizeof(struct mapItem)));
