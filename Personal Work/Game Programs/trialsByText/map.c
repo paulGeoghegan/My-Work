@@ -294,6 +294,9 @@ void mapGen()
 
 	} //End for
 
+	//This will add random items to the map
+	
+
 	//Lets the user know the map has been generated
 	printf("Map generated\n");
 
