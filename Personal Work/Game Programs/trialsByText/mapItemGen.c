@@ -28,10 +28,6 @@ void mapItemGen()
 		x = rand()%mapSize;
 		y = rand()%mapSize;
 
-printf("I is %d\n", i);
-printf("X %d, Y %d\n", x, y);
-getchar();
-
 		//Checks which item is being generated
 		if(itemToGen < 2)
 		{
