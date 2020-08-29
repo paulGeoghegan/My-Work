@@ -108,6 +108,9 @@ void mapItemGen()
 				if(itemId == (map[y][x].item+i)->id)
 				{
 
+printf("There is a duplicate\n");
+getchar();
+
 					//Adds 1 to amount
 					(map[y][x].item+i)->amount++;
 
