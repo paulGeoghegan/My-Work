@@ -3,7 +3,11 @@ import os
 def txt_convert(txt_list):
 	"""This function will convert a text string to a binary one"""
 
-	bin_str = "10000001 = A"
+	bin_str = ""
+	char_list = {"A":"01000001", "a":"01100001", "B":"01000010", "b":"01100010"}
+
+	for char in txt_list:
+		bin_str+=char_list[char]+" "
 
 	#returns the new binary string
 	return bin_str
@@ -37,7 +41,7 @@ while option != 1 and option != 2:
 #Checks what kind of string the user entered
 if option == 1:
 	#This will convert a text string to a binary one
-	str = txt_convert(str.split())
+	str = txt_convert(list(str))
 elif option ==2:
 	#This will convert a binary string to a text one
 	str = bin_convert(str.split())
