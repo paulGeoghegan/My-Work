@@ -74,19 +74,69 @@ def num_convert(bin_num ):
 
 option = 0
 
-#Gets an input from the user
-user_input = input("Please enter your string:\n")
+#Asks the user whether they want to enter the input or use a file
+print("Please choose an option:\n1. Use the input file\n2. Manually enter a value")
 
-#Asks the user what kind of string this is
-print("What kind of string is this?\n1. Text\n2. Binary")
-
-#Gets users input
+#Gets user input
 while option != 1 and option != 2:
 	#Validates input
 	try:
-		option = int(input("Enter either 1 for text or 2 for binary:\n"))
+		option = int(input("Please enter a value"))
 	except:
-		print("Please enter either 1 for text or 2 for binary as your input was invalid")
+		print("Invalid input please try again")
+
+#Checks what the user entered
+if option == 1:
+
+	#Checks if the input file exists
+	try:
+		#Opens input file for reading
+		file = open("input.txt", "r")
+	except:
+
+		#Lets the user know that the file did not exist and then creates it
+		print("The input file does not exist let me create it and open it for you")
+
+		#Opens the input file for writing
+		file = open("input.txt", "w")
+
+		#Writes to the file to help the user
+		file.write("""Here I have made the file for you follow the instructions below
+		1. Please remove this text, 
+		2. type your input, 
+		3. save the file and
+		4. return to the program
+		""")
+
+		#Closes file
+		file.close()
+
+		#This opens the output.txt file for the user
+		os.system('cmd /c "input.txt"')
+
+		#Asks for input while waiting for user
+		input("Press enter to continue:\n")
+
+		#re-opens file for reading
+		file = open("input.txt", "r")
+
+	#Stores contents of the file
+	user_input = file.read()
+
+	#Closes file
+	file.close
+
+elif option == 2:
+
+	#Gets an input from the user
+	user_input = input("Please enter your string:\n")
+
+else:
+
+	#Lets the user know that something went wrong
+	print("Something has gone wrong please retry")
+	exit()
+
 
 #Checks what kind of string the user entered
 if option == 1:
@@ -100,7 +150,7 @@ else:
 
 #Opens file for writing output to
 file = open("output.txt", "w")
-
+ 
 #Writes output to file
 file.write(user_input)
 
