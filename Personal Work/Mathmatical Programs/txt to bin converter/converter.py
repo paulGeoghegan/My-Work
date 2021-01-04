@@ -137,6 +137,15 @@ else:
 	print("Something has gone wrong please retry")
 	exit()
 
+#Changes value in option
+option = 2
+
+#This will see if the string is text or binary
+for char in string.ascii_letters[:int(len(string.ascii_letters)/2)]:
+		#Checks if char is in user_input
+		if char in user_input:
+			option = 1
+			break
 
 #Checks what kind of string the user entered
 if option == 1:
@@ -145,8 +154,6 @@ if option == 1:
 elif option ==2:
 	#This will convert a binary string to a text one
 	user_input = bin_convert(user_input.split())
-else:
-	Print("Something went wrong please try again")
 
 #Opens file for writing output to
 file = open("output.txt", "w")
