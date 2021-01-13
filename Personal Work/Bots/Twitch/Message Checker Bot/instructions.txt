@@ -1,0 +1,52 @@
+This file contains instructions on how to get up and running with the messageCheckerBot
+
+1. create a new twitch account which the bot can use or use your own.
+2. Go to httpstwitchapps.comtmi in order to generate an oaurth token for the account.
+Note You will also need to do this if you are useing your own account.
+3. Put the username and the oaurth token in there respective fields inside of the messageCheckerBot.js file
+Example
+
+	identity {
+		username 'put your username here and do not remove the ' surounding it',
+		password 'Put the oauth token here and do not remove the ' surounding it'
+	},
+
+4. Fill out the list of channels you want the bot to opporate in remembering to add a , at the end of each after the ' except for the last one and make sure you include the ' both befor and after the channel names
+Note: this bot was only made to work with one channel but it can work with 2 with no problems
+Example:
+
+	channels [
+		'fred123',
+		'alex_alpha94'
+	] End channel list
+
+5. Make sure the bot is a modorator in each of the channels listed
+Note if you don't know how to do this then the owner of the channel can do the following command in their chat and remember to remove the ()
+
+mod (name of bot)
+
+6. To add banned words to the list find the line which sais:
+var bandWords = ["word1, "word2"];
+You can replace the words inside the " to whatever you want and to add extra words just do the following:
+(a) add a , at the last " befor the ]
+(b) type a word like this "banned"
+(c) repeat untill all the words you want are included
+
+7. Either host the bot locally or use a hosting servis like Glitch httpsglitch.com
+NOTE if you wish to host the bot locally you will need to install node which can be downloaded at httpsnodejs.orgendownload
+Do the following once you complete the download:
+(a) During the install make sure that NPM is being installed,
+(b) when the install is complete go to the command prompt by pressing the windows key, typeing cmd and then pressing enter
+(c) Then type
+npm install tmi.js
+(d) After this head to the directory where you have the messageCheckerBot.js file saved
+(e) Then just click on the run.bat file to start the bot or if you wish to do this manually:
+Open command prompt for the directory and type
+node messageCheckerBot.js
+If there are anny issues connecting make sure that the username and password are correct
+8. Now the bot should be up and running and waiting to time out any user who dares type a banned word
+
+If you have any issues or questions please feel free to contact me
+Twitter httpstwitter.comPaulGeogheganII
+Linkedin httpswww.linkedin.cominpaultdgeoghegan
+Email mrpaultdgeoghegan@gmail.com

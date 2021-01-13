@@ -6,6 +6,9 @@ This repo contains all of my currently publicly available twitch bots which have
 1. autoBanBot
 This bot allows a user to have a multiple channel ban system.
 It allows a broadcaster of a channel to become part of a network of sorts where if a broadcaster uses a custom command e.g. !multiban userName reason then that user will be banned across all channels that have been included.
+2. messageCheckerBot
+This bot has been designed to time out a user that has sent a message containing a word that the broadcaster does not want in their chat
+It has been designed for single channel use but could be used for multiple channels if needed
 
 	Notes:
 For information on the re-distribbution or modification of any of the code contained in this repositry please refer to the GNU GENERAL PUBLIC LICENSE information on which can be found in the licence file.
